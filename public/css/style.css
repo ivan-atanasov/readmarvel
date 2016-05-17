@@ -1,0 +1,43 @@
+#wrapper {
+    width: 900px;
+    margin: 0 auto;
+}
+
+#query {
+    width: 700px;
+}
+
+.card {
+    width: 200px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 25px;
+}
+
+#comics .card {
+    height: 650px;
+}
+
+#characters .card {
+    height: 450px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #676767;
+}
+
+.card h5 {
+    line-height: 18px;
+}
+
+.results {
+    overflow: auto;
+}
+
+.pagination li {
+    display: inline-block;
+    padding: 30px;
+    list-style: none;
+}

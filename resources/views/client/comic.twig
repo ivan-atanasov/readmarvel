@@ -1,0 +1,65 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+    <div id="content">
+
+        <div class="results">
+            <article>
+                <img src="{{ comic['thumbnail']['path'] }}.jpg" alt="{{ comic['title'] }} thumbnail">
+
+                <h2>{{ comic['title'] }}</h2>
+                <p>
+                    {{ comic['description'] }}
+                </p>
+                
+                <div id="series">
+                    <h3>From Series: {{ series['title'] }}</h3>
+                    <div class="years">
+                        <span>Start year: {{ series['startYear'] }}</span>
+                        <span>End year: {{ series['endYear'] }}</span>
+                    </div>
+                    <div class="rating">
+                        Rating: {{ series['rating'] }}
+                    </div>
+                    {% if series['creators']['available'] > 0 %}
+                        <div class="creators">
+                            <h4>Creators</h4>
+                            <ul>
+                                {% for creator in series['creators']['items'] %}
+                                    <li>{{ creator['name'] }} ({{ creator['role'] }})</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    {% if series['characters']['available'] > 0 %}
+                        <div class="characters">
+                            <h4>Characters</h4>
+                            <ul>
+                                {% for character in series['characters']['items'] %}
+                                    <li>{{ character['name'] }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    {% if series['stories']['available'] > 0 %}
+                        <div class="stories">
+                            <h4>Stories</h4>
+                            <ul>
+                                {% for story in series['stories']['items'] %}
+                                    <li>
+                                        {{ story['name'] }} <br>
+                                        type: {{ story['type'] }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+                </footer>
+            </article>
+
+        </div>
+    </div>
+{% endblock %}
