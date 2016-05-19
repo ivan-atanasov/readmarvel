@@ -5,7 +5,6 @@
         <h2>Characters</h2>
 
         <div id="characters" class="results">
-
             {% for char in paginated_results %}
                 <article class="card">
                     <img src="{{ char['thumbnail']['path'] }}/portrait_incredible.jpg"
@@ -17,8 +16,8 @@
                     </footer>
                 </article>
             {% endfor %}
-
         </div>
+
         <div id="pagination">
             {{ paginated_results.setPath('characters').render|raw }}
         </div>
