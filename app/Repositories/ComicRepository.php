@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use Illuminate\Http\Request;
 use Cache;
 use Config;
 use GuzzleHttp\Client;
@@ -36,8 +35,8 @@ class ComicRepository implements ComicRepositoryInterface
      */
     public function random($count = 10)
     {
-        if (Cache::has('comics')) {
-            $comics = Cache::get('comics');
+        if (Cache::has('homepage_comics')) {
+            $comics = Cache::get('homepage_comics');
         } else {
             $query = $this->apiClient->getConfig('query');
             $query['offset'] = 0;
@@ -50,7 +49,7 @@ class ComicRepository implements ComicRepositoryInterface
             $response = json_decode($response->getBody(), true);
             $comics = $response['data']['results'];
 
-            Cache::put('comics', $comics, Config::get('marvel.cache_time'));
+            Cache::tags(['comics'])->put('homepage_comics', $comics, Config::get('marvel.cache_time'));
         }
 
         shuffle($comics);
@@ -85,9 +84,40 @@ class ComicRepository implements ComicRepositoryInterface
             $comics = $response['data'];
             $total = $response['data']['total'];
 
-            Cache::put("search_{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
+            Cache::tags(['comics'])->put("search_{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
         }
 
         return [array_slice($comics['results'], 0, $limit), $search, $total];
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function comic($id)
+    {
+        if (Cache::has('comic_' . $id)) {
+            $data = Cache::get('comic_' . $id);
+        } else {
+            $response = $this->apiClient->get(
+                Config::get('marvel.base_uri') . Config::get('marvel.endpoints.comics') . '/' . $id
+            );
+            $response = json_decode($response->getBody(), true);
+
+            $comic = $response['data']['results'][0];
+            $data['comic'] = $comic;
+
+            if (!empty($comic['series'])) {
+                $series = $this->apiClient->get($comic['series']['resourceURI']);
+                $series = json_decode($series->getBody(), true);
+
+                $data['series'] = $series['data']['results'][0];
+            }
+
+            Cache::tags(['comics'])->put('comic_' . $id, $data, Config::get('marvel.cache_time'));
+        }
+
+        return $data;
     }
 }

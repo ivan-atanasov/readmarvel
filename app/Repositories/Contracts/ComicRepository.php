@@ -23,4 +23,11 @@ interface ComicRepository
      * @return mixed
      */
     public function search($query, $limit = 20, $offset = 0);
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function comic($id);
 }

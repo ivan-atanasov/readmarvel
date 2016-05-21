@@ -18,19 +18,13 @@ use View;
  */
 class HomeController extends Controller
 {
-    /**
-     * @var Client
-     */
+    /** @var Client */
     private $client;
 
-    /**
-     * @var ComicRepository
-     */
+    /** @var ComicRepository */
     private $comicRepository;
 
-    /**
-     * HomeController constructor.
-     */
+    /** HomeController constructor. */
     public function __construct()
     {
         $ts = time();
@@ -63,7 +57,7 @@ class HomeController extends Controller
                 Config::get('homepage.per_page_comics'),
                 $offset
             );
-            
+
             $comics = new LengthAwarePaginator($comics, $total, Config::get('homepage.per_page_comics'));
         } else {
             $comics = $this->comicRepository->random(Config::get('homepage.random_comics_limit'));
@@ -73,37 +67,15 @@ class HomeController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @return mixed
      */
     public function comic($id)
     {
-        $pageData = [];
+        $comic = $this->comicRepository->comic($id);
 
-        if (Cache::has('comic_' . $id)) {
-            $pageData = Cache::get('comic_' . $id);
-        } else {
-            $response = $this->client->get(
-                Config::get('marvel.base_uri') . Config::get('marvel.endpoints.comics') . '/' . $id
-            );
-            $response = json_decode($response->getBody(), true);
-
-            $comic = $response['data']['results'][0];
-            $pageData['comic'] = $comic;
-
-            if (!empty($comic['series'])) {
-                $seriesResponse = $this->client->get($comic['series']['resourceURI']);
-                $seriesResponse = json_decode($seriesResponse->getBody(), true);
-
-                $pageData['series'] = $seriesResponse['data']['results'][0];
-            }
-
-            Cache::put('comic_' . $id, $pageData, Config::get('marvel.cache_time'));
-        }
-
-
-        return view('client.comic', $pageData);
+        return View::make('client.comic', $comic);
     }
 
     /**

@@ -58,4 +58,10 @@ class ComicRepositoryTest extends \Codeception\TestCase\Test
             $this->assertNotFalse(stristr($comic['title'], 'spider-man'));
         }
     }
+
+    public function testComicBookMethodReturnsCorrectResult()
+    {
+        $result = $this->comicRepository->comic(52566);
+        $this->assertEquals($result['comic']['title'], 'Spider-Man/Deadpool (2016) #8');
+    }
 }
