@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ComicRepository;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Cache;
+use Config;
+use View;
 
 /**
  * Class HomeController
@@ -16,27 +18,28 @@ use Cache;
  */
 class HomeController extends Controller
 {
-    /**
-     * @var Client
-     */
+    /** @var Client */
     private $client;
 
-    /**
-     * HomeController constructor.
-     */
+    /** @var ComicRepository */
+    private $comicRepository;
+
+    /** HomeController constructor. */
     public function __construct()
     {
         $ts = time();
-        $hash = md5($ts . config('marvel.private_key') . config('marvel.public_key'));
+        $hash = md5($ts . Config::get('marvel.private_key') . Config::get('marvel.public_key'));
 
         $this->client = new Client([
-            'base_uri' => config('marvel.base_uri'),
+            'base_uri' => Config::get('marvel.base_uri'),
             'query'    => [
-                'apikey' => config('marvel.public_key'),
+                'apikey' => Config::get('marvel.public_key'),
                 'ts'     => $ts,
                 'hash'   => $hash,
             ],
         ]);
+
+        $this->comicRepository = new ComicRepository($this->client);
     }
 
     /**
@@ -46,52 +49,33 @@ class HomeController extends Controller
      */
     public function comics(Request $request)
     {
-        $searchTerm = '';
+        $query = '';
         if ($request->has('query')) {
+            $offset = $request->has('page') ? $request->input('page') : 0;
+            list($comics, $query, $total) = $this->comicRepository->search(
+                $request->input('query'),
+                Config::get('homepage.per_page_comics'),
+                $offset
+            );
 
-            $searchTerm = $request->input('query');
-
-            $query = $this->client->getConfig('query');
-            $query['titleStartsWith'] = $searchTerm;
-
-            $response = $this->client->get('comics', ['query' => $query]);
-            $response = json_decode($response->getBody(), true);
-
-            $comics = $response['data']['results'];
+            $comics = new LengthAwarePaginator($comics, $total, Config::get('homepage.per_page_comics'));
         } else {
-            $comics = Cache::get('comics');
-            shuffle($comics);
-            $comics = array_slice($comics, 0, 20);
+            $comics = $this->comicRepository->random(Config::get('homepage.random_comics_limit'));
         }
 
-        return view('client.comics', ['comics' => $comics, 'query' => $searchTerm]);
-
+        return View::make('client.comics', ['comics' => $comics, 'query' => $query]);
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @return mixed
      */
     public function comic($id)
     {
-        $pageData = [];
+        $comic = $this->comicRepository->comic($id);
 
-        $response = $this->client->get('comics/' . $id);
-        $response = json_decode($response->getBody(), true);
-
-        $comic = $response['data']['results'][0];
-        $pageData['comic'] = $comic;
-
-        if (!empty($comic['series'])) {
-
-            $series_response = $this->client->get($comic['series']['resourceURI']);
-            $series_response = json_decode($series_response->getBody(), true);
-
-            $pageData['series'] = $series_response['data']['results'][0];
-        }
-
-        return view('client.comic', $pageData);
+        return View::make('client.comic', $comic);
     }
 
     /**
@@ -101,13 +85,12 @@ class HomeController extends Controller
      */
     public function characters(Request $request)
     {
-        $characters = Cache::get('characters');
-
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         if (is_null($currentPage)) {
             $currentPage = 1;
         }
 
+        $characters = Cache::get('characters');
         $characters_collection = new Collection($characters);
 
         $items_per_page = 8;
@@ -116,13 +99,12 @@ class HomeController extends Controller
             ->slice(($currentPage - 1) * $items_per_page, $items_per_page)
             ->all();
 
-        $paginated_results = new LengthAwarePaginator(
+        $paginatedResults = new LengthAwarePaginator(
             $current_page_results,
             count($characters_collection),
             $items_per_page
         );
 
-        return view('client.characters', ['paginated_results' => $paginated_results, 'characters' => $characters]);
-
+        return view('client.characters', ['paginated_results' => $paginatedResults, 'characters' => $characters]);
     }
 }

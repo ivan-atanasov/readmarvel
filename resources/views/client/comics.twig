@@ -3,7 +3,7 @@
 {% block content %}
 <div id="content">
     <h2>Comics</h2>
-    <form action="/comics">
+    <form action="{{ URL.route('comics') }}" method="get">
         <p>
             <label for="query">Query</label>
             <input type="text" name="query" id="query" value="{{ query }}">
@@ -17,7 +17,7 @@
             <img src="{{ com['thumbnail']['path'] }}/portrait_incredible.jpg" alt="{{ com['title'] }} thumbnail">
             <footer>
                 <h5>
-                    <a href="/comics/{{ com['id'] }}" class="card-title">{{ com['title'] }}</a>
+                    <a href="/comic/{{ com['id'] }}" class="card-title">{{ com['title'] }}</a>
                 </h5>
                 <p>
                     {{ str_limit(com['description'], 160) }}
@@ -25,6 +25,10 @@
             </footer>
         </article>
         {% endfor %}
+    </div>
+
+    <div id="pagination">
+        {{ comics.setPath('comics').appends('query', query).render|raw }}
     </div>
 </div>
 {% endblock %}
