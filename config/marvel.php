@@ -6,6 +6,7 @@ return [
     'base_uri'    => 'http://gateway.marvel.com/v1/public/',
     'cache_time'  => 1440, // 1 day
     'endpoints'   => [
-        'comics' => 'comics'
+        'comics'     => 'comics',
+        'characters' => 'characters',
     ],
 ];
