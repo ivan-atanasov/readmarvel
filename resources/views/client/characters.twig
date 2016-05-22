@@ -7,14 +7,12 @@
         <div id="characters" class="results">
             {% for character in characters %}
                 <article class="card">
-                    <img src="{{ character['thumbnail']['path'] }}/portrait_incredible.jpg"
+                    <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
                          alt="{{ character['name'] }} thumbnail" />
 
                     <footer>
                         <h5>
-                            <a href="#" class="card-title">
-                                {{ character['name'] }}
-                            </a>
+                            <a href="#" class="card-title">{{ character['name'] }}</a>
                         </h5>
                     </footer>
                 </article>

@@ -9,4 +9,7 @@ return [
         'comics'     => 'comics',
         'characters' => 'characters',
     ],
+    'characters'  => [
+        'thumbnail' => 'portrait_incredible.jpg',
+    ],
 ];
