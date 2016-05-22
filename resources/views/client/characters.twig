@@ -5,13 +5,14 @@
         <h2>Characters</h2>
 
         <div id="characters" class="results">
-            {% for char in paginated_results %}
+            {% for character in characters %}
                 <article class="card">
-                    <img src="{{ char['thumbnail']['path'] }}/portrait_incredible.jpg"
-                         alt="{{ char['name'] }} thumbnail">
+                    <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
+                         alt="{{ character['name'] }} thumbnail" />
+
                     <footer>
                         <h5>
-                            <a href="#" class="card-title">{{ char['name'] }}</a>
+                            <a href="#" class="card-title">{{ character['name'] }}</a>
                         </h5>
                     </footer>
                 </article>
@@ -19,7 +20,7 @@
         </div>
 
         <div id="pagination">
-            {{ paginated_results.setPath('characters').render|raw }}
+            {{ characters.setPath('characters').render|raw }}
         </div>
     </div>
 {% endblock %}

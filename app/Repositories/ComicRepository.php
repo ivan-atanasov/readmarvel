@@ -13,9 +13,7 @@ use App\Repositories\Contracts\ComicRepository as ComicRepositoryInterface;
  */
 class ComicRepository implements ComicRepositoryInterface
 {
-    /**
-     * @var Client
-     */
+    /** @var Client */
     protected $apiClient;
 
     /**

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CharactersRepository;
 use App\Repositories\ComicRepository;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
-use Cache;
 use Config;
 use View;
 
@@ -24,22 +23,15 @@ class HomeController extends Controller
     /** @var ComicRepository */
     private $comicRepository;
 
+    /** @var CharactersRepository */
+    private $charactersRepository;
+
     /** HomeController constructor. */
     public function __construct()
     {
-        $ts = time();
-        $hash = md5($ts . Config::get('marvel.private_key') . Config::get('marvel.public_key'));
-
-        $this->client = new Client([
-            'base_uri' => Config::get('marvel.base_uri'),
-            'query'    => [
-                'apikey' => Config::get('marvel.public_key'),
-                'ts'     => $ts,
-                'hash'   => $hash,
-            ],
-        ]);
-
+        $this->client = $this->initializeApiClient();
         $this->comicRepository = new ComicRepository($this->client);
+        $this->charactersRepository = new CharactersRepository($this->client);
     }
 
     /**
@@ -85,26 +77,33 @@ class HomeController extends Controller
      */
     public function characters(Request $request)
     {
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        if (is_null($currentPage)) {
-            $currentPage = 1;
-        }
-
-        $characters = Cache::get('characters');
-        $characters_collection = new Collection($characters);
-
-        $items_per_page = 8;
-
-        $current_page_results = $characters_collection
-            ->slice(($currentPage - 1) * $items_per_page, $items_per_page)
-            ->all();
-
-        $paginatedResults = new LengthAwarePaginator(
-            $current_page_results,
-            count($characters_collection),
-            $items_per_page
+        $offset = $request->has('page') ? $request->input('page') : 0;
+        list($results, $total) = $this->charactersRepository->list(
+            Config::get('homepage.per_page_comics'),
+            $offset
         );
 
-        return view('client.characters', ['paginated_results' => $paginatedResults, 'characters' => $characters]);
+        $characters = new LengthAwarePaginator($results, $total, Config::get('homepage.per_page_comics'));
+
+        return View::make('client.characters', ['characters' => $characters]);
+    }
+
+    /**
+     * Connects to the Marvel API
+     * @return Client
+     */
+    private function initializeApiClient()
+    {
+        $ts = time();
+        $hash = md5($ts . Config::get('marvel.private_key') . Config::get('marvel.public_key'));
+
+        return new Client([
+            'base_uri' => Config::get('marvel.base_uri'),
+            'query'    => [
+                'apikey' => Config::get('marvel.public_key'),
+                'ts'     => $ts,
+                'hash'   => $hash,
+            ],
+        ]);
     }
 }

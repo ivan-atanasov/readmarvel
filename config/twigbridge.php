@@ -145,7 +145,8 @@ return [
         |
         */
         'facades' => [
-            'URL'
+            'URL',
+            'Config',
         ],
 
         /*
