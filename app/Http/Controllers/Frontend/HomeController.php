@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\CharactersRepository;
 use App\Repositories\ComicRepository;
@@ -15,7 +15,7 @@ use View;
  * Class HomeController
  * @package App\Http\Controllers
  */
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     /** @var Client */
     private $client;
@@ -55,7 +55,7 @@ class HomeController extends Controller
             $comics = $this->comicRepository->random(Config::get('homepage.random_comics_limit'));
         }
 
-        return View::make('client.comics', ['comics' => $comics, 'query' => $query]);
+        return View::make('frontend.comics', ['comics' => $comics, 'query' => $query]);
     }
 
     /**
@@ -67,7 +67,7 @@ class HomeController extends Controller
     {
         $comic = $this->comicRepository->comic($id);
 
-        return View::make('client.comic', $comic);
+        return View::make('frontend.comic', $comic);
     }
 
     /**
@@ -85,7 +85,7 @@ class HomeController extends Controller
 
         $characters = new LengthAwarePaginator($results, $total, Config::get('homepage.per_page_comics'));
 
-        return View::make('client.characters', ['characters' => $characters]);
+        return View::make('frontend.characters', ['characters' => $characters]);
     }
 
     /**

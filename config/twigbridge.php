@@ -147,6 +147,8 @@ return [
         'facades' => [
             'URL',
             'Config',
+            'Auth',
+            'Lang',
         ],
 
         /*
@@ -181,6 +183,8 @@ return [
             'elixir',
             'head',
             'last',
+            'csrf_field',
+            'old',
         ],
 
         /*

@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Marvel Viewer</title>
-    <link rel="stylesheet" href="{{ url('css/style.css') }}">
+
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url('css/style.css') }}"/>
+    {% endblock %}
 </head>
 <body>
 <div id="wrapper">
@@ -14,11 +17,14 @@
     </div>
 
     <div>
-        {% include 'client/partials/navbar.twig' %}
+        {% include 'frontend/partials/_navbar.twig' %}
     </div>
 
     {% block content %}
     {% endblock %}
 </div>
+
+{% block scripts %}
+{% endblock %}
 </body>
 </html>

@@ -1,0 +1,53 @@
+{% extends 'frontend/layouts/default' %}
+
+{% block content %}
+    {% include 'frontend/partials/_errors.twig' with { 'errors' : errors } %}
+
+    <form action="{{ URL.route('register') }}" id="register-form" method="post" class="form-registration">
+        <h2 class="form-signin-heading">{{ Lang.get('auth.register.title') }}</h2>
+
+        <div class="form-group">
+            <label for="name" class="sr-only">{{ Lang.get('auth.register.name') }}</label>
+            <input type="text" name="name" id="name" value="{{ old('name') }}"
+                   placeholder="{{ Lang.get('auth.register.name') }}"
+                   class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="sr-only">{{ Lang.get('auth.register.email') }}</label>
+            <input type="email" name="email" id="email" value="{{ old('email') }}"
+                   placeholder="{{ Lang.get('auth.register.email') }}"
+                   class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="sr-only">{{ Lang.get('auth.register.password') }}</label>
+            <input type="password" name="password" id="password" value=""
+                   placeholder="{{ Lang.get('auth.register.password') }}"
+                   class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password-confirmation" class="sr-only">
+                {{ Lang.get('auth.register.password_confirmation') }}
+            </label>
+            <input type="password" name="password_confirmation" id="password-confirmation" value=""
+                   placeholder="{{ Lang.get('auth.register.password_confirmation') }}"
+                   class="form-control"/>
+        </div>
+
+        {{ csrf_field() }}
+
+        <button type="submit" id="register" class="btn btn-lg btn-primary btn-block">
+            {{ Lang.get('auth.register.register') }}
+        </button>
+    </form>
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+{% endblock %}

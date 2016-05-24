@@ -1,0 +1,23 @@
+{% extends 'frontend/layouts/default' %}
+
+{% block content %}
+    {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
+
+    <form action="{{ URL.route('login') }}" method="post" id="login-form" class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+        <label for="email" class="sr-only">E-Mail</label>
+        <input type="email" id="email" name="email" value="" class="form-control" placeholder="Email address"  autofocus />
+
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password"  />
+
+        {{ csrf_field() }}
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="login-button">Sign in</button>
+    </form>
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+{% endblock %}
