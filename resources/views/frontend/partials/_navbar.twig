@@ -1,0 +1,10 @@
+<a href="{{ URL.route('home') }}">Home</a>
+<a href="{{ URL.route('comics') }}">Comics</a>
+<a href="{{ URL.route('characters') }}">Characters</a>
+
+{% if Auth.check %}
+    <a href="{{ URL.route('logout') }}" id="logout-link">Logout</a>
+{% else %}
+    <a href="{{ URL.route('login') }}" id="login-link">Login</a>
+    <a href="{{ URL.route('register') }}" id="register-link">Register</a>
+{% endif %}
