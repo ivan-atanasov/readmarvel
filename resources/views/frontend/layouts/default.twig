@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Marvel Viewer</title>
+    <title>{{ Lang.get('frontend/navbar.title') }}</title>
 
     {% block styles %}
         <link rel="stylesheet" href="{{ url('css/style.css') }}"/>
@@ -12,7 +12,7 @@
 <div id="wrapper">
     <div id="header">
         <h1>
-            <a href="{{ URL.route('home') }}">Marvel Viewer</a>
+            <a href="{{ URL.route('home') }}">{{ Lang.get('frontend/navbar.title') }}</a>
         </h1>
     </div>
 

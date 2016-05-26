@@ -4,17 +4,29 @@
     {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
     <form action="{{ URL.route('login') }}" method="post" id="login-form" class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">{{ Lang.get('frontend/auth.login.title') }}</h2>
 
-        <label for="email" class="sr-only">E-Mail</label>
-        <input type="email" id="email" name="email" value="" class="form-control" placeholder="Email address"  autofocus />
+        <label for="email" class="sr-only">{{ Lang.get('frontend/auth.login.email') }}</label>
+        <input type="email"
+               id="email"
+               name="email"
+               value="{{ old('email') }}"
+               class="form-control"
+               placeholder="{{ Lang.get('frontend/auth.login.email') }}"  autofocus />
 
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password"  />
+        <label for="password" class="sr-only">{{ Lang.get('frontend/auth.login.password') }}</label>
+        <input type="password"
+               id="password"
+               name="password"
+               value=""
+               class="form-control"
+               placeholder="{{ Lang.get('frontend/auth.login.password') }}"  />
 
         {{ csrf_field() }}
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="login-button">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="login-button">
+            {{ Lang.get('frontend/auth.login.sign_in') }}
+        </button>
     </form>
 {% endblock %}
 
