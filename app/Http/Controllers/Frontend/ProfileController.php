@@ -33,12 +33,16 @@ class ProfileController extends BaseController
     public function index()
     {
         $user = Auth::user();
-        $avatar = ImageHelper::path(
-            UserProfile::IMAGE_RESOURCE,
-            $user->profile->id,
-            ImageHelper::MEDIUM,
-            $user->profile->avatar
-        );
+
+        $avatar = '';
+        if (isset($user->profile) && strlen($user->profile->avatar)) {
+            $avatar = ImageHelper::path(
+                UserProfile::IMAGE_RESOURCE,
+                $user->profile->id,
+                ImageHelper::MEDIUM,
+                $user->profile->avatar
+            );
+        }
 
         return View::make('frontend/profile.edit', ['profile' => $user->profile, 'avatar' => $avatar]);
     }

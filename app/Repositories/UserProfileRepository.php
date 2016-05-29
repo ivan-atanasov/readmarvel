@@ -42,7 +42,9 @@ class UserProfileRepository implements UserProfileRepositoryInterface
         $profile->about_me = $data['about_me'];
         $profile->save();
 
-        $profile->avatar = ImageHelper::crop($data['avatar'], UserProfile::IMAGE_RESOURCE, $profile->id);
+        if (isset($data['avatar'])) {
+            $profile->avatar = ImageHelper::crop($data['avatar'], UserProfile::IMAGE_RESOURCE, $profile->id);
+        }
 
         return $profile->save();
     }
