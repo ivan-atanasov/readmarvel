@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
+use App\Http\Requests\UserProfileRequest;
 use App\Repositories\UserProfileRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
 use Auth;
@@ -48,11 +48,11 @@ class ProfileController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param UserProfileRequest $request
      *
      * @return mixed
      */
-    public function update(Request $request)
+    public function update(UserProfileRequest $request)
     {
         $this->userProfileRepository->updateOrCreate(Auth::user()->id, $request->toArray());
 

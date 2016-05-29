@@ -38,7 +38,7 @@ class UserProfileRepository implements UserProfileRepositoryInterface
         }
 
         $profile->user_id = $userId;
-        $profile->real_name = $data['real_name'];
+        $profile->real_name = trim($data['real_name']);
         $profile->about_me = $data['about_me'];
         $profile->save();
 
