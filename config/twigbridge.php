@@ -110,11 +110,11 @@ return [
             'TwigBridge\Extension\Laravel\Str',
             'TwigBridge\Extension\Laravel\Translator',
             'TwigBridge\Extension\Laravel\Url',
-            // 'TwigBridge\Extension\Laravel\Gate',
+//             'TwigBridge\Extension\Laravel\Gate',
 
-            // 'TwigBridge\Extension\Laravel\Form',
-            // 'TwigBridge\Extension\Laravel\Html',
-            // 'TwigBridge\Extension\Laravel\Legacy\Facades',
+             'TwigBridge\Extension\Laravel\Form',
+             'TwigBridge\Extension\Laravel\Html',
+//             'TwigBridge\Extension\Laravel\Legacy\Facades',
         ],
 
         /*
@@ -149,6 +149,8 @@ return [
             'Config',
             'Auth',
             'Lang',
+            'Form',
+            'HTML',
         ],
 
         /*
@@ -185,6 +187,8 @@ return [
             'last',
             'csrf_field',
             'old',
+            'form_model',
+            'form_close',
         ],
 
         /*

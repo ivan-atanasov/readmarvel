@@ -23,4 +23,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        // @TODO check if authenticated user is admin or user
+        if (true) {
+            return $this->hasOne('App\\Entities\\UserProfile');
+        }
+
+        return $this->hasOne('App\\Entities\\UserProfile');
+    }
 }

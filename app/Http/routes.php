@@ -2,9 +2,14 @@
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@comics']);
-    Route::get('/comics', ['as' => 'comics', 'uses' => 'HomeController@comics']);
-    Route::get('/comic/{id}', ['as' => 'comic', 'uses' => 'HomeController@comic']);
-    Route::get('/characters', ['as' => 'characters', 'uses' => 'HomeController@characters']);
+    Route::get('/comics', ['as' => 'frontend.comics', 'uses' => 'HomeController@comics']);
+    Route::get('/comic/{id}', ['as' => 'frontend.comic', 'uses' => 'HomeController@comic']);
+    Route::get('/characters', ['as' => 'frontend.characters', 'uses' => 'HomeController@characters']);
+
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/profile', ['as' => 'frontend.profile', 'uses' => 'ProfileController@index']);
+        Route::post('/profile', ['as' => 'frontend.update_profile', 'uses' => 'ProfileController@update']);
+    });
 });
 
 Route::group(['namespace' => 'Auth'], function () {
