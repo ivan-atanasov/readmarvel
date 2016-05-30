@@ -12,11 +12,6 @@ class RegisterCest
         $this->faker = Faker\Factory::create();
     }
 
-    public function _after(FunctionalTester $I)
-    {
-
-    }
-
     /**
      * @param FunctionalTester $I
      * @param \Page\Register $registerPage

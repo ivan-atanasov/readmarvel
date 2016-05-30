@@ -3,7 +3,7 @@
 <a href="{{ URL.route('frontend.characters') }}">{{ Lang.get('frontend/navbar.characters') }}</a>
 
 {% if Auth.check %}
-    <a href="{{ URL.route('frontend.profile') }}" id="logout-link">{{ Lang.get('frontend/navbar.profile') }}</a>
+    <a href="{{ URL.route('frontend.profile') }}" id="profile-link">{{ Lang.get('frontend/navbar.profile') }}</a>
     <a href="{{ URL.route('logout') }}" id="logout-link">{{ Lang.get('frontend/navbar.logout') }}</a>
 {% else %}
     <a href="{{ URL.route('login') }}" id="login-link">{{ Lang.get('frontend/navbar.login') }}</a>
