@@ -30,7 +30,6 @@ class StringHelper
      */
     public static function sanitizeFilename(string $filename)
     {
-        // clean filename from the extension for the session
         $tempArr = explode('/', $filename);
         $fileNameArr = explode('.', $tempArr[count($tempArr) - 1]);
         $extension = $fileNameArr[count($fileNameArr) - 1];
@@ -38,7 +37,7 @@ class StringHelper
         // remove the extension from the filename
         array_pop($fileNameArr);
 
-        $originalName = implode('.', $fileNameArr);
+        $originalName = trim(implode('.', $fileNameArr));
 
         $name = self::sanitize($originalName);
         $name = strtolower($name);
