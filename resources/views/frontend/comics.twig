@@ -3,7 +3,7 @@
 {% block content %}
 <div id="content">
     <h2>{{ Lang.get('frontend/comics.title') }}</h2>
-    <form action="{{ URL.route('comics') }}" method="get">
+    <form action="{{ URL.route('frontend.comics') }}" method="get">
         <p>
             <label for="query">{{ Lang.get('frontend/comics.search') }}</label>
             <input type="text" name="query" id="query" value="{{ query }}">
@@ -17,7 +17,7 @@
             <img src="{{ comic['thumbnail']['path'] }}/portrait_incredible.jpg" alt="{{ comic['title'] }} thumbnail">
             <footer>
                 <h5>
-                    <a href="{{ URL.route('comic', {'id': comic['id']}) }}" class="card-title">
+                    <a href="{{ URL.route('frontend.comic', {'id': comic['id']}) }}" class="card-title">
                         {{ comic['title'] }}
                     </a>
                 </h5>

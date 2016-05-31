@@ -1,0 +1,13 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    {% include 'frontend/partials/_edit_form' with {
+    'title': 'Modify role',
+    'edit_route': ['frontend.update_profile'],
+    'back_route': route('frontend.profile'),
+    'form': 'frontend.profile.form',
+    'resource': profile,
+    'id': 'edit-user-profile-form',
+    'files' : true
+    } %}
+{% endblock %}

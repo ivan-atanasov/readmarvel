@@ -1,0 +1,28 @@
+<section class="content">
+
+    {% include 'frontend/partials/_errors.twig' %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    {{  Form.model(
+                        resource,
+                        {
+                            'route': edit_route,
+                            'method': 'post',
+                            'class': 'form-horizontal',
+                            'role': 'form',
+                            'id': id,
+                            'files': files
+                        }) | raw
+                    }}
+
+                    {% include form %}
+
+                    {{ Form.close() | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

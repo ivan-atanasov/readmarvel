@@ -1,11 +1,11 @@
 <?php
 class LoginCest
 {
-    private $customer;
+    private $user;
 
     public function _before()
     {
-        $this->customer = \App\User::find(1);
+        $this->user = \App\User::find(1);
     }
 
     /**
@@ -14,7 +14,7 @@ class LoginCest
      */
     public function canLoginWithValidCredentials(FunctionalTester $I, \Page\Login $loginPage)
     {
-        $I->loginAsUser($loginPage, $this->customer->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
         $I->seeElement($loginPage::$logoutLink);
         $I->click($loginPage::$logoutLink);
         $I->seeElement($loginPage::$loginLink);

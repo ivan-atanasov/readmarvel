@@ -1,0 +1,17 @@
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary ">
+                <div class="panel-body">
+                    {% include 'frontend/prtials/_errors' %}
+
+                    {{ form_open({'route': submit_route, 'method': 'POST', 'class': 'form-horizontal'}) }}
+
+                    {% include form %}
+
+                    {{ form_close() }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

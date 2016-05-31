@@ -34,7 +34,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',1);
+INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',1),('2016_05_26_152154_create_user_profiles_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,6 +64,38 @@ LOCK TABLES `password_resets` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_profiles`
+--
+
+DROP TABLE IF EXISTS `user_profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_profiles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `real_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `about_me` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_profiles_user_id_foreign` (`user_id`),
+  CONSTRAINT `user_profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_profiles`
+--
+
+LOCK TABLES `user_profiles` WRITE;
+/*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
+INSERT INTO `user_profiles` VALUES (10,10,'va1mqpd.jpg','Иван','','2016-05-29 17:29:53','2016-05-30 10:30:36',NULL);
+/*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -80,7 +112,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +121,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'ivan','atanassoff.i@gmail.com','$2y$10$/hLGlzj9JbsTI1mfjTy6p.ItrXSfRUN6.PyrydZdVf4yn3P3U5p2.','C8pMKcxwcNV6oLlzHfDdrL5ZIRiQcutfqCKV818g3PXrOMwmpeFOEOZpBvGi','2016-05-24 20:23:42','2016-05-24 20:26:13'),(2,'john','john@test.dev','$2y$10$2j3gR0X5K/MmeZ3DC9Y0WuVHizCu8YfVofTGeckRe82hQp3.v7irG',NULL,'2016-05-24 20:24:28','2016-05-24 20:24:28'),(3,'асдасд','qwewqe@asdasd.sdf','$2y$10$zG5gqeWv/.U8X4TCUFpTcuxIIs0VrRiJFLAA8CDATig4O43oB7Hce',NULL,'2016-05-24 20:27:13','2016-05-24 20:27:13');
+INSERT INTO `users` VALUES (1,'John Doe','john@test.dev','$2y$10$dXoKhMWlY5NBoRcioP3VDO5Cn2SirGB1yQdBeuSjfwVwloPmO8u/S','NGSuRPuSMYpnxLSV8IMVnGEYS7fuP34ZlkPA3FhlX4p79Xzfi9R7eX8wVFK4','2016-05-29 17:29:40','2016-05-30 11:56:07');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -102,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-24 20:44:03
+-- Dump completed on 2016-05-30 14:35:40
