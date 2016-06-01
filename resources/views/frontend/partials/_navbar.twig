@@ -1,11 +1,47 @@
-<a href="{{ URL.route('home') }}">{{ Lang.get('frontend/navbar.home') }}</a>
-<a href="{{ URL.route('frontend.comics') }}">{{ Lang.get('frontend/navbar.comics') }}</a>
-<a href="{{ URL.route('frontend.characters') }}">{{ Lang.get('frontend/navbar.characters') }}</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ URL.to('/') }}">Project name</a>
+        </div>
 
-{% if Auth.check %}
-    <a href="{{ URL.route('frontend.profile') }}" id="profile-link">{{ Lang.get('frontend/navbar.profile') }}</a>
-    <a href="{{ URL.route('logout') }}" id="logout-link">{{ Lang.get('frontend/navbar.logout') }}</a>
-{% else %}
-    <a href="{{ URL.route('login') }}" id="login-link">{{ Lang.get('frontend/navbar.login') }}</a>
-    <a href="{{ URL.route('register') }}" id="register-link">{{ Lang.get('frontend/navbar.register') }}</a>
-{% endif %}
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ URL.route('home') }}">{{ Lang.get('frontend/navbar.home') }}</a>
+                </li>
+                <li>
+                    <a href="{{ URL.route('frontend.comics') }}">{{ Lang.get('frontend/navbar.comics') }}</a>
+                </li>
+                <li>
+                    <a href="{{ URL.route('frontend.characters') }}">{{ Lang.get('frontend/navbar.characters') }}</a>
+                </li>
+            </ul>
+
+            <div class="navbar-form navbar-right">
+                {% if Auth.check %}
+                    <a href="{{ URL.route('frontend.profile') }}" id="profile-link" class="btn btn-success">
+                        {{ Lang.get('frontend/navbar.profile') }}
+                    </a>
+
+                    <a href="{{ URL.route('logout') }}" id="logout-link" class="btn btn-success">
+                        {{ Lang.get('frontend/navbar.logout') }}
+                    </a>
+                {% else %}
+                    <a href="{{ URL.route('login') }}" id="login-link" class="btn btn-success">
+                        {{ Lang.get('frontend/navbar.login') }}
+                    </a>
+                    <a href="{{ URL.route('register') }}" id="register-link" class="btn btn-success">
+                        {{ Lang.get('frontend/navbar.register') }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
