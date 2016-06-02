@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['namespace' => 'Frontend'], function () {
-    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@comics']);
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/comics', ['as' => 'frontend.comics', 'uses' => 'HomeController@comics']);
     Route::get('/comic/{id}', ['as' => 'frontend.comic', 'uses' => 'HomeController@comic']);
     Route::get('/characters', ['as' => 'frontend.characters', 'uses' => 'HomeController@characters']);

@@ -1,0 +1,30 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block carousel %}
+    {{ parent() }}
+    {% include 'frontend/partials/_carousel.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <h2>{{ Lang.get('frontend/index.random_comics') }}</h2>
+
+        <div id="comics" class="results">
+            {% for comic in comics %}
+                <article class="card">
+                    <img src="{{ comic['thumbnail']['path'] }}/portrait_incredible.jpg"
+                         alt="{{ comic['title'] }} thumbnail">
+
+                    <footer>
+                        <h5>
+                            <a href="{{ URL.route('frontend.comic', {'id': comic['id']}) }}" class="card-title">
+                                {{ comic['title'] }}
+                            </a>
+                        </h5>
+                        <p>{{ str_limit(comic['description'], 140) }}</p>
+                    </footer>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

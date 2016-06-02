@@ -5,25 +5,23 @@
     <title>{{ Lang.get('frontend/navbar.title') }}</title>
 
     {% block styles %}
-        <link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}"/>
-        <link rel="stylesheet" href="{{ url('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ elixir('assets/css/app.css') }}"/>
     {% endblock %}
 </head>
 <body>
-<div id="wrapper">
-    <div id="header">
-        <h1>
-            <a href="{{ URL.route('home') }}">{{ Lang.get('frontend/navbar.title') }}</a>
-        </h1>
-    </div>
+{% include 'frontend/partials/_navbar.twig' %}
 
-    <div>
-        {% include 'frontend/partials/_navbar.twig' %}
-    </div>
+{% block carousel %}
+{% endblock %}
 
+<div class="container">
     {% block content %}
     {% endblock %}
 </div>
+
+{% block footer %}
+    {% include 'frontend/partials/_footer.twig' %}
+{% endblock %}
 
 {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
