@@ -34,6 +34,13 @@ class HomeController extends BaseController
         $this->charactersRepository = new CharactersRepository($this->client);
     }
 
+    public function index()
+    {
+        $comics = $this->comicRepository->random(Config::get('homepage.random_comics_limit'));
+
+        return View::make('frontend.index', ['comics' => $comics]);
+    }
+
     /**
      * @param Request $request
      *

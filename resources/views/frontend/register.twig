@@ -1,53 +1,35 @@
 {% extends 'frontend/layouts/default' %}
 
 {% block content %}
-    {% include 'frontend/partials/_errors.twig' with { 'errors' : errors } %}
+    <div class="module form-module">
+        {% include 'frontend/partials/_errors.twig' with { 'errors' : errors } %}
 
-    <form action="{{ URL.route('register') }}" id="register-form" method="post" class="form-registration">
-        <h2 class="form-signin-heading">{{ Lang.get('frontend/auth.register.title') }}</h2>
+        <div class="form" style="display: block;">
+            <h2>{{ Lang.get('frontend/auth.register.title') }}</h2>
+            <form action="{{ URL.route('register') }}" id="register-form" method="post" class="form-registration">
+                <input type="text" name="name" id="name" value="{{ old('name') }}"
+                       placeholder="{{ Lang.get('frontend/auth.register.name') }}"
+                       class="form-control"/>
 
-        <div class="form-group">
-            <label for="name" class="sr-only">{{ Lang.get('frontend/auth.register.name') }}</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}"
-                   placeholder="{{ Lang.get('frontend/auth.register.name') }}"
-                   class="form-control"/>
+                <input type="email" name="email" id="email" value="{{ old('email') }}"
+                       placeholder="{{ Lang.get('frontend/auth.register.email') }}"
+                       class="form-control"/>
+
+                <input type="password" name="password" id="password" value=""
+                       placeholder="{{ Lang.get('frontend/auth.register.password') }}"
+                       class="form-control"/>
+
+                <input type="password" name="password_confirmation" id="password-confirmation" value=""
+                       placeholder="{{ Lang.get('frontend/auth.register.password_confirmation') }}"
+                       class="form-control"/>
+
+                {{ csrf_field() }}
+
+                <button class="submit">{{ Lang.get('frontend/auth.register.register') }}</button>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="email" class="sr-only">{{ Lang.get('frontend/auth.register.email') }}</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}"
-                   placeholder="{{ Lang.get('frontend/auth.register.email') }}"
-                   class="form-control"/>
+        <div class="cta">
+            <a href="{{ URL.route('login') }}">{{ Lang.get('frontend/auth.register.already_registered') }}</a>
         </div>
-
-        <div class="form-group">
-            <label for="password" class="sr-only">{{ Lang.get('frontend/auth.register.password') }}</label>
-            <input type="password" name="password" id="password" value=""
-                   placeholder="{{ Lang.get('frontend/auth.register.password') }}"
-                   class="form-control"/>
-        </div>
-
-        <div class="form-group">
-            <label for="password-confirmation" class="sr-only">
-                {{ Lang.get('frontend/auth.register.password_confirmation') }}
-            </label>
-            <input type="password" name="password_confirmation" id="password-confirmation" value=""
-                   placeholder="{{ Lang.get('frontend/auth.register.password_confirmation') }}"
-                   class="form-control"/>
-        </div>
-
-        {{ csrf_field() }}
-
-        <button type="submit" id="register" class="btn btn-lg btn-primary btn-block">
-            {{ Lang.get('frontend/auth.register.register') }}
-        </button>
-    </form>
-{% endblock %}
-
-{% block styles %}
-    {{ parent() }}
-{% endblock %}
-
-{% block scripts %}
-    {{ parent() }}
+    </div>
 {% endblock %}

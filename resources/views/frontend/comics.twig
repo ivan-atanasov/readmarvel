@@ -1,7 +1,6 @@
 {% extends 'frontend/layouts/default.twig' %}
 
 {% block content %}
-<div id="content">
     <h2>{{ Lang.get('frontend/comics.title') }}</h2>
     <form action="{{ URL.route('frontend.comics') }}" method="get">
         <p>
@@ -13,24 +12,24 @@
 
     <div id="comics" class="results">
         {% for comic in comics %}
-        <article class="card">
-            <img src="{{ comic['thumbnail']['path'] }}/portrait_incredible.jpg" alt="{{ comic['title'] }} thumbnail">
-            <footer>
-                <h5>
-                    <a href="{{ URL.route('frontend.comic', {'id': comic['id']}) }}" class="card-title">
-                        {{ comic['title'] }}
-                    </a>
-                </h5>
-                <p>
-                    {{ str_limit(comic['description'], 160) }}
-                </p>
-            </footer>
-        </article>
+            <article class="card">
+                <img src="{{ comic['thumbnail']['path'] }}/portrait_incredible.jpg"
+                     alt="{{ comic['title'] }} thumbnail">
+                <footer>
+                    <h5>
+                        <a href="{{ URL.route('frontend.comic', {'id': comic['id']}) }}" class="card-title">
+                            {{ comic['title'] }}
+                        </a>
+                    </h5>
+                    <p>
+                        {{ str_limit(comic['description'], 160) }}
+                    </p>
+                </footer>
+            </article>
         {% endfor %}
     </div>
 
     <div id="pagination">
         {{ comics.setPath('comics').appends('query', query).render|raw }}
     </div>
-</div>
 {% endblock %}
