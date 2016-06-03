@@ -5833,6 +5833,12 @@ button.close {
   color: #333333;
   text-decoration: none; }
 
+.comic-thumbnail {
+  width: 280px; }
+
+.comic-page {
+  margin-top: 60px; }
+
 .btn {
   color: #fff;
   background-color: #f04125;

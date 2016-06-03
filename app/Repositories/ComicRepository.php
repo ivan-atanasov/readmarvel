@@ -95,6 +95,7 @@ class ComicRepository implements ComicRepositoryInterface
      */
     public function comic($id)
     {
+        Cache::forget('comic_' . $id);
         if (Cache::has('comic_' . $id)) {
             $data = Cache::get('comic_' . $id);
         } else {
