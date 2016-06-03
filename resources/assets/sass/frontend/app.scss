@@ -1,0 +1,46 @@
+$white: #fff;
+$marvelRedBtn: #f04125;
+$marvelRedBorderBtn: #ea2f10;
+$marvelRedBtnHover: #d32a0e;
+$marvelRedBorderBtnHover: #b1240c;
+
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "index";
+@import "auth";
+@import "comics";
+
+.btn {
+  color: $white;
+  background-color: $marvelRedBtn;
+  border-color: $marvelRedBorderBtn;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  padding: 8px 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  border-radius: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn:hover,
+.btn:active {
+  color: $white;
+  background-color: $marvelRedBtnHover;
+  border-color: $marvelRedBorderBtnHover;
+}
+
+.footer {
+  background-image: url('/images/footer.jpg');
+  height: 500px;
+}
