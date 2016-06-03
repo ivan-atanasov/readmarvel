@@ -1,0 +1,121 @@
+<div class="add-to-list modal fade" id="add-to-list-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{ Lang.get('frontend/comics.add_to_list') }}</h4>
+            </div>
+
+            <form action="{{ URL.route('login') }}" method="post">
+                <div class="modal-body">
+                    {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label for="marvel-list">{{ Lang.get('frontend/comics.pick_a_list') }}</label>
+
+                            <select id="marvel-list"
+                                    name="marvel_list"
+                                    class="form-control">
+                                <option value="0">Select a list</option>
+                                <option value="1"> List 1</option>
+                                <option value="2"> List 2</option>
+                                <option value="3"> List 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-6">
+                            <label for="score">{{ Lang.get('frontend/comics.score') }}</label>
+
+                            <select name="score" id="score" class="form-control">
+                                {% for i in 1..10 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="reread-value">{{ Lang.get('frontend/comics.reread_value') }}</label>
+
+                            <select name="reread_value"
+                                    id="reread-value"
+                                    class="form-control">
+                                {% for i in 1..10 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label for="score">{{ Lang.get('frontend/comics.progress') }}</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control text-center"
+                                       placeholder="Number of issues already finished">
+                                <div class="input-group-addon">/</div>
+                                <input type="text" class="form-control text-center" placeholder="15"
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label>{{ Lang.get('frontend/comics.period') }}</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">{{ Lang.get('frontend/comics.from') }}</div>
+                                <input type="text"
+                                       class="form-control text-center"
+                                       id="started-at"
+                                       placeholder="Started at"
+                                       data-start-view="4"
+                                       data-min-view="2"/>
+
+                                <div class="input-group-addon">{{ Lang.get('frontend/comics.to') }}</div>
+                                <input type="text"
+                                       class="form-control text-center"
+                                       id="finished-at"
+                                       placeholder="Finished at"
+                                       data-start-view="4"
+                                       data-min-view="2"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label class="control-label" for="comment">
+                                {{ Lang.get('frontend/comics.comment') }}
+                            </label>
+
+                            <textarea class="form-control" name="comment" id="comment"></textarea>
+                            <p class="help-block">
+                                {{ Lang.get('frontend/comics.comment_note') }}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    {{ csrf_field() }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">
+                        {{ Lang.get('frontend/comics.add_to_list_modal_close') }}
+                    </button>
+
+                    <button type="button" class="btn">
+                        {{ Lang.get('frontend/comics.save_changes') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

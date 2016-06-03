@@ -5,7 +5,11 @@
         <div class="col-md-3">
             <img src="{{ comic['thumbnail']['path'] }}.jpg"
                  alt="{{ comic['title'] }} thumbnail"
-                 class="comic-thumbnail"/>
+                 class="img-responsive"/>
+
+                <a href="#" class="btn btn-block" data-toggle="modal" data-target="#add-to-list-modal">
+                    {{ Lang.get('frontend/comics.add_to_list') }}
+                </a>
         </div>
 
         <div class="col-md-9">
@@ -62,4 +66,23 @@
             </div>
         </div>
     </div>
+
+    {% include 'frontend/partials/_add_to_list_modal' %}
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ URL.to('assets/css/datetimepicker.css') }}"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script type="application/javascript" src="{{ URL.to('js/datetimepicker.js') }}"></script>
+
+    <script type="application/javascript">
+        $('#started-at').datetimepicker({format: 'yyyy/mm/dd'});
+        $('#finished-at').datetimepicker({format: 'yyyy/mm/dd'});
+    </script>
 {% endblock %}
