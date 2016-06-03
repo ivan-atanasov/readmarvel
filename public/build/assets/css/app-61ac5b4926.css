@@ -5839,6 +5839,9 @@ button.close {
 .comic-page {
   margin-top: 60px; }
 
+.add-to-list.modal .modal-header {
+  border-bottom: 5px solid #f04125; }
+
 .btn {
   color: #fff;
   background-color: #f04125;
@@ -5870,6 +5873,10 @@ button.close {
 
 .footer {
   background-image: url("/images/footer.jpg");
-  height: 500px; }
+  height: 500px;
+  margin-top: 20px; }
+
+.top-buffer {
+  margin-top: 20px; }
 
 /*# sourceMappingURL=app.css.map */
