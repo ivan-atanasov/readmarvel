@@ -43,8 +43,27 @@ class UserProfileRepository implements UserProfileRepositoryInterface
         $profile->save();
 
         if (isset($data['avatar'])) {
-            $profile->avatar = ImageHelper::crop($data['avatar'], UserProfile::IMAGE_RESOURCE, $profile->id);
+            $profile->avatar = ImageHelper::crop($data['avatar'], UserProfile::IMAGE_RESOURCE, $userId);
         }
+
+        return $profile->save();
+    }
+
+    /**
+     * @param int $userId
+     * @param     $avatar
+     *
+     * @return bool
+     */
+    public function updateAvatar(int $userId, $avatar)
+    {
+        $profile = $this->find($userId);
+
+        if (!isset($profile)) {
+            $profile = new UserProfile();
+        }
+
+        $profile->avatar = ImageHelper::crop($avatar, UserProfile::IMAGE_RESOURCE, $userId);
 
         return $profile->save();
     }

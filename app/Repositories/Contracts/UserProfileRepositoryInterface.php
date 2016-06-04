@@ -27,4 +27,14 @@ interface UserProfileRepositoryInterface
      * @return mixed
      */
     public function updateOrCreate(int $userId, array $data);
+
+    /**
+     * Updates the avatar for the given user's profile
+     *
+     * @param int $userId
+     * @param     $avatar
+     *
+     * @return mixed
+     */
+    public function updateAvatar(int $userId, $avatar);
 }
