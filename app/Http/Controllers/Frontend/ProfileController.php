@@ -6,6 +6,7 @@ use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
 use App\Http\Requests\UserProfileRequest;
 use App\Repositories\UserProfileRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
 use Auth;
@@ -34,17 +35,24 @@ class ProfileController extends BaseController
     {
         $user = Auth::user();
 
-        $avatar = '';
+        $avatars = [];
         if (isset($user->profile) && strlen($user->profile->avatar)) {
-            $avatar = ImageHelper::path(
+            $avatars['medium'] = ImageHelper::path(
                 UserProfile::IMAGE_RESOURCE,
-                $user->profile->id,
+                $user->id,
                 ImageHelper::MEDIUM,
+                $user->profile->avatar
+            );
+
+            $avatars['large'] = ImageHelper::path(
+                UserProfile::IMAGE_RESOURCE,
+                $user->id,
+                ImageHelper::LARGE,
                 $user->profile->avatar
             );
         }
 
-        return View::make('frontend/profile.edit', ['profile' => $user->profile, 'avatar' => $avatar]);
+        return View::make('frontend/profile.layout', ['profile' => $user->profile, 'avatar' => $avatars]);
     }
 
     /**
@@ -55,6 +63,16 @@ class ProfileController extends BaseController
     public function update(UserProfileRequest $request)
     {
         $this->userProfileRepository->updateOrCreate(Auth::user()->id, $request->toArray());
+
+        return Redirect::back();
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function updateAvatar(Request $request)
+    {
+        $this->userProfileRepository->updateAvatar(Auth::user()->id, $request->file('avatar'));
 
         return Redirect::back();
     }

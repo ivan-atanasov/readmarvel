@@ -8,6 +8,7 @@ $marvelRedBorderBtnHover: #b1240c;
 @import "index";
 @import "auth";
 @import "comics";
+@import "profile";
 
 .btn {
   color: $white;
@@ -48,4 +49,29 @@ $marvelRedBorderBtnHover: #b1240c;
 
 .top-buffer {
   margin-top: 20px;
+}
+
+.container.content-container {
+  margin-top: 65px;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
 }

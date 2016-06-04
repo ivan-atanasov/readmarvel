@@ -5740,13 +5740,6 @@ button.close {
 #query {
   width: 700px; }
 
-.card {
-  width: 200px;
-  float: left;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 25px; }
-
 #comics .card {
   height: 650px; }
 
@@ -5836,11 +5829,81 @@ button.close {
 .comic-thumbnail {
   width: 280px; }
 
-.comic-page {
-  margin-top: 60px; }
-
 .add-to-list.modal .modal-header {
   border-bottom: 5px solid #f04125; }
+
+/* USER PROFILE PAGE */
+.card {
+  padding: 30px;
+  background-color: rgba(214, 224, 226, 0.2);
+  -moz-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  box-sizing: border-box; }
+
+.card.hovercard {
+  position: relative;
+  padding-top: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: #fff;
+  background-color: white; }
+
+.card.hovercard .card-background {
+  height: 130px; }
+
+.card-background img {
+  -webkit-filter: blur(25px);
+  -moz-filter: blur(25px);
+  -o-filter: blur(25px);
+  -ms-filter: blur(25px);
+  filter: blur(25px);
+  margin-left: -100px;
+  margin-top: -200px;
+  min-width: 130%; }
+
+.card.hovercard .useravatar {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0; }
+
+.card.hovercard .useravatar img {
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.5); }
+
+.card.hovercard .card-info {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0; }
+
+.card.hovercard .card-info .card-title {
+  padding: 0 5px;
+  font-size: 28px;
+  line-height: 1;
+  color: #262626;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px; }
+
+.card.hovercard .card-info {
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 20px;
+  color: #737373;
+  text-overflow: ellipsis; }
+
+.card.hovercard .bottom {
+  padding: 0 20px;
+  margin-bottom: 17px; }
+
+.btn-pref .btn {
+  -webkit-border-radius: 0 !important; }
 
 .btn {
   color: #fff;
@@ -5878,5 +5941,27 @@ button.close {
 
 .top-buffer {
   margin-top: 20px; }
+
+.container.content-container {
+  margin-top: 65px; }
+
+.btn-file {
+  position: relative;
+  overflow: hidden; }
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block; }
 
 /*# sourceMappingURL=app.css.map */
