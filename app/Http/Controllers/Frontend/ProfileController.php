@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Entities\MarvelList;
 use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
 use App\Http\Requests\UserProfileRequest;
+use App\Repositories\MarvelListRepository;
 use App\Repositories\UserProfileRepository;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
@@ -13,19 +16,24 @@ use Auth;
 
 class ProfileController extends BaseController
 {
-    /**
-     * @var UserProfileRepository
-     */
+    /** @var UserProfileRepository */
     protected $userProfileRepository;
+
+    /** @var MarvelListRepository */
+    protected $marvelListRepository;
 
     /**
      * ProfileController constructor.
      *
      * @param UserProfileRepository $userProfileRepository
+     * @param MarvelListRepository  $marvelListRepository
      */
-    public function __construct(UserProfileRepository $userProfileRepository)
+    public function __construct(
+        UserProfileRepository $userProfileRepository,
+        MarvelListRepository $marvelListRepository)
     {
         $this->userProfileRepository = $userProfileRepository;
+        $this->marvelListRepository = $marvelListRepository;
     }
 
     /**
@@ -37,22 +45,19 @@ class ProfileController extends BaseController
 
         $avatars = [];
         if (isset($user->profile) && strlen($user->profile->avatar)) {
-            $avatars['medium'] = ImageHelper::path(
-                UserProfile::IMAGE_RESOURCE,
-                $user->id,
-                ImageHelper::MEDIUM,
-                $user->profile->avatar
-            );
-
-            $avatars['large'] = ImageHelper::path(
-                UserProfile::IMAGE_RESOURCE,
-                $user->id,
-                ImageHelper::LARGE,
-                $user->profile->avatar
-            );
+            $avatars = $this->getUserAvatars($user);
         }
 
-        return View::make('frontend/profile.layout', ['profile' => $user->profile, 'avatar' => $avatars]);
+        $lists = $this->marvelListRepository->all($user)->toArray();
+        $this->getListsAvatars($lists);
+
+        $viewData = [
+            'profile' => $user->profile,
+            'avatar'  => $avatars,
+            'lists'   => $lists,
+        ];
+
+        return View::make('frontend/profile.layout', $viewData);
     }
 
     /**
@@ -75,5 +80,52 @@ class ProfileController extends BaseController
         $this->userProfileRepository->updateAvatar(Auth::user()->id, $request->file('avatar'));
 
         return Redirect::back();
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return array
+     */
+    private function getUserAvatars(User $user)
+    {
+        return [
+            'medium' => ImageHelper::path(
+                UserProfile::IMAGE_RESOURCE,
+                $user->id,
+                ImageHelper::MEDIUM,
+                $user->profile->avatar
+            ),
+            'large'  => ImageHelper::path(
+                UserProfile::IMAGE_RESOURCE,
+                $user->id,
+                ImageHelper::LARGE,
+                $user->profile->avatar
+            ),
+        ];
+    }
+
+    /**
+     * @param array $lists
+     */
+    private function getListsAvatars(array &$lists)
+    {
+        /**
+         * @var int   $key
+         * @var array $list
+         */
+        foreach ($lists as $key => $list) {
+            $lists[$key]['avatar'] = '';
+            $avatar = ImageHelper::path(
+                MarvelList::IMAGE_RESOURCE,
+                $list['id'],
+                ImageHelper::SMALL,
+                $list['avatar']
+            );
+
+            if (file_exists(public_path() . $avatar)) {
+                $lists[$key]['avatar'] = $avatar;
+            }
+        }
     }
 }

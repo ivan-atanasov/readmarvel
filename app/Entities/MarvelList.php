@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MarvelList extends Model
 {
+    const IMAGE_RESOURCE = 'list';
+
     /** @var array */
-    protected $fillable = ['user_id', 'title'];
+    protected $fillable = ['user_id', 'title', 'avatar', 'comment'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

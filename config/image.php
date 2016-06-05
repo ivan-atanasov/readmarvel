@@ -1,9 +1,11 @@
 <?php
 
 return [
-    'driver'      => 'gd',
-    'upload_path' => '/public/uploads/images',
-    'image_path'  => '/uploads/images',
+    'driver'         => 'gd',
+    'upload_path'    => '/public/uploads/images',
+    'image_path'     => '/uploads/images',
+    'default_avatar' => '/images/marvel_100_100.png',
+    'default_logo'   => '/images/marvel_read.png',
 
     'profile' => [
         'small'  => [
@@ -21,7 +23,7 @@ return [
     ],
 
     'list' => [
-        'small' => [
+        'small'  => [
             'w' => 50,
             'h' => 50,
         ],

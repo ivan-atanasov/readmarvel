@@ -5,7 +5,7 @@
                 {% if avatar|length %}
                     <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
                 {% else %}
-                    <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
+                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}" />
                 {% endif %}
             </div>
 
@@ -21,4 +21,33 @@
             </div>
         </div>
     </div>
+
+    {% for list in lists %}
+        <div class="col-lg-3 col-sm-6">
+            <div class="list-card hovercard">
+                <div class="card-background">
+                    {% if list['avatar']|length %}
+                        <img class="card-bkimg" src="{{ URL.to(list['avatar']) }}" alt="profile"/>
+                    {% else %}
+                        <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_avatar')) }}" />
+                    {% endif %}
+                </div>
+
+                <div class="avatar">
+                    <a href="#">
+                        {% if list['avatar']|length %}
+                            <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
+                        {% else %}
+                            <img alt="avatar" src="{{ URL.to('/images/marvel_100_100.png') }}" />
+                        {% endif %}
+                    </a>
+                </div>
+
+                <div class="info">
+                    <div class="title">{{ list['title'] }}</div>
+                    <div class="desc">{{ list['comment'] }}</div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>

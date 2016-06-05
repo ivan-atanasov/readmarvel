@@ -60,7 +60,7 @@ class UserProfileRepository implements UserProfileRepositoryInterface
         $profile = $this->find($userId);
 
         if (!isset($profile)) {
-            $profile = new UserProfile();
+            $profile = new UserProfile(['user_id' => $userId]);
         }
 
         $profile->avatar = ImageHelper::crop($avatar, UserProfile::IMAGE_RESOURCE, $userId);
