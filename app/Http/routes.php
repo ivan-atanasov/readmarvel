@@ -10,6 +10,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/profile', ['as' => 'frontend.profile', 'uses' => 'ProfileController@index']);
         Route::post('/profile', ['as' => 'frontend.update_profile', 'uses' => 'ProfileController@update']);
         Route::post('/update_avatar', ['as' => 'frontend.update_avatar', 'uses' => 'ProfileController@updateAvatar']);
+        Route::post('/list/store', ['as' => 'frontend.store_list', 'uses' => 'ListController@store']);
     });
 });
 

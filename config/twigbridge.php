@@ -151,6 +151,7 @@ return [
             'Lang',
             'Form',
             'HTML',
+            'Session',
         ],
 
         /*
