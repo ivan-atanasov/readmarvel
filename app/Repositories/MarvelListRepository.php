@@ -4,9 +4,11 @@ namespace App\Repositories;
 
 
 use App\Entities\MarvelList;
+use App\Helpers\ImageHelper;
 use App\User;
+use App\Repositories\Contracts\MarvelListRepository as MarvelListRepositoryInterface;
 
-class MarvelListRepository
+class MarvelListRepository implements MarvelListRepositoryInterface
 {
     /**
      * @param array $data
@@ -15,10 +17,15 @@ class MarvelListRepository
      */
     public function add(array $data)
     {
-        $newList = new MarvelList($data);
-        $newList->save();
+        $list = new MarvelList($data);
+        $list->save();
 
-        return $newList;
+        if (isset($data['avatar'])) {
+            $list->avatar = ImageHelper::crop($data['avatar'], MarvelList::IMAGE_RESOURCE, $list->id);
+            $list->save();
+        }
+
+        return $list;
     }
 
     /**
@@ -28,7 +35,7 @@ class MarvelListRepository
      */
     public function all(User $user)
     {
-        return MarvelList::where('user_id', '=', $user->id)->get();
+        return MarvelList::where('user_id', '=', $user->id)->orderBy('id', 'desc')->get();
     }
 
     /**

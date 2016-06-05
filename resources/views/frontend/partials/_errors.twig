@@ -13,18 +13,18 @@
 {% if Session.get('messages') %}
     {% if Session.get('messages.success') %}
         <div class="alert alert-success alert-dismissible" role="alert">
-    {% endif %}
-
-    {% if Session.get('messages.info') %}
+    {% elseif Session.get('messages.info') %}
         <div class="alert alert-info alert-dismissible" role="alert">
-    {% endif %}
-
-    {% if Session.get('messages.warning') %}
+    {% elseif Session.get('messages.warning') %}
         <div class="alert alert-warning alert-dismissible" role="alert">
     {% endif %}
 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    {% for message in Session.get('messages') %}
+        {{ message }}
+    {% endfor %}
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     </div>
 {% endif %}

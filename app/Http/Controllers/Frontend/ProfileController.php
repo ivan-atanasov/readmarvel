@@ -69,6 +69,8 @@ class ProfileController extends BaseController
     {
         $this->userProfileRepository->updateOrCreate(Auth::user()->id, $request->toArray());
 
+        \Session::flash('messages', ['success' => \Lang::get('frontend/profile.updated_successfully')]);
+
         return Redirect::back();
     }
 
