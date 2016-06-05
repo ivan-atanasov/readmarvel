@@ -17,6 +17,8 @@ class CreateListsTables extends Migration
             $t->integer('user_id')->unsigned();
             $t->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $t->string('title', 255);
+            $t->text('comment');
+            $t->string('avatar', 255);
             $t->timestamps();
             $t->softDeletes();
         });

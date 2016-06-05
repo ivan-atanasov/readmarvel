@@ -1,16 +1,20 @@
 {% extends 'frontend/layouts/default.twig' %}
 
 {% block content %}
-    <div class="card hovercard">
+    <div class="profile-card hovercard">
         <div class="card-background">
             {% if avatar|length %}
                 <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
+            {% else %}
+                <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
             {% endif %}
         </div>
 
         <div class="useravatar">
             {% if avatar|length %}
                 <img src="{{ avatar['medium'] }}" alt="profile"/>
+            {% else %}
+                <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
             {% endif %}
         </div>
 
@@ -64,7 +68,7 @@
             </div>
 
             <div class="tab-pane fade in" id="list-management">
-                <h3>We will have list management here, yay ^_^</h3>
+                {% include 'frontend/profile/_list_management.twig' %}
             </div>
         </div>
     </div>
