@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserHasRegistered;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
+use Event;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -69,7 +71,9 @@ class AuthController extends Controller
             $this->throwValidationException($request, $validator);
         }
 
-        $this->create($request->all());
+        $newUser = $this->create($request->all());
+
+        Event::fire(new UserHasRegistered($newUser));
 
         return redirect($this->redirectPath());
     }
