@@ -1,0 +1,81 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div class="profile-card hovercard">
+        <div class="card-background">
+            {% if avatar|length %}
+                <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
+            {% else %}
+                <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
+            {% endif %}
+        </div>
+
+        <div class="useravatar">
+            {% if avatar|length %}
+                <img src="{{ avatar['medium'] }}" alt="profile"/>
+            {% else %}
+                <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
+            {% endif %}
+        </div>
+
+        <div class="card-info">
+            <span class="card-title">{{ profile.real_name }}</span>
+        </div>
+
+        <div class="text-right">
+            <form action="{{ URL.route('frontend.update_avatar') }}"
+                  method="post"
+                  id="upload-avatar-form"
+                  enctype="multipart/form-data">
+                <label class="btn btn-default btn-file">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <input type="file" name="avatar" style="display: none;" id="upload-avatar">
+
+                    {{ csrf_field() }}
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="stars" class="btn" href="#personal-info" data-toggle="tab">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <div class="hidden-xs">{{ Lang.get('frontend/profile.personal_info') }}</div>
+            </button>
+        </div>
+
+        <div class="btn-group" role="group">
+            <button type="button" id="favorites" class="btn" href="#list-management" data-toggle="tab">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                <div class="hidden-xs">{{ Lang.get('frontend/profile.manage_lists') }}</div>
+            </button>
+        </div>
+    </div>
+
+    <div class="well">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="personal-info">
+                {% include 'frontend/partials/_edit_form' with {
+                'title': 'Modify role',
+                'edit_route': ['frontend.update_profile'],
+                'back_route': route('frontend.profile'),
+                'form': 'frontend.profile.form',
+                'resource': profile,
+                'id': 'edit-user-profile-form',
+                'files' : true
+                } %}
+            </div>
+
+            <div class="tab-pane fade in" id="list-management">
+                {% include 'frontend/profile/_list_management.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script type="application/javascript" src="{{ URL.to('/js/profile.js') }}"></script>
+{% endblock %}

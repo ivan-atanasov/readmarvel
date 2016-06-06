@@ -1,22 +1,17 @@
-<div>
-    {% if resource.avatar|length %}
-        <img src="{{ avatar }}" alt="profile" />
-    {% endif %}
-
-    <label for="avatar">{{ Lang.get('frontend/profile.avatar') }}</label>
-    {{ form_file('avatar', { 'id': 'avatar' }) }}
-</div>
-
-<div>
+<div class="form-group">
     <label for="real_name">{{ Lang.get('frontend/profile.real_name') }}</label>
-    {{ form_text('real_name', NULL, { 'id': 'real-name' }) }}
+    {{ form_text('real_name', NULL, { 'id': 'real-name', 'class': 'form-control' }) }}
 </div>
 
-<div>
+<div class="form-group">
     <label for="about_me">{{ Lang.get('frontend/profile.about_me') }}</label>
-    {{ form_textarea('about_me', NULL, { 'id': 'about-me' }) }}
+    {{ form_textarea('about_me', NULL, { 'id': 'about-me', 'class': 'form-control' }) }}
 </div>
 
 {{ csrf_field() }}
 
-<button type="submit" id="submit-user-profile">{{ Lang.get('frontend/profile.submit') }}</button>
+<div class="form-group text-right">
+    <button type="submit" class="btn" id="submit-user-profile">
+        {{ Lang.get('frontend/profile.submit') }}
+    </button>
+</div>
