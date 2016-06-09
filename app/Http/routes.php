@@ -4,8 +4,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/comics', ['as' => 'frontend.comics', 'uses' => 'HomeController@comics']);
     Route::get('/comic/{id}', ['as' => 'frontend.comic', 'uses' => 'HomeController@comic']);
-    Route::get('/series/{id}', ['as' => 'frontend.series', 'uses' => 'HomeController@series']);
     Route::get('/characters', ['as' => 'frontend.characters', 'uses' => 'HomeController@characters']);
+    Route::get('/series/{id}', ['as' => 'frontend.series', 'uses' => 'SeriesController@show']);
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', ['as' => 'frontend.profile', 'uses' => 'ProfileController@index']);
