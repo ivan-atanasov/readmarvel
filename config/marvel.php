@@ -8,6 +8,7 @@ return [
     'endpoints'   => [
         'comics'     => 'comics',
         'characters' => 'characters',
+        'series'     => 'series',
     ],
     'characters'  => [
         'thumbnail' => 'portrait_incredible.jpg',

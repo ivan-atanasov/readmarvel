@@ -13,7 +13,7 @@ interface ComicRepository
      *
      * @return mixed
      */
-    public function random($count = 10);
+    public function random(int $count = 10);
 
     /**
      * @param string  $query

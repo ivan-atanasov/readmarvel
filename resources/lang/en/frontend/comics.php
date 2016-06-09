@@ -15,4 +15,5 @@ return [
     'comment_note'            => 'This comment is just for you, it won\'t be publicly visible',
     'add_to_list_modal_close' => 'Close',
     'save_changes'            => 'Save changes',
+    'select_a_list'           => 'Select a list',
 ];
