@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 
 use App\Entities\MarvelList;
+use App\Entities\MarvelListItem;
 use App\Helpers\ImageHelper;
 use App\User;
 use App\Repositories\Contracts\MarvelListRepository as MarvelListRepositoryInterface;
@@ -36,6 +37,16 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     public function all(User $user)
     {
         return MarvelList::where('user_id', '=', $user->id)->orderBy('id', 'desc')->get();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return static
+     */
+    public function addItemToList(array $data)
+    {
+        return MarvelListItem::create($data);
     }
 
     /**

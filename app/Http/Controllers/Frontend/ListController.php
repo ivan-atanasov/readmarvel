@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 
+use App\Http\Requests\MarvelListItemRequest;
 use App\Http\Requests\MarvelListRequest;
 use App\Repositories\MarvelListRepository;
+use Illuminate\Http\Request;
 
 /**
  * Class ListController
@@ -34,6 +36,20 @@ class ListController extends BaseController
         $this->marvelListRepository->add($data);
 
         \Session::flash('messages', ['success' => \Lang::get('frontend/profile.lists.added_success')]);
+
+        return \Redirect::back();
+    }
+
+    /**
+     * @param MarvelListItemRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addItemToList(MarvelListItemRequest $request)
+    {
+        $data = $request->toArray();
+        $data['list_id'] = $request->get('marvel_list');
+        $this->marvelListRepository->addItemToList($data);
 
         return \Redirect::back();
     }
