@@ -14,9 +14,9 @@ class MarvelListItem extends Model
     /** @var array */
     protected $fillable = [
         'list_id',
-        'comic_id',
+        'series_id',
         'score',
-        'rewatch_value',
+        'reread_value',
         'progress',
         'comment',
         'started_at',

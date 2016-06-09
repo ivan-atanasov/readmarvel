@@ -31,10 +31,10 @@ class ComicRepository implements ComicRepositoryInterface
      *
      * @return array
      */
-    public function random($count = 10)
+    public function random(int $count = 10)
     {
-        if (Cache::has('homepage_comics')) {
-            $comics = Cache::get('homepage_comics');
+        if (Cache::tags(['comics'])->has('homepage_comics')) {
+            $comics = Cache::tags(['comics'])->get('homepage_comics');
         } else {
             $query = $this->apiClient->getConfig('query');
             $query['offset'] = 0;
@@ -95,9 +95,8 @@ class ComicRepository implements ComicRepositoryInterface
      */
     public function comic($id)
     {
-        Cache::forget('comic_' . $id);
-        if (Cache::has('comic_' . $id)) {
-            $data = Cache::get('comic_' . $id);
+        if (Cache::tags(['comics'])->has('comic_' . $id)) {
+            $comic = Cache::tags(['comics'])->get('comic_' . $id);
         } else {
             $response = $this->apiClient->get(
                 Config::get('marvel.base_uri') . Config::get('marvel.endpoints.comics') . '/' . $id
@@ -105,18 +104,18 @@ class ComicRepository implements ComicRepositoryInterface
             $response = json_decode($response->getBody(), true);
 
             $comic = $response['data']['results'][0];
-            $data['comic'] = $comic;
+            $comic['comic'] = $comic;
 
             if (!empty($comic['series'])) {
                 $series = $this->apiClient->get($comic['series']['resourceURI']);
                 $series = json_decode($series->getBody(), true);
 
-                $data['series'] = $series['data']['results'][0];
+                $comic['series'] = $series['data']['results'][0];
             }
 
-            Cache::tags(['comics'])->put('comic_' . $id, $data, Config::get('marvel.cache_time'));
+            Cache::tags(['comics'])->put('comic_' . $id, $comic, Config::get('marvel.cache_time'));
         }
 
-        return $data;
+        return $comic;
     }
 }

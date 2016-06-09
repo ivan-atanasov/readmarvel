@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 /**
- * Class MarvelListRequest
+ * Class MarvelListItemRequest
  * @package App\Http\Requests
  */
-class MarvelListRequest extends Request
+class MarvelListItemRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class MarvelListRequest extends Request
     public function rules()
     {
         return [
-            'title'   => 'required',
-            'comment' => 'max:140',
+            'marvel_list' => 'required|min: 1',
+            'started_at'  => 'date',
+            'finished_at' => 'date',
         ];
     }
 }
