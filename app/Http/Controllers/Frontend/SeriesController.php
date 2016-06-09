@@ -20,16 +20,14 @@ class SeriesController extends BaseController
 
     /**
      * SeriesController constructor.
-     *
-     * @param SeriesRepository     $seriesRepository
-     * @param MarvelListRepository $marvelListRepository
      */
-    public function __construct(SeriesRepository $seriesRepository, MarvelListRepository $marvelListRepository)
+    public function __construct()
     {
-        $this->seriesRepository = $seriesRepository;
-        $this->marvelListRepository = $marvelListRepository;
-    }
+        parent::__construct();
 
+        $this->seriesRepository = new SeriesRepository($this->client);
+        $this->marvelListRepository = new MarvelListRepository($this->client);
+    }
 
     /**
      * @param int $id

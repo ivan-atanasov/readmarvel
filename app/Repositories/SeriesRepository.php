@@ -32,8 +32,8 @@ class SeriesRepository
      */
     public function random(int $count)
     {
-        if (Cache::tags(['comics'])->has('homepage_series')) {
-            $series = Cache::tags(['comics'])->get('homepage_series');
+        if (Cache::tags(['/series'])->has('homepage_series')) {
+            $series = Cache::tags(['series'])->get('homepage_series');
         } else {
             $query = $this->apiClient->getConfig('query');
             $query['offset'] = 0;
@@ -46,7 +46,7 @@ class SeriesRepository
             $response = json_decode($response->getBody(), true);
             $series = $response['data']['results'];
 
-            Cache::tags(['comics'])->put('homepage_series', $series, Config::get('marvel.cache_time'));
+            Cache::tags(['series'])->put('homepage_series', $series, Config::get('marvel.cache_time'));
         }
 
         shuffle($series);
@@ -70,14 +70,6 @@ class SeriesRepository
             $response = json_decode($response->getBody(), true);
 
             $series = $response['data']['results'][0];
-            $series['series'] = $series;
-
-            if (!empty($series['series'])) {
-                $series = $this->apiClient->get($series['series']['resourceURI']);
-                $series = json_decode($series->getBody(), true);
-
-                $series['series'] = $series['data']['results'][0];
-            }
 
             Cache::tags(['series'])->put('series_' . $id, $series, Config::get('marvel.cache_time'));
         }

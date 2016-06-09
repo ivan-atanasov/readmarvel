@@ -19,9 +19,6 @@ use View;
  */
 class HomeController extends BaseController
 {
-    /** @var Client */
-    private $client;
-
     /** @var SeriesRepository */
     private $seriesRepository;
 
@@ -31,10 +28,13 @@ class HomeController extends BaseController
     /** @var MarvelListRepository */
     private $marvelListRepository;
 
-    /** HomeController constructor. */
+    /**
+     * HomeController constructor.
+     */
     public function __construct()
     {
-        $this->client = $this->initializeApiClient();
+        parent::__construct();
+
         $this->seriesRepository = new SeriesRepository($this->client);
         $this->charactersRepository = new CharactersRepository($this->client);
         $this->marvelListRepository = new MarvelListRepository();
@@ -85,7 +85,7 @@ class HomeController extends BaseController
 
         return View::make('frontend.comic', ['comic' => $comic]);
     }
-    
+
     /**
      * @param Request $request
      *
@@ -102,24 +102,5 @@ class HomeController extends BaseController
         $characters = new LengthAwarePaginator($results, $total, Config::get('homepage.per_page_comics'));
 
         return View::make('frontend.characters', ['characters' => $characters]);
-    }
-
-    /**
-     * Connects to the Marvel API
-     * @return Client
-     */
-    private function initializeApiClient()
-    {
-        $ts = time();
-        $hash = md5($ts . Config::get('marvel.private_key') . Config::get('marvel.public_key'));
-
-        return new Client([
-            'base_uri' => Config::get('marvel.base_uri'),
-            'query'    => [
-                'apikey' => Config::get('marvel.public_key'),
-                'ts'     => $ts,
-                'hash'   => $hash,
-            ],
-        ]);
     }
 }
