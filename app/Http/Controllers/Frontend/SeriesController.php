@@ -36,7 +36,7 @@ class SeriesController extends BaseController
      */
     public function show(int $id)
     {
-        $series = $this->seriesRepository->series($id);
+        $series = $this->seriesRepository->find($id);
 
         $lists = [];
         if (\Auth::check()) {

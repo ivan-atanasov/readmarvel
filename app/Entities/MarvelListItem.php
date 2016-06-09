@@ -16,6 +16,7 @@ class MarvelListItem extends Model
         'list_id',
         'series_id',
         'score',
+        'title',
         'reread_value',
         'progress',
         'comment',
