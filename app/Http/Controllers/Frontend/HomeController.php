@@ -40,6 +40,9 @@ class HomeController extends BaseController
         $this->marvelListRepository = new MarvelListRepository();
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $comics = $this->seriesRepository->random(Config::get('homepage.random_comics_limit'));
@@ -82,24 +85,7 @@ class HomeController extends BaseController
 
         return View::make('frontend.comic', ['comic' => $comic]);
     }
-
-    /**
-     * @param int $id
-     *
-     * @return mixed
-     */
-    public function series($id)
-    {
-        $series = $this->seriesRepository->series($id);
-
-        $lists = [];
-        if (\Auth::check()) {
-            $lists = $this->marvelListRepository->all(\Auth::user());
-        }
-
-        return View::make('frontend.series', ['series' => $series, 'lists' => $lists]);
-    }
-
+    
     /**
      * @param Request $request
      *
