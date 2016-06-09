@@ -6,25 +6,41 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="heading-title">
         <h2>{{ Lang.get('frontend/index.random_comics') }}</h2>
+    </div>
 
-        <div id="comics" class="results">
-            {% for comic in comics %}
-                <article class="card">
-                    <img src="{{ comic['thumbnail']['path'] }}/portrait_incredible.jpg"
-                         alt="{{ comic['title'] }} thumbnail">
+    <div class="index">
+        {% set i = 0 %}
+        {% set shouldOpen = 1 %}
 
-                    <footer>
-                        <h5>
-                            <a href="{{ URL.route('frontend.comic', {'id': comic['id']}) }}" class="card-title">
-                                {{ comic['title'] }}
-                            </a>
-                        </h5>
-                        <p>{{ str_limit(comic['description'], 140) }}</p>
-                    </footer>
-                </article>
-            {% endfor %}
-        </div>
+        {% for comic in comics %}
+            {% set i = i+1 %}
+
+            {% if shouldOpen == 1 %}
+                {% set shouldOpen = 0 %}
+                <div class="row">
+            {% endif %}
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="thumbnail">
+                    <div class="caption-img"
+                         style="background: url({{ comic['thumbnail']['path'] }}.jpg);"></div>
+                    <div class="caption-details">
+                        <h3>{{ comic['title'] }}</h3>
+                        <a href="{{ URL.route('frontend.series', {'id': comic['id']}) }}" class="details-btn">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% if i is divisible by(4) or i == comics|length %}
+                </div>
+                {% set shouldOpen = 1 %}
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
+
+
