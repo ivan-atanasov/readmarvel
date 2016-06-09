@@ -30,8 +30,10 @@ class ProfileController extends BaseController
      */
     public function __construct(
         UserProfileRepository $userProfileRepository,
-        MarvelListRepository $marvelListRepository)
-    {
+        MarvelListRepository $marvelListRepository
+    ) {
+        parent::__construct();
+        
         $this->userProfileRepository = $userProfileRepository;
         $this->marvelListRepository = $marvelListRepository;
     }

@@ -8,7 +8,7 @@
                 <h4 class="modal-title">{{ Lang.get('frontend/comics.add_to_list') }}</h4>
             </div>
 
-            <form action="{{ URL.route('frontend.add_item_to_list') }}" method="post">
+            <form action="{{ URL.route('frontend.add_item_to_list') }}" method="post" data-parsley-validate>
                 <div class="modal-body">
                     {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
@@ -18,7 +18,8 @@
 
                             <select id="marvel-list"
                                     name="marvel_list"
-                                    class="form-control">
+                                    class="form-control"
+                                    data-parsley-required>
                                 <option value="">{{ Lang.get('frontend/comics.select_a_list') }}</option>
                                 {% for list in lists %}
                                     <option value="{{ list.id }}"> {{ list.title }}</option>
@@ -31,7 +32,11 @@
                         <div class="col-md-6">
                             <label for="score">{{ Lang.get('frontend/comics.score') }}</label>
 
-                            <select name="score" id="score" class="form-control">
+                            <select name="score"
+                                    id="score"
+                                    class="form-control"
+                                    data-parsley-min="1"
+                                    data-parsley-max="10">
                                 {% for i in 1..10 %}
                                     <option value="{{ i }}">{{ i }}</option>
                                 {% endfor %}
@@ -43,7 +48,9 @@
 
                             <select name="reread_value"
                                     id="reread-value"
-                                    class="form-control">
+                                    class="form-control"
+                                    data-parsley-min="1"
+                                    data-parsley-max="10">
                                 {% for i in 1..10 %}
                                     <option value="{{ i }}">{{ i }}</option>
                                 {% endfor %}
