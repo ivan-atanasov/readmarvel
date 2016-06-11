@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
 use App\Repositories\Contracts\UserProfileRepositoryInterface;
+use Illuminate\Http\UploadedFile;
 
 /**
  * Class UserProfileRepository
@@ -51,11 +52,11 @@ class UserProfileRepository implements UserProfileRepositoryInterface
 
     /**
      * @param int $userId
-     * @param     $avatar
+     * @param UploadedFile $avatar
      *
      * @return bool
      */
-    public function updateAvatar(int $userId, $avatar)
+    public function updateAvatar(int $userId, UploadedFile $avatar)
     {
         $profile = $this->find($userId);
 
@@ -64,7 +65,8 @@ class UserProfileRepository implements UserProfileRepositoryInterface
         }
 
         $profile->avatar = ImageHelper::crop($avatar, UserProfile::IMAGE_RESOURCE, $userId);
+        $profile->save();
 
-        return $profile->save();
+        return $profile;
     }
 }

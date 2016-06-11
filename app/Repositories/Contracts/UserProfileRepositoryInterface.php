@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories\Contracts;
+use Illuminate\Http\UploadedFile;
 
 /**
  * Interface UserProfileRepositoryInterface
@@ -32,9 +33,9 @@ interface UserProfileRepositoryInterface
      * Updates the avatar for the given user's profile
      *
      * @param int $userId
-     * @param     $avatar
+     * @param UploadedFile $avatar
      *
      * @return mixed
      */
-    public function updateAvatar(int $userId, $avatar);
+    public function updateAvatar(int $userId, UploadedFile $avatar);
 }
