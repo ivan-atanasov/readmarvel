@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable
 {
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -17,7 +20,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
@@ -35,5 +37,19 @@ class User extends Authenticatable
         }
 
         return $this->hasOne('App\\Entities\\UserProfile');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function listItems()
+    {
+        return $this->hasManyThrough(
+            'App\\Entities\\MarvelListItem',
+            'App\\Entities\\MarvelList',
+            'user_id',
+            'list_id',
+            'id'
+        );
     }
 }

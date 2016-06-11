@@ -28,10 +28,10 @@ class CreateListsTables extends Migration
             $t->integer('list_id')->unsigned();
             $t->foreign('list_id')->references('id')->on('marvel_lists')->onDelete('cascade');
             $t->integer('series_id');
-            $t->integer('score'); // 1 to 10
-            $t->integer('reread_value'); // 1 to 10
+            $t->string('title', 255);
+            $t->integer('score');
+            $t->integer('reread_value');
             $t->integer('progress');
-            $t->text('comment');
             $t->date('started_at')->nullable();
             $t->date('finished_at')->nullable();
             $t->timestamps();

@@ -64,7 +64,7 @@ class MarvelListRepositoryTest extends \Codeception\TestCase\Test
         $this->marvelListRepository->add($data);
 
         $user = \App\User::find($this->user);
-        $lists = $this->marvelListRepository->all($user);
+        $lists = $this->marvelListRepository->allForUser($user);
 
         $this->assertEquals(2, $lists->count());
     }

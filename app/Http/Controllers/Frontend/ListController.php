@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Requests\MarvelListItemRequest;
 use App\Http\Requests\MarvelListRequest;
 use App\Repositories\MarvelListRepository;
+use App\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -17,9 +18,21 @@ class ListController extends BaseController
     /** @var MarvelListRepository */
     protected $marvelListRepository;
 
-    public function __construct(MarvelListRepository $marvelListRepository)
+    /** @var SeriesRepository */
+    protected $seriesRepository;
+
+    /**
+     * ListController constructor.
+     *
+     * @param MarvelListRepository $marvelListRepository
+     * @param SeriesRepository     $seriesRepository
+     */
+    public function __construct(MarvelListRepository $marvelListRepository, SeriesRepository $seriesRepository)
     {
+        parent::__construct();
+
         $this->marvelListRepository = $marvelListRepository;
+        $this->seriesRepository = $seriesRepository;
     }
 
     /**
@@ -49,7 +62,23 @@ class ListController extends BaseController
     {
         $data = $request->toArray();
         $data['list_id'] = $request->get('marvel_list');
+
+        $series = $this->seriesRepository->find($data['series_id']);
+        $data['title'] = $series['title'];
+        
         $this->marvelListRepository->addItemToList($data);
+
+        return \Redirect::back();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateListAvatar(Request $request)
+    {
+        $this->marvelListRepository->updateAvatar($request->get('list_id'), $request->file('avatar'));
 
         return \Redirect::back();
     }

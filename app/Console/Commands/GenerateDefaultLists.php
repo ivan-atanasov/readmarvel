@@ -51,6 +51,6 @@ class GenerateDefaultLists extends Command
         }
 
 
-        $this->info('Lists for user ' . $userId . ' has been successfully generated');
+        $this->info('Lists for user ' . $userId . ' have been successfully generated');
     }
 }
