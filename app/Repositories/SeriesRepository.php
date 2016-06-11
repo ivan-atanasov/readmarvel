@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Contracts\SeriesRepositoryInterface;
 use Cache;
 use Config;
 use GuzzleHttp\Client;
@@ -10,7 +11,7 @@ use GuzzleHttp\Client;
  * Class SeriesRepository
  * @package App\Repositories
  */
-class SeriesRepository
+class SeriesRepository implements SeriesRepositoryInterface
 {
     /** @var Client */
     protected $apiClient;
@@ -57,7 +58,7 @@ class SeriesRepository
     /**
      * @param int $id
      *
-     * @return mixed
+     * @return array
      */
     public function find($id)
     {

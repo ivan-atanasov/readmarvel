@@ -10,6 +10,7 @@ use App\User;
 use App\Repositories\Contracts\MarvelListRepository as MarvelListRepositoryInterface;
 use Carbon\Carbon;
 use Config;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class MarvelListRepository
@@ -24,8 +25,7 @@ class MarvelListRepository implements MarvelListRepositoryInterface
      */
     public function add(array $data)
     {
-        $list = new MarvelList($data);
-        $list->save();
+        $list = MarvelList::create($data);
 
         if (isset($data['avatar'])) {
             $list->avatar = ImageHelper::crop($data['avatar'], MarvelList::IMAGE_RESOURCE, $list->id);
@@ -45,7 +45,8 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     {
         return MarvelList::where('user_id', '=', $user->id)
             ->whereNotIn('id', $except)
-            ->orderBy('id', 'desc')->get();
+            ->orderBy('id', 'desc')
+            ->get();
     }
 
     /**
@@ -88,11 +89,11 @@ class MarvelListRepository implements MarvelListRepositoryInterface
 
     /**
      * @param int $id
-     * @param     $avatar
+     * @param UploadedFile $avatar
      *
      * @return mixed
      */
-    public function updateAvatar(int $id, $avatar)
+    public function updateAvatar(int $id, UploadedFile $avatar)
     {
         $list = $this->find($id);
 
@@ -102,19 +103,18 @@ class MarvelListRepository implements MarvelListRepositoryInterface
         return $list;
     }
 
-
     /**
      * @param User $user
-     * @param int  $itemId
+     * @param int  $seriesId
      *
-     * @return array
+*@return array
      */
-    public function listsContainingItemByUser(User $user, int $itemId)
+    public function listsContainingItemByUser(User $user, int $seriesId)
     {
         $listsContainingItem = [];
         $userItems = $user->listItems();
         if ($userItems->count()) {
-            $listsContainingItem = $userItems->where('series_id', '=', $itemId)->pluck('list_id')->toArray();
+            $listsContainingItem = $userItems->where('series_id', '=', $seriesId)->pluck('list_id')->toArray();
         }
 
         return $listsContainingItem;

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\UploadedFile;
 
 class UserProfileRepositoryTest extends \Codeception\TestCase\Test
 {
@@ -18,14 +19,10 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
      */
     private $faker;
 
-    /**
-     * @var \App\User
-     */
+    /** @var int */
     private $userWithProfile;
 
-    /**
-     * @var \App\User
-     */
+    /** @var int */
     private $userWithoutProfile;
 
     /**
@@ -33,8 +30,18 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
      */
     private $profile;
 
+    /** @var string */
+    protected $avatar;
+
+    /** @var string */
+    protected $copiedAvatar;
+
     protected function _before()
     {
+        $this->avatar = 'tests/_data/image.png';
+        $this->copiedAvatar = 'tests/_data/image1.png';
+        copy($this->avatar, $this->copiedAvatar);
+
         $this->userProfileRepository = new \App\Repositories\UserProfileRepository();
         $this->faker = Faker\Factory::create();
 
@@ -54,6 +61,7 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
             'user_id'   => $this->userWithProfile->id,
             'real_name' => $this->faker->name,
             'about_me'  => $this->faker->paragraph(3),
+            'avatar'    => new UploadedFile($this->copiedAvatar, 'image1.png', null, null, null, true),
         ]);
     }
 
@@ -73,10 +81,25 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
         $data = [
             'real_name' => 'Steve Johnson',
             'about_me'  => 'Lorem ipsum dolor sit amet',
+            'avatar'    => new UploadedFile($this->copiedAvatar, 'image1.png', null, null, null, true),
         ];
 
         $this->userProfileRepository->updateOrCreate($this->userWithoutProfile->id, $data);
         $profile = $this->userProfileRepository->find($this->userWithoutProfile->id);
         $this->assertEquals($profile->real_name, $data['real_name']);
+    }
+
+    public function testUploadAvatarWithProfile()
+    {
+        $file = new UploadedFile($this->copiedAvatar, 'image1.png', null, null, null, true);
+        $profile = $this->userProfileRepository->updateAvatar($this->userWithProfile->id, $file);
+        $this->assertEquals('image1.png', $profile->avatar);
+    }
+
+    public function testUploadAvatarWithoutProfile()
+    {
+        $file = new UploadedFile($this->copiedAvatar, 'image1.png', null, null, null, true);
+        $profile = $this->userProfileRepository->updateAvatar($this->userWithoutProfile->id, $file);
+        $this->assertEquals('image1.png', $profile->avatar);
     }
 }
