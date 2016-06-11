@@ -1,0 +1,78 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div class="profile-card hovercard">
+        <div class="card-background">
+            {% if list['avatar']|length %}
+                <img class="card-bkimg" src="{{ list['avatar'] }}" alt="profile"/>
+            {% else %}
+                <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
+            {% endif %}
+        </div>
+
+        <div class="useravatar">
+            {% if list['avatar']|length %}
+                <img src="{{ list['avatar'] }}" alt="profile"/>
+            {% else %}
+                <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
+            {% endif %}
+        </div>
+
+        <div class="card-info">
+            <span class="card-title">{{ list['title'] }}</span>
+        </div>
+
+        <div class="text-right">
+            <form action="{{ URL.route('frontend.update_list_avatar') }}"
+                  method="post"
+                  id="upload-list-avatar-form"
+                  enctype="multipart/form-data">
+                <label class="btn btn-default btn-file">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <input type="file" name="avatar" style="display: none;" id="upload-list-avatar">
+                    <input type="hidden" name="list_id" value="{{ list['id'] }}">
+
+                    {{ csrf_field() }}
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <div class="well">
+        <a href="{{ URL.route('frontend.profile') }}" class="btn">
+            <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/lists.back_to_all_lists') }}
+        </a>
+
+        <table class="table table-bordered table-striped table-hover table-responsive top-buffer">
+            <thead>
+            <tr>
+                <th>{{ Lang.get('frontend/lists.title') }}</th>
+                <th>{{ Lang.get('frontend/lists.score') }}</th>
+                <th>{{ Lang.get('frontend/lists.reread_value') }}</th>
+                <th>{{ Lang.get('frontend/lists.progress') }}</th>
+                <th>{{ Lang.get('frontend/lists.started_at') }}</th>
+                <th>{{ Lang.get('frontend/lists.finished_at') }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.score }} / 10</td>
+                    <td>{{ item.reread_value }}</td>
+                    <td>{{ item.progress }}</td>
+                    <td>{{ item.started_at }}</td>
+                    <td>{{ item.finished_at }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script type="application/javascript" src="{{ URL.to('/js/lists.js') }}"></script>
+{% endblock %}

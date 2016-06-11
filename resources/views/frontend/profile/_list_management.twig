@@ -21,6 +21,27 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-3 col-sm-6">
+        <div class="list-card hovercard">
+            <div class="card-background">
+                {% if avatar|length %}
+                    <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
+                {% else %}
+                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}"/>
+                {% endif %}
+            </div>
+
+            <div class="avatar">
+                <img alt="" src="{{ URL.to('images/eye-icon.png') }}">
+            </div>
+
+            <div class="info">
+                <div class="title">{{ Lang.get('frontend/profile.view_list') }}</div>
+                <div class="desc">{{ Lang.get('frontend/profile.view_list_description') }}</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% set i = 0 %}
@@ -44,11 +65,13 @@
             </div>
 
             <div class="avatar">
-                {% if list['avatar']|length %}
-                    <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
-                {% else %}
-                    <img alt="avatar" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                {% endif %}
+                <a href="{{ URL.route('frontend.profile_view_list', {'id' : list['id']}) }}">
+                    {% if list['avatar']|length %}
+                        <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
+                    {% else %}
+                        <img alt="avatar" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
+                    {% endif %}
+                </a>
             </div>
 
             <div class="info">
