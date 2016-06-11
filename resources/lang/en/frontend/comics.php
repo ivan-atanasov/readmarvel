@@ -16,4 +16,5 @@ return [
     'add_to_list_modal_close' => 'Close',
     'save_changes'            => 'Save changes',
     'select_a_list'           => 'Select a list',
+    'already_finished_count'  => 'Number of issues already finished',
 ];

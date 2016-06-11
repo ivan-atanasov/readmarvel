@@ -212,4 +212,6 @@ return [
 
     ],
 
+    'date_format' => 'Y/m',
+
 ];

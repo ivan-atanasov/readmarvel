@@ -32,7 +32,7 @@ class SeriesRepository
      */
     public function random(int $count)
     {
-        if (Cache::tags(['/series'])->has('homepage_series')) {
+        if (Cache::tags(['series'])->has('homepage_series')) {
             $series = Cache::tags(['series'])->get('homepage_series');
         } else {
             $query = $this->apiClient->getConfig('query');
@@ -59,7 +59,7 @@ class SeriesRepository
      *
      * @return mixed
      */
-    public function series($id)
+    public function find($id)
     {
         if (Cache::tags(['series'])->has('series_' . $id)) {
             $series = Cache::tags(['series'])->get('series_' . $id);

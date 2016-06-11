@@ -21,6 +21,6 @@ class MarvelList extends Model
      */
     public function items()
     {
-        return $this->hasMany('App\\Entities\\MarvelList', 'list_id');
+        return $this->hasMany('App\\Entities\\MarvelListItem', 'list_id');
     }
 }

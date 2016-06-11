@@ -60,11 +60,14 @@
 
                     <div class="row top-buffer">
                         <div class="col-md-12">
-                            <label for="score">{{ Lang.get('frontend/comics.progress') }}</label>
+                            <label for="progress">{{ Lang.get('frontend/comics.progress') }}</label>
 
                             <div class="input-group">
-                                <input type="text" class="form-control text-center"
-                                       placeholder="Number of issues already finished">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       placeholder="{{ Lang.get('frontend/comics.already_finished_count') }}"
+                                       id="progress"
+                                       name="progress">
                                 <div class="input-group-addon">/</div>
                                 <input type="text" class="form-control text-center"
                                        placeholder="{{ series['stories']['available'] }}"
@@ -85,7 +88,7 @@
                                        placeholder="Started at"
                                        data-start-view="4"
                                        name="started_at"
-                                       data-min-view="2"/>
+                                       data-min-view="3"/>
 
                                 <div class="input-group-addon">{{ Lang.get('frontend/comics.to') }}</div>
                                 <input type="text"
@@ -94,25 +97,12 @@
                                        placeholder="Finished at"
                                        data-start-view="4"
                                        name="finished_at"
-                                       data-min-view="2"/>
+                                       data-min-view="3"/>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row top-buffer">
-                        <div class="col-md-12">
-                            <label class="control-label" for="comment">
-                                {{ Lang.get('frontend/comics.comment') }}
-                            </label>
-
-                            <textarea class="form-control" name="comment" id="comment"></textarea>
-                            <p class="help-block">
-                                {{ Lang.get('frontend/comics.comment_note') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="series_id" value="{{ series['id'] }}" />
+                    <input type="hidden" name="series_id" value="{{ series['id'] }}"/>
 
                     {{ csrf_field() }}
                 </div>
