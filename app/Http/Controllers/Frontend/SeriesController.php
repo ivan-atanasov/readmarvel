@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
 use Illuminate\Support\Facades\View;
+use Auth;
 
 /**
  * Class SeriesController
@@ -39,8 +40,9 @@ class SeriesController extends BaseController
         $series = $this->seriesRepository->find($id);
 
         $lists = [];
-        if (\Auth::check()) {
-            $lists = $this->marvelListRepository->all(\Auth::user());
+        if (Auth::check()) {
+            $listsContainingItem = $this->marvelListRepository->listsContainingItemByUser(Auth::user(), $id);
+            $lists = $this->marvelListRepository->allForUser(Auth::user(), $listsContainingItem);
         }
 
         return View::make('frontend.series', ['series' => $series, 'lists' => $lists]);

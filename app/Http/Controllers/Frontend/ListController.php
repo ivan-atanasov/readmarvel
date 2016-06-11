@@ -7,6 +7,7 @@ use App\Http\Requests\MarvelListItemRequest;
 use App\Http\Requests\MarvelListRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
+use Illuminate\Http\Request;
 
 /**
  * Class ListController
@@ -20,6 +21,12 @@ class ListController extends BaseController
     /** @var SeriesRepository */
     protected $seriesRepository;
 
+    /**
+     * ListController constructor.
+     *
+     * @param MarvelListRepository $marvelListRepository
+     * @param SeriesRepository     $seriesRepository
+     */
     public function __construct(MarvelListRepository $marvelListRepository, SeriesRepository $seriesRepository)
     {
         parent::__construct();
@@ -60,6 +67,18 @@ class ListController extends BaseController
         $data['title'] = $series['title'];
         
         $this->marvelListRepository->addItemToList($data);
+
+        return \Redirect::back();
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateListAvatar(Request $request)
+    {
+        $this->marvelListRepository->updateAvatar($request->get('list_id'), $request->file('avatar'));
 
         return \Redirect::back();
     }

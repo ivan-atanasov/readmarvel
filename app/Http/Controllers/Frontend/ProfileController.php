@@ -31,9 +31,10 @@ class ProfileController extends BaseController
     public function __construct(
         UserProfileRepository $userProfileRepository,
         MarvelListRepository $marvelListRepository
-    ) {
+    )
+    {
         parent::__construct();
-        
+
         $this->userProfileRepository = $userProfileRepository;
         $this->marvelListRepository = $marvelListRepository;
     }
@@ -50,7 +51,7 @@ class ProfileController extends BaseController
             $avatars = $this->getUserAvatars($user);
         }
 
-        $lists = $this->marvelListRepository->all($user)->toArray();
+        $lists = $this->marvelListRepository->allForUser($user)->toArray();
         $this->getListsAvatars($lists);
 
         $viewData = [
@@ -84,6 +85,22 @@ class ProfileController extends BaseController
         $this->userProfileRepository->updateAvatar(Auth::user()->id, $request->file('avatar'));
 
         return Redirect::back();
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function viewList(int $id)
+    {
+        $list = [$this->marvelListRepository->find($id)->toArray()];
+        $this->getListsAvatars($list);
+        $list = array_pop($list);
+
+        $items = $this->marvelListRepository->items($id);
+
+        return View::make('frontend/profile.list', ['list' => $list, 'items' => $items]);
     }
 
     /**

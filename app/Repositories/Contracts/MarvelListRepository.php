@@ -20,7 +20,7 @@ interface MarvelListRepository
      *
      * @return mixed
      */
-    public function all(User $user);
+    public function allForUser(User $user);
 
     /**
      * @return array
