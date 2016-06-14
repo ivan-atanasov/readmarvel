@@ -65,4 +65,11 @@ interface MarvelListRepository
      * @return array
      */
     public function defaultLists();
+
+    /**
+     * @param int $itemId
+     *
+     * @return int
+     */
+    public function deleteItemFromList(int $itemId);
 }
