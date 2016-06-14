@@ -82,4 +82,9 @@ class ListController extends BaseController
 
         return \Redirect::back();
     }
+
+    public function deleteItemFromList(Request $request)
+    {
+        return $this->marvelListRepository->deleteItemFromList($request->get('resourceId'));
+    }
 }

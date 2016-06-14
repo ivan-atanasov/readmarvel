@@ -21,6 +21,14 @@ Route::group(['namespace' => 'Frontend'], function () {
                 'uses' => 'ListController@addItemToList',
             ]
         );
+
+        Route::post(
+            '/list/deleteItemFromList',
+            [
+                'as'   => 'frontend.delete_from_list',
+                'uses' => 'ListController@deleteItemFromList',
+            ]
+        );
     });
 });
 
