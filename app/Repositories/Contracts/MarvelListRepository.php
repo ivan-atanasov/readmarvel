@@ -52,6 +52,13 @@ interface MarvelListRepository
      */
     public function updateAvatar(int $id, UploadedFile $avatar);
 
+    /**
+     * @param int   $itemId
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function updateItemInList(int $itemId, array $data);
 
     /**
      * @param User $user
@@ -72,4 +79,11 @@ interface MarvelListRepository
      * @return int
      */
     public function deleteItemFromList(int $itemId);
+
+    /**
+     * @param int $itemId
+     *
+     * @return mixed
+     */
+    public function item(int $itemId);
 }
