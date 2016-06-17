@@ -99,8 +99,9 @@ class ProfileController extends BaseController
         $list = array_pop($list);
 
         $items = $this->marvelListRepository->items($id);
+        $lists = $this->marvelListRepository->allForUser(Auth::user());
 
-        return View::make('frontend/profile.list', ['list' => $list, 'items' => $items]);
+        return View::make('frontend/profile.list', ['list' => $list, 'items' => $items, 'lists' => $lists]);
     }
 
     /**

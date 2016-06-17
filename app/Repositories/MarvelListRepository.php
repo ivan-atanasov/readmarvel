@@ -61,6 +61,23 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     /**
      * {@inheritdoc}
      */
+    public function updateItemInList(int $itemId, array $data)
+    {
+        $data['started_at'] = empty($data['started_at']) ? null :
+            Carbon::createFromFormat(Config::get('app.date_format'), $data['started_at']);
+
+        $data['finished_at'] = empty($data['finished_at']) ? null :
+            Carbon::createFromFormat(Config::get('app.date_format'), $data['finished_at']);
+
+        $item = $this->item($itemId);
+        $data['series_id'] = $item->series_id;
+
+        return $item->update($data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function find(int $id)
     {
         return MarvelList::find($id);
@@ -109,6 +126,14 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     public function deleteItemFromList(int $itemId)
     {
         return MarvelListItem::destroy($itemId);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function item(int $itemId)
+    {
+        return MarvelListItem::find($itemId);
     }
 
     /**

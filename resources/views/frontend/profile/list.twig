@@ -64,21 +64,24 @@
                             {{ item.title }}
                         </a>
                     </td>
-                    <td>{{ item.score }} / 10</td>
-                    <td>{{ item.reread_value }}</td>
-                    <td>{{ item.progress }}</td>
-                    <td>{{ item.started_at }}</td>
-                    <td>{{ item.finished_at }}</td>
+                    <td class="score">{{ item.score }}</td>
+                    <td class="re-read-value">{{ item.reread_value }}</td>
+                    <td class="progress">{{ item.progress }}</td>
+                    <td class="started-at">{{ item.started_at }}</td>
+                    <td class="finished-at">{{ item.finished_at }}</td>
                     <td>
                         <a href="#" class="btn list-item-edit"
                            data-item-id="{{ item.id }}"
-                           data-toggle="tooltip"
+                           data-toggle="modal"
                            data-placement="top"
-                           title="{{ Lang.get('frontend/lists.edit_list_item') }}">
+                           data-target="#add-to-list-modal"
+                           title="{{ Lang.get('frontend/lists.edit_list_item') }}"
+                           data-csrf="{{ csrf_token() }}">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
 
-                        <a href="#delete-modal" class="btn list-item-delete"
+                        <a href="#delete-modal"
+                           class="btn list-item-delete"
                            data-item-id="{{ item.id }}"
                            data-toggle="tooltip"
                            data-placement="top"
@@ -92,11 +95,24 @@
         </table>
     </div>
 
+    {% include 'frontend/partials/_add_to_list_modal' with {
+                'lists' : lists,
+                'series' : series,
+                'submitUrl' : URL.route('frontend.update_item_in_list')
+    } %}
+
     {% include 'frontend/partials/_confirm_modal.twig' with { submitUrl: URL.route('frontend.delete_from_list') } %}
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ URL.to('assets/css/datetimepicker.css') }}"/>
 {% endblock %}
 
 {% block scripts %}
     {{ parent() }}
 
+    <script type="application/javascript" src="{{ URL.to('/js/datetimepicker.js') }}"></script>
     <script type="application/javascript" src="{{ URL.to('/js/lists.js') }}"></script>
 {% endblock %}

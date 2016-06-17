@@ -24,7 +24,7 @@ class MarvelListItemRequest extends Request
     public function rules()
     {
         return [
-            'marvel_list' => 'required|min: 1',
+            'list_id'     => 'required|min: 1',
             'started_at'  => 'date',
             'finished_at' => 'date',
         ];

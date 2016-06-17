@@ -23,16 +23,13 @@ class ListController extends BaseController
 
     /**
      * ListController constructor.
-     *
-     * @param MarvelListRepository $marvelListRepository
-     * @param SeriesRepository     $seriesRepository
      */
-    public function __construct(MarvelListRepository $marvelListRepository, SeriesRepository $seriesRepository)
+    public function __construct()
     {
         parent::__construct();
 
-        $this->marvelListRepository = $marvelListRepository;
-        $this->seriesRepository = $seriesRepository;
+        $this->marvelListRepository = new MarvelListRepository($this->client);
+        $this->seriesRepository = new SeriesRepository($this->client);
     }
 
     /**
@@ -61,12 +58,22 @@ class ListController extends BaseController
     public function addItemToList(MarvelListItemRequest $request)
     {
         $data = $request->toArray();
-        $data['list_id'] = $request->get('marvel_list');
-
         $series = $this->seriesRepository->find($data['series_id']);
         $data['title'] = $series['title'];
         
         $this->marvelListRepository->addItemToList($data);
+
+        return \Redirect::back();
+    }
+
+    /**
+     * @param MarvelListItemRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateItemInList(MarvelListItemRequest $request)
+    {
+        $this->marvelListRepository->updateItemInList($request->get('item_id'), $request->toArray());
 
         return \Redirect::back();
     }
@@ -83,6 +90,11 @@ class ListController extends BaseController
         return \Redirect::back();
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     */
     public function deleteItemFromList(Request $request)
     {
         return $this->marvelListRepository->deleteItemFromList($request->get('resourceId'));
