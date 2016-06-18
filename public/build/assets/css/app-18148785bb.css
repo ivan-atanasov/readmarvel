@@ -5907,6 +5907,10 @@ button.close {
 .add-to-list.modal .modal-header {
   border-bottom: 5px solid #f04125; }
 
+.series-page .series-title {
+  font-weight: bold;
+  margin-top: 0; }
+
 /* USER PROFILE PAGE */
 .profile-card {
   padding: 30px;

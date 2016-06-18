@@ -17,4 +17,11 @@ return [
     'save_changes'            => 'Save changes',
     'select_a_list'           => 'Select a list',
     'already_finished_count'  => 'Number of issues already finished',
+    'back_to_series'          => 'Back to series',
+    'present'                 => 'present',
+    'rating'                  => 'Rating',
+    'creators'                => 'Creators',
+    'characters'              => 'Characters',
+    'stories'                 => 'Stories',
+    'comics'                  => 'Comics',
 ];
