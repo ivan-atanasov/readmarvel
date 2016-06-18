@@ -5758,10 +5758,12 @@ button.close {
   padding: 30px;
   list-style: none; }
 
-.index .thumbnail {
+.index .thumbnail,
+.series-list .thumbnail {
   position: relative;
   overflow: hidden; }
-  .index .thumbnail .caption-img {
+  .index .thumbnail .caption-img,
+  .series-list .thumbnail .caption-img {
     width: 100%;
     height: 280px;
     -ms-background-size: cover !important;
@@ -5770,7 +5772,8 @@ button.close {
     background-position: center center;
     overflow: hidden;
     border-radius: 4px; }
-  .index .thumbnail .caption-link {
+  .index .thumbnail .caption-link,
+  .series-list .thumbnail .caption-link {
     position: absolute;
     left: 0;
     top: 0;
@@ -5780,7 +5783,8 @@ button.close {
     opacity: 0;
     filter: alpha(opacity=0);
     transition: all 0.3s ease-in-out; }
-    .index .thumbnail .caption-link .fa {
+    .index .thumbnail .caption-link .fa,
+    .series-list .thumbnail .caption-link .fa {
       font-size: 54px;
       position: absolute;
       left: 50%;
@@ -5789,7 +5793,8 @@ button.close {
       margin-top: -20px;
       color: #fff6de; }
 
-.index .thumbnail > a:hover > .caption-link {
+.index .thumbnail > a:hover > .caption-link,
+.series-list .thumbnail > a:hover > .caption-link {
   transition: all 0.3s ease-in-out;
   opacity: 0.2;
   filter: alpha(opacity=20); }
@@ -5910,6 +5915,9 @@ button.close {
 .series-page .series-title {
   font-weight: bold;
   margin-top: 0; }
+
+.search-series-form .input-group .form-control {
+  height: 39px; }
 
 /* USER PROFILE PAGE */
 .profile-card {
