@@ -8,7 +8,7 @@
                 <h4 class="modal-title">{{ Lang.get('frontend/comics.add_to_list') }}</h4>
             </div>
 
-            <form action="{{ URL.route('frontend.add_item_to_list') }}" method="post" data-parsley-validate>
+            <form action="{{ submitUrl }}" method="post" data-parsley-validate>
                 <div class="modal-body">
                     {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
@@ -17,7 +17,7 @@
                             <label for="marvel-list">{{ Lang.get('frontend/comics.pick_a_list') }}</label>
 
                             <select id="marvel-list"
-                                    name="marvel_list"
+                                    name="list_id"
                                     class="form-control"
                                     data-parsley-required>
                                 <option value="">{{ Lang.get('frontend/comics.select_a_list') }}</option>
@@ -31,7 +31,6 @@
                     <div class="row top-buffer">
                         <div class="col-md-6">
                             <label for="score">{{ Lang.get('frontend/comics.score') }}</label>
-
                             <select name="score"
                                     id="score"
                                     class="form-control"
@@ -67,9 +66,11 @@
                                        class="form-control text-center"
                                        placeholder="{{ Lang.get('frontend/comics.already_finished_count') }}"
                                        id="progress"
-                                       name="progress">
+                                       name="progress"
+                                       value="">
                                 <div class="input-group-addon">/</div>
-                                <input type="text" class="form-control text-center"
+                                <input type="text"
+                                       class="form-control text-center"
                                        placeholder="{{ series['stories']['available'] }}"
                                        disabled="disabled">
                             </div>
@@ -103,6 +104,7 @@
                     </div>
 
                     <input type="hidden" name="series_id" value="{{ series['id'] }}"/>
+                    <input type="hidden" name="item_id" value=""/>
 
                     {{ csrf_field() }}
                 </div>

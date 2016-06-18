@@ -70,9 +70,12 @@
     </div>
 
     {% if Auth.check() %}
-        {% include 'frontend/partials/_add_to_list_modal' with { 'lists' : lists, 'series' : series } %}
+        {% include 'frontend/partials/_add_to_list_modal' with {
+                    'lists' : lists,
+                    'series' : series,
+                    'submitUrl' : URL.route('frontend.add_item_to_list')
+        } %}
     {% endif %}
-
 {% endblock %}
 
 {% block styles %}

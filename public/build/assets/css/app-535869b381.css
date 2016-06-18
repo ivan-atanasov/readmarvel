@@ -6149,6 +6149,19 @@ button.close {
       text-overflow: ellipsis;
       padding-bottom: 20px; }
 
+.list-items-table {
+  text-align: center; }
+  .list-items-table th {
+    text-align: center; }
+  .list-items-table .title {
+    text-align: left; }
+  .list-items-table .score {
+    width: 50px; }
+  .list-items-table .reread {
+    width: 130px; }
+  .list-items-table .modify-btns {
+    width: 103px; }
+
 .btn {
   color: #fff;
   background-color: #f04125;
