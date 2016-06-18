@@ -32,6 +32,11 @@ class SeriesController extends BaseController
         $this->marvelListRepository = new MarvelListRepository($this->client);
     }
 
+    public function list()
+    {
+        
+    }
+
     /**
      * @param int $id
      *
@@ -47,7 +52,7 @@ class SeriesController extends BaseController
             $lists = $this->marvelListRepository->allForUser(Auth::user(), $listsContainingItem);
         }
 
-        return View::make('frontend.series', ['series' => $series, 'lists' => $lists]);
+        return View::make('frontend/series.page', ['series' => $series, 'lists' => $lists]);
     }
 
     /**

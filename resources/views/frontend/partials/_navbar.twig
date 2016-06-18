@@ -14,28 +14,34 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{ URL.route('home') }}">{{ Lang.get('frontend/navbar.home') }}</a>
+                    <a href="{{ URL.route('home') }}">
+                        <i class="glyphicon glyphicon-home"></i> {{ Lang.get('frontend/navbar.home') }}
+                    </a>
                 </li>
                 <li>
-                    <a href="{{ URL.route('frontend.comics') }}">{{ Lang.get('frontend/navbar.comics') }}</a>
+                    <a href="{{ URL.route('frontend.series') }}">
+                        <i class="glyphicon glyphicon-list"></i> {{ Lang.get('frontend/navbar.series') }}
+                    </a>
                 </li>
                 <li>
-                    <a href="{{ URL.route('frontend.characters') }}">{{ Lang.get('frontend/navbar.characters') }}</a>
+                    <a href="{{ URL.route('frontend.characters') }}">
+                        <i class="glyphicon glyphicon-user"></i> {{ Lang.get('frontend/navbar.characters') }}
+                    </a>
                 </li>
             </ul>
 
             <div class="navbar-form navbar-right">
                 {% if Auth.check %}
                     <a href="{{ URL.route('frontend.profile') }}" id="profile-link" class="btn">
-                        {{ Lang.get('frontend/navbar.profile') }}
+                        <i class="glyphicon glyphicon-user"></i> {{ Lang.get('frontend/navbar.profile') }}
                     </a>
 
                     <a href="{{ URL.route('logout') }}" id="logout-link" class="btn">
-                        {{ Lang.get('frontend/navbar.logout') }}
+                        <i class="glyphicon glyphicon-log-out"></i> {{ Lang.get('frontend/navbar.logout') }}
                     </a>
                 {% else %}
                     <a href="{{ URL.route('login') }}" id="login-link" class="btn">
-                        {{ Lang.get('frontend/navbar.login') }}
+                        <i class="glyphicon glyphicon-log-in"></i> {{ Lang.get('frontend/navbar.login') }}
                     </a>
                     <a href="{{ URL.route('register') }}" id="register-link" class="btn">
                         {{ Lang.get('frontend/navbar.register') }}
