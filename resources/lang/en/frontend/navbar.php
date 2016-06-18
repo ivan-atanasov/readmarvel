@@ -9,4 +9,5 @@ return [
     'logout'     => 'Logout',
     'register'   => 'Register',
     'profile'    => 'Profile',
+    'series'     => 'Series',
 ];
