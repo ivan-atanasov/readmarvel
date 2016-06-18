@@ -7,6 +7,7 @@ use App\Repositories\SeriesRepository;
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Config;
 use Auth;
 
 /**
@@ -34,7 +35,9 @@ class SeriesController extends BaseController
 
     public function list()
     {
-        
+        $series = $this->seriesRepository->random(Config::get('homepage.random_comics_limit'));
+
+        return View::make('frontend/series.list', ['series' => $series]);
     }
 
     /**

@@ -24,4 +24,6 @@ return [
     'characters'              => 'Characters',
     'stories'                 => 'Stories',
     'comics'                  => 'Comics',
+    'find_your_series'        => 'Find your series',
+    'search_placeholder'      => 'Search your favourite series',
 ];
