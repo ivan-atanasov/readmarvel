@@ -60,7 +60,7 @@
             {% for item in items %}
                 <tr>
                     <td class="title">
-                        <a href="{{ URL.route('frontend.series', { 'id' : item.series_id }) }}">
+                        <a href="{{ URL.route('frontend.show_series', { 'id' : item.series_id }) }}">
                             {{ item.title }}
                         </a>
                     </td>
