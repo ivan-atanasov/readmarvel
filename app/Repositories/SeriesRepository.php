@@ -27,9 +27,7 @@ class SeriesRepository implements SeriesRepositoryInterface
     }
 
     /**
-     * @param int $count
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function random(int $count)
     {
@@ -37,7 +35,7 @@ class SeriesRepository implements SeriesRepositoryInterface
             $series = Cache::tags(['series'])->get('homepage_series');
         } else {
             $query = $this->apiClient->getConfig('query');
-            $query['offset'] = 0;
+            $query['offset'] = 1000; //random_int(0, 1000);
             $query['limit'] = $count * 2;
 
             $response = $this->apiClient->get(
@@ -56,9 +54,7 @@ class SeriesRepository implements SeriesRepositoryInterface
     }
 
     /**
-     * @param int $id
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function find($id)
     {
@@ -69,7 +65,6 @@ class SeriesRepository implements SeriesRepositoryInterface
                 Config::get('marvel.base_uri') . Config::get('marvel.endpoints.series') . '/' . $id
             );
             $response = json_decode($response->getBody(), true);
-
             $series = $response['data']['results'][0];
 
             Cache::tags(['series'])->put('series_' . $id, $series, Config::get('marvel.cache_time'));

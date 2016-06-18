@@ -14,11 +14,28 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('/update_avatar', ['as' => 'frontend.update_avatar', 'uses' => 'ProfileController@updateAvatar']);
         Route::post('/list/store', ['as' => 'frontend.store_list', 'uses' => 'ListController@store']);
         Route::post('/list/update_avatar', ['as' => 'frontend.update_list_avatar', 'uses' => 'ListController@updateListAvatar']);
+        Route::post('series/series', ['as' => 'frontend.get_series_json', 'uses' => 'SeriesController@seriesJson']);
         Route::post(
             '/list/addItemToList',
             [
                 'as'   => 'frontend.add_item_to_list',
                 'uses' => 'ListController@addItemToList',
+            ]
+        );
+
+        Route::post(
+            '/list/updateItemInList',
+            [
+                'as'   => 'frontend.update_item_in_list',
+                'uses' => 'ListController@updateItemInList',
+            ]
+        );
+
+        Route::post(
+            '/list/deleteItemFromList',
+            [
+                'as'   => 'frontend.delete_from_list',
+                'uses' => 'ListController@deleteItemFromList',
             ]
         );
     });

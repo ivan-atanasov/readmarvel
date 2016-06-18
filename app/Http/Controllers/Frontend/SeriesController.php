@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
+use Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Auth;
 
@@ -46,5 +48,16 @@ class SeriesController extends BaseController
         }
 
         return View::make('frontend.series', ['series' => $series, 'lists' => $lists]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function seriesJson(Request $request)
+    {
+        $listItem = $this->marvelListRepository->item($request->get('itemId'));
+        return Response::json($listItem);
     }
 }
