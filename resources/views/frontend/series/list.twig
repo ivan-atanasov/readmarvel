@@ -5,7 +5,7 @@
         <h2>{{ Lang.get('frontend/comics.find_your_series') }}</h2>
     </div>
 
-    <form action="{{ URL.route('frontend.comics') }}" method="get" class="search-series-form">
+    <form action="{{ URL.route('frontend.series.search') }}" method="get" class="search-series-form">
         <div class="row">
             <div class="col-md-12">
                 <div class="input-group">
@@ -39,10 +39,10 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="thumbnail">
                     <div class="caption-img"
-                         style="background: url({{ comic['thumbnail']['path'] }}.jpg);"></div>
+                         style="background: url({{ comic['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }});"></div>
                     <div class="caption-details">
                         <h3>{{ comic['title'] }}</h3>
-                        <a href="{{ URL.route('frontend.show_series', {'id': comic['id']}) }}" class="details-btn">
+                        <a href="{{ URL.route('frontend.series.show', {'id': comic['id']}) }}" class="details-btn">
                             Details
                         </a>
                     </div>
@@ -55,6 +55,10 @@
             {% endif %}
         {% endfor %}
     </div>
+
+
+
+    {{ series.setPath('search').appends('query', query).render|raw }}
 {% endblock %}
 
 
