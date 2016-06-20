@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -33,6 +34,9 @@ class SeriesController extends BaseController
         $this->marvelListRepository = new MarvelListRepository($this->client);
     }
 
+    /**
+     * @return mixed
+     */
     public function list()
     {
         $series = $this->seriesRepository->random(Config::get('homepage.random_comics_limit'));
@@ -61,11 +65,36 @@ class SeriesController extends BaseController
     /**
      * @param Request $request
      *
+     * @return mixed
+     */
+    public function search(Request $request)
+    {
+        $query = '';
+        if ($request->has('query')) {
+            $offset = $request->has('page') ? $request->input('page') : 1;
+            list($series, $query, $total) = $this->seriesRepository->search(
+                $request->input('query'),
+                Config::get('homepage.per_page_comics'),
+                $offset
+            );
+
+            $series = new LengthAwarePaginator($series, $total, Config::get('homepage.per_page_comics'));
+        } else {
+            $series = $this->seriesRepository->random(Config::get('homepage.random_comics_limit'));
+        }
+
+        return View::make('frontend/series.list', ['series' => $series, 'query' => $query]);
+    }
+
+    /**
+     * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function seriesJson(Request $request)
     {
         $listItem = $this->marvelListRepository->item($request->get('itemId'));
+
         return Response::json($listItem);
     }
 }
