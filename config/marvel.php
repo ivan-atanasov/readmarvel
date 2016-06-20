@@ -10,6 +10,9 @@ return [
         'characters' => 'characters',
         'series'     => 'series',
     ],
+    'series' => [
+        'thumbnail' => 'portrait_uncanny.jpg',
+    ],
     'characters'  => [
         'thumbnail' => 'portrait_incredible.jpg',
     ],

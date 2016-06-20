@@ -28,7 +28,7 @@
                          style="background: url({{ comic['thumbnail']['path'] }}.jpg);"></div>
                     <div class="caption-details">
                         <h3>{{ comic['title'] }}</h3>
-                        <a href="{{ URL.route('frontend.show_series', {'id': comic['id']}) }}" class="details-btn">
+                        <a href="{{ URL.route('frontend.series.show', {'id': comic['id']}) }}" class="details-btn">
                             Details
                         </a>
                     </div>
