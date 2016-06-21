@@ -25,7 +25,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="thumbnail">
                     <div class="caption-img"
-                         style="background: url({{ comic['thumbnail']['path'] }}.jpg);"></div>
+                         style="background: url({{ comic['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }});"></div>
                     <div class="caption-details">
                         <h3>{{ comic['title'] }}</h3>
                         <a href="{{ URL.route('frontend.series.show', {'id': comic['id']}) }}" class="details-btn">
