@@ -4,19 +4,13 @@ use Illuminate\Http\UploadedFile;
 
 class UserProfileRepositoryTest extends \Codeception\TestCase\Test
 {
-    /**
-     * @var \UnitTester
-     */
+    /** @var \UnitTester */
     protected $tester;
 
-    /**
-     * @var \App\Repositories\UserProfileRepository
-     */
+    /** @var \App\Repositories\UserProfileRepository */
     protected $userProfileRepository;
 
-    /**
-     * @var \Faker\Generator
-     */
+    /** @var \Faker\Generator */
     private $faker;
 
     /** @var int */
@@ -25,9 +19,7 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
     /** @var int */
     private $userWithoutProfile;
 
-    /**
-     * @var \App\Entities\UserProfile
-     */
+    /** @var \App\Entities\UserProfile */
     private $profile;
 
     /** @var string */
@@ -68,6 +60,7 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
     protected function _after()
     {
         \App\User::find($this->userWithProfile->id)->delete();
+        \App\User::find($this->userWithoutProfile->id)->delete();
     }
 
     public function testFindMethodReturnsCorrectUserProfile()
