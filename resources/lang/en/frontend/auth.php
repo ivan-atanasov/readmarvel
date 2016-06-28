@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'login'    => [
+    'login'          => [
         'title'           => 'Please sign in',
         'email'           => 'E-mail Address',
         'password'        => 'Password',
@@ -9,7 +9,7 @@ return [
         'forgot_password' => 'Forgot your password?',
         'no_account'      => 'You don\'t have an account?',
     ],
-    'register' => [
+    'register'       => [
         'title'                 => 'Registration',
         'name'                  => 'Name',
         'email'                 => 'E-mail Address',
@@ -17,5 +17,10 @@ return [
         'password_confirmation' => 'Confirm password',
         'register'              => 'Register',
         'already_registered'    => 'Already registered?',
+    ],
+    'reset_password' => [
+        'title'     => 'Reset password',
+        'email'     => 'E-mail Address',
+        'send_link' => 'Send link',
     ],
 ];
