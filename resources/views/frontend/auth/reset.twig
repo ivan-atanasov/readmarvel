@@ -1,0 +1,30 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    {% include 'frontend/partials/_errors.twig' with { 'errors' : errors } %}
+
+    <form method="POST" action="{{ URL.route('frontend.email_reset') }}">
+        {{ csrf_field() }}
+
+        <div>
+            Email
+            <input type="email" name="email" value="{{ old('email') }}">
+        </div>
+
+        <div>
+            Password
+            <input type="password" name="password">
+        </div>
+
+        <div>
+            Confirm Password
+            <input type="password" name="password_confirmation">
+        </div>
+
+        <div>
+            <button type="submit">
+                Reset Password
+            </button>
+        </div>
+    </form>
+{% endblock %}

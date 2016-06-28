@@ -9,6 +9,14 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/series/search', ['as' => 'frontend.series.search', 'uses' => 'SeriesController@search']);
     Route::get('/series/{id}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
 
+    // Password reset link request routes...
+    Route::get('password/email', ['as' => 'reset_password_index', 'uses' => 'Auth\PasswordController@getEmail']);
+    Route::post('password/email', ['as' => 'reset_password', 'uses' => 'Auth\PasswordController@postEmail']);
+
+    // Password reset routes...
+    Route::get('password/reset/{token}', ['as' => 'frontend.email_reset_token', 'uses' => 'Auth\PasswordController@getReset']);
+    Route::post('password/reset', ['as' => 'frontend.email_reset', 'uses' => 'Auth\PasswordController@postReset']);
+
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', ['as' => 'frontend.profile', 'uses' => 'ProfileController@index']);
         Route::post('/profile', ['as' => 'frontend.update_profile', 'uses' => 'ProfileController@update']);
