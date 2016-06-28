@@ -19,8 +19,12 @@ return [
         'already_registered'    => 'Already registered?',
     ],
     'reset_password' => [
-        'title'     => 'Reset password',
-        'email'     => 'E-mail Address',
-        'send_link' => 'Send link',
+        'title'                 => 'Reset password',
+        'email'                 => 'E-mail Address',
+        'send_link'             => 'Send link',
+        'choose_new_password'   => 'Choose a new password',
+        'password'              => 'Choose a new password',
+        'password_confirmation' => 'Choose a new password',
+        'reset'                 => 'Reset',
     ],
 ];
