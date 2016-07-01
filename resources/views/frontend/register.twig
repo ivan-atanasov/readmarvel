@@ -6,7 +6,7 @@
 
         <div class="form" style="display: block;">
             <h2>{{ Lang.get('frontend/auth.register.title') }}</h2>
-            <form action="{{ URL.route('register') }}" id="register-form" method="post" class="form-registration">
+            <form action="{{ URL.route('register_post') }}" id="register-form" method="post" class="form-registration">
                 <input type="text" name="name" id="name" value="{{ old('name') }}"
                        placeholder="{{ Lang.get('frontend/auth.register.name') }}"
                        class="form-control"/>
@@ -25,11 +25,14 @@
 
                 {{ csrf_field() }}
 
-                <button class="submit">{{ Lang.get('frontend/auth.register.register') }}</button>
+                <input type="submit" value="{{ Lang.get('frontend/auth.register.register') }}" />
             </form>
         </div>
+
         <div class="cta">
-            <a href="{{ URL.route('login') }}">{{ Lang.get('frontend/auth.register.already_registered') }}</a>
+            <a href="{{ URL.route('login') }}">
+                {{ Lang.get('frontend/auth.register.already_registered') }}
+            </a>
         </div>
     </div>
 {% endblock %}

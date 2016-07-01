@@ -23,18 +23,14 @@
 
                 {{ csrf_field() }}
 
-                <button class="submit">{{ Lang.get('frontend/auth.login.sign_in') }}</button>
+                <input type="submit" value="{{ Lang.get('frontend/auth.login.sign_in') }}" />
             </form>
         </div>
         <div class="cta">
-            <a href="{{ URL.route('register') }}">{{ Lang.get('frontend/auth.login.no_account') }}</a>
+            <a href="{{ URL.route('register_index') }}">{{ Lang.get('frontend/auth.login.no_account') }}</a>
         </div>
         <div class="cta">
             <a href="{{ URL.route('reset_password_index') }}">{{ Lang.get('frontend/auth.login.forgot_password') }}</a>
         </div>
     </div>
-{% endblock %}
-
-{% block styles %}
-    {{ parent() }}
 {% endblock %}
