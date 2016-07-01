@@ -66,8 +66,8 @@ class ComicRepository implements ComicRepositoryInterface
     {
         $search = strtolower($query);
 
-        if (Cache::has("search_{$offset}_{$search}")) {
-            $comics = Cache::get("search_{$offset}_{$search}");
+        if (Cache::tags(['search_comics'])->has("search_{$offset}_{$search}")) {
+            $comics = Cache::tags(['search_comics'])->get("search_{$offset}_{$search}");
             $total = $comics['total'];
         } else {
             $query = $this->apiClient->getConfig('query');
@@ -82,7 +82,7 @@ class ComicRepository implements ComicRepositoryInterface
             $comics = $response['data'];
             $total = $response['data']['total'];
 
-            Cache::tags(['comics'])->put("search_{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
+            Cache::tags(['search_comics'])->put("search_{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
         }
 
         return [array_slice($comics['results'], 0, $limit), $search, $total];

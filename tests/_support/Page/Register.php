@@ -11,7 +11,7 @@ class Register
     public static $passwordField = '#register-form #password';
     public static $passwordConfirmationField = '#register-form #password-confirmation';
     public static $registerForm = "#register-form";
-    public static $registerButton = "#register";
+    public static $registerButton = "#register-form input[type=submit]";
     public static $registerLink = "#register-link";
 
     /** @var \AcceptanceTester */

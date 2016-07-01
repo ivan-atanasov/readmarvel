@@ -1,20 +1,22 @@
 <?php
+
 class LogoutCest
 {
-    private $customer;
+    /** @var \App\User */
+    private $user;
 
     public function _before()
     {
-        $this->customer = \App\User::find(1);
+        $this->user = \App\User::first();
     }
 
     /**
      * @param FunctionalTester $I
-     * @param \Page\Login $loginPage
+     * @param \Page\Login      $loginPage
      */
     public function canLogoutAfterLogin(FunctionalTester $I, \Page\Login $loginPage)
     {
-        $I->loginAsUser($loginPage, $this->customer->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
         $I->amOnPage('/');
         $I->seeElement($loginPage::$logoutLink);
         $I->click($loginPage::$logoutLink);

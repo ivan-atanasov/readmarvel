@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `marvel_list_items`;
 CREATE TABLE `marvel_list_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `list_id` int(10) unsigned NOT NULL,
-  `comic_id` int(11) NOT NULL,
+  `series_id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `score` int(11) NOT NULL,
   `reread_value` int(11) NOT NULL,
   `progress` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `started_at` date DEFAULT NULL,
   `finished_at` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `marvel_list_items` (
   PRIMARY KEY (`id`),
   KEY `marvel_list_items_list_id_foreign` (`list_id`),
   CONSTRAINT `marvel_list_items_list_id_foreign` FOREIGN KEY (`list_id`) REFERENCES `marvel_lists` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `marvel_list_items` (
 
 LOCK TABLES `marvel_list_items` WRITE;
 /*!40000 ALTER TABLE `marvel_list_items` DISABLE KEYS */;
+INSERT INTO `marvel_list_items` VALUES (3,4,13379,'15 Love (2011)',5,1,0,'0000-00-00','0000-00-00','2016-06-10 16:47:05','2016-06-10 16:47:05'),(88,4,3101,'Amazing Spider-Girl Vol. 2: Comes the Carnage! (2007)',1,1,0,NULL,NULL,'2016-06-17 20:41:44','2016-06-17 20:41:44');
 /*!40000 ALTER TABLE `marvel_list_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +69,7 @@ CREATE TABLE `marvel_lists` (
   PRIMARY KEY (`id`),
   KEY `marvel_lists_user_id_foreign` (`user_id`),
   CONSTRAINT `marvel_lists_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=380 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +78,7 @@ CREATE TABLE `marvel_lists` (
 
 LOCK TABLES `marvel_lists` WRITE;
 /*!40000 ALTER TABLE `marvel_lists` DISABLE KEYS */;
-INSERT INTO `marvel_lists` VALUES (9,10,'I have read...','All comic books that you read in the past and finished','bysrt.jpg','2016-06-05 11:52:21','2016-06-05 11:52:21',NULL),(10,10,'I will read...','All comic books that you plan on reading in the future','','2016-06-05 11:52:21','2016-06-05 11:52:21',NULL),(11,10,'I am reading...','All comic books that you are currently reading','','2016-06-05 11:52:21','2016-06-05 11:52:21',NULL),(12,10,'I started but dropped...','All comic books that you started reading, but you dropped for some reason','','2016-06-05 11:52:21','2016-06-05 11:52:21',NULL),(15,10,'Some new list','This is a test comment','','2016-06-05 14:19:05','2016-06-05 14:19:05',NULL),(16,10,'This is my latest list','Blablabla Lorem Ipsum dolor sit amet','','2016-06-05 14:36:11','2016-06-05 14:36:11',NULL),(17,10,'X-Wing list','Another boring comment','tudf2v6.jpg','2016-06-05 14:42:57','2016-06-05 14:42:57',NULL),(18,10,'Creepy list','','hw7abig.jpg','2016-06-05 14:44:11','2016-06-05 14:44:11',NULL),(19,10,'Super mario list','A comment','h4ug7i1.jpg','2016-06-05 14:45:48','2016-06-05 14:45:49',NULL),(20,10,'A GameBoy list','This is my nerdiest list so far','9bt8c4s.jpg','2016-06-05 14:59:07','2016-06-05 14:59:07',NULL),(21,10,'Test list','Some comment','','2016-06-05 15:06:55','2016-06-05 15:06:55',NULL);
+INSERT INTO `marvel_lists` VALUES (1,1,'I have read...','All comic books that you have read in the past','','2016-06-10 12:02:35','2016-06-10 12:02:35',NULL),(2,1,'I will read...','All comic books that you plan on reading in the future','','2016-06-10 12:02:35','2016-06-10 12:02:35',NULL),(3,1,'I am reading...','All comic books that you are currently reading','bysrt.jpg','2016-06-10 12:02:35','2016-06-12 18:56:32',NULL),(4,1,'I started but dropped...','All comic books that you started reading, but you dropped for some reason','','2016-06-10 12:02:35','2016-06-10 12:02:35',NULL);
 /*!40000 ALTER TABLE `marvel_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +101,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',2),('2016_05_26_152154_create_user_profiles_table',2),('2016_06_03_153457_create_lists_tables',2);
+INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table',1),('2014_10_12_100000_create_password_resets_table',1),('2016_05_26_152154_create_user_profiles_table',1),('2016_06_03_153457_create_lists_tables',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +149,7 @@ CREATE TABLE `user_profiles` (
   PRIMARY KEY (`id`),
   KEY `user_profiles_user_id_foreign` (`user_id`),
   CONSTRAINT `user_profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +158,7 @@ CREATE TABLE `user_profiles` (
 
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
-INSERT INTO `user_profiles` VALUES (2,10,'bysrt.jpg','John Doe','','2016-06-05 12:20:53','2016-06-05 15:04:27',NULL);
+INSERT INTO `user_profiles` VALUES (1,1,'fzt3j2i.jpg','John Doe','','2016-06-10 12:35:42','2016-06-10 15:32:23',NULL);
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +179,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=427 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +188,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'John Doe','john@test.dev','$2y$10$dXoKhMWlY5NBoRcioP3VDO5Cn2SirGB1yQdBeuSjfwVwloPmO8u/S','Uuy2jwQhOD46JifzrYMjNj1iBWHYqkCWIdjBhE1Ba7CKWox536Qyp5caXJyw','2016-05-29 17:29:40','2016-06-05 14:02:10'),(15,'Ivan','ivan@test.dev','$2y$10$sFgMui62FJ6NQ4lpIIO6ReZuM7rb7uJSEDfLucsL.0qnd7XuiyEU.',NULL,'2016-05-30 14:37:58','2016-05-30 14:37:58');
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@marvel.dev','$2y$10$o9zHLTdyTTeffvsRYkHPYuIR88/uxbsB88A/AiV.rC.zi2E/Cs2Ba','396LP2He2NlryoND4rvJpogfua3R3L1i07v23PQ2z6zqB5DukX3Ahx8Z6CXo','2016-06-10 12:02:34','2016-06-29 15:02:33');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -200,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-05 15:45:32
+-- Dump completed on 2016-06-29 15:08:11

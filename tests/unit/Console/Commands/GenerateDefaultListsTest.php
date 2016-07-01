@@ -1,7 +1,6 @@
 <?php
 namespace Tests\Unit\Console\Commands;
 
-
 use App\Console\Commands\GenerateDefaultLists;
 use App\Repositories\MarvelListRepository;
 use App\User;
