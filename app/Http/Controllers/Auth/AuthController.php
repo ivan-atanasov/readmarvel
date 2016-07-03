@@ -65,15 +65,15 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-//        $validator = $this->validator($request->all());
+        $validator = $this->validator($request->all());
 
-//        if ($validator->fails()) {
-//            $this->throwValidationException($request, $validator);
-//        }
+        if ($validator->fails()) {
+            $this->throwValidationException($request, $validator);
+        }
 
         $newUser = $this->create($request->all());
 
-//        Event::fire(new UserHasRegistered($newUser));
+        Event::fire(new UserHasRegistered($newUser));
 
         return redirect($this->redirectPath());
     }
