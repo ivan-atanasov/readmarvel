@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/c3.php', function () {
+    include '../../c3.php';
+});
+
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/series', ['as' => 'frontend.series', 'uses' => 'SeriesController@list']);
