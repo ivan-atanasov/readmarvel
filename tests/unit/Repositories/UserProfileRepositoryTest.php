@@ -1,22 +1,25 @@
 <?php
+namespace Tests\Unit\Repositories;
 
 use Illuminate\Http\UploadedFile;
+use Faker\Factory;
+use App\Repositories\UserProfileRepository;
+use App\User;
+use App\Entities\UserProfile;
 
+/**
+ * Class UserProfileRepositoryTest
+ * @package Tests\Unit\Repositories
+ */
 class UserProfileRepositoryTest extends \Codeception\TestCase\Test
 {
-    /**
-     * @var \UnitTester
-     */
+    /** @var \UnitTester */
     protected $tester;
 
-    /**
-     * @var \App\Repositories\UserProfileRepository
-     */
+    /** @var \App\Repositories\UserProfileRepository */
     protected $userProfileRepository;
 
-    /**
-     * @var \Faker\Generator
-     */
+    /** @var \Faker\Generator */
     private $faker;
 
     /** @var int */
@@ -25,9 +28,7 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
     /** @var int */
     private $userWithoutProfile;
 
-    /**
-     * @var \App\Entities\UserProfile
-     */
+    /** @var \App\Entities\UserProfile */
     private $profile;
 
     /** @var string */
@@ -42,22 +43,22 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
         $this->copiedAvatar = 'tests/_data/image1.png';
         copy($this->avatar, $this->copiedAvatar);
 
-        $this->userProfileRepository = new \App\Repositories\UserProfileRepository();
-        $this->faker = Faker\Factory::create();
+        $this->userProfileRepository = new UserProfileRepository();
+        $this->faker = Factory::create();
 
-        $this->userWithProfile = \App\User::create([
+        $this->userWithProfile = User::create([
             'name'     => $this->faker->name,
             'email'    => $this->faker->safeEmail,
             'password' => 'qwe123',
         ]);
 
-        $this->userWithoutProfile = \App\User::create([
+        $this->userWithoutProfile = User::create([
             'name'     => $this->faker->name,
             'email'    => $this->faker->safeEmail,
             'password' => 'qwe123',
         ]);
 
-        $this->profile = \App\Entities\UserProfile::create([
+        $this->profile = UserProfile::create([
             'user_id'   => $this->userWithProfile->id,
             'real_name' => $this->faker->name,
             'about_me'  => $this->faker->paragraph(3),
@@ -67,7 +68,8 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
 
     protected function _after()
     {
-        \App\User::find($this->userWithProfile->id)->delete();
+        User::find($this->userWithProfile->id)->delete();
+        User::find($this->userWithoutProfile->id)->delete();
     }
 
     public function testFindMethodReturnsCorrectUserProfile()

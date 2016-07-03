@@ -1,11 +1,15 @@
 <?php
+
+use App\User;
+
 class LoginCest
 {
+    /** @var User */
     private $user;
 
     public function _before()
     {
-        $this->user = \App\User::find(1);
+        $this->user = User::first();
     }
 
     /**

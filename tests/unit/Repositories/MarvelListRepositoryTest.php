@@ -1,8 +1,14 @@
 <?php
+namespace Tests\Unit\Repositories;
 
 use \App\Repositories\MarvelListRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\User;
 
+/**
+ * Class MarvelListRepositoryTest
+ * @package Tests\Unit\Repositories
+ */
 class MarvelListRepositoryTest extends \Codeception\TestCase\Test
 {
     /** @var \UnitTester */
@@ -87,7 +93,7 @@ class MarvelListRepositoryTest extends \Codeception\TestCase\Test
         ];
         $this->marvelListRepository->add($data);
 
-        $user = \App\User::find($this->user);
+        $user = User::find($this->user);
         $lists = $this->marvelListRepository->allForUser($user);
 
         $this->assertEquals(2, $lists->count());
@@ -177,10 +183,83 @@ class MarvelListRepositoryTest extends \Codeception\TestCase\Test
         $item = $this->marvelListRepository->addItemToList($data);
 
         $lists = $this->marvelListRepository->listsContainingItemByUser(
-            App\User::find($this->userWithList),
+            User::find($this->userWithList),
             $item->series_id
         );
 
         $this->assertEquals(1, count($lists));
+    }
+
+    public function testUpdateListItemInfo()
+    {
+        $this->tester->haveRecord('marvel_lists', [
+            'user_id' => $this->userWithList,
+            'title'   => 'I will be reading',
+            'comment' => 'Some nice comment',
+        ]);
+
+        $this->tester->haveRecord('marvel_lists', [
+            'user_id' => $this->userWithList,
+            'title'   => 'I dropped',
+            'comment' => 'Some nice comment',
+        ]);
+
+        $data = [
+            'list_id'     => $this->list,
+            'series_id'   => 9997,
+            'score'       => 3,
+            'progress'    => 2,
+            'started_at'  => '2015/02',
+            'finished_at' => '2015/03',
+        ];
+        $item = $this->marvelListRepository->addItemToList($data);
+
+        $item = $this->marvelListRepository->item($item->id);
+        $this->assertEquals($item->score, $data['score']);
+        $this->assertEquals($item->progress, $data['progress']);
+
+        $updateData = [
+            'list_id'     => $this->list,
+            'series_id'   => 9997,
+            'score'       => 7,
+            'progress'    => 16,
+            'started_at'  => '2015/02',
+            'finished_at' => '2015/03',
+        ];
+        $this->marvelListRepository->updateItemInList($item->id, $updateData);
+
+        $item = $this->marvelListRepository->item($item->id);
+        $this->assertEquals($item->score, $updateData['score']);
+        $this->assertEquals($item->progress, $updateData['progress']);
+    }
+
+    public function testDeleteItemFromList()
+    {
+        $this->tester->haveRecord('marvel_lists', [
+            'user_id' => $this->userWithList,
+            'title'   => 'I will be reading',
+            'comment' => 'Some nice comment',
+        ]);
+
+        $this->tester->haveRecord('marvel_lists', [
+            'user_id' => $this->userWithList,
+            'title'   => 'I dropped',
+            'comment' => 'Some nice comment',
+        ]);
+
+        $data = [
+            'list_id'     => $this->list,
+            'series_id'   => 9997,
+            'score'       => 3,
+            'progress'    => 2,
+            'started_at'  => '2015/02',
+            'finished_at' => '2015/03',
+        ];
+        $item = $this->marvelListRepository->addItemToList($data);
+        $this->assertNotEmpty($item);
+
+        $this->marvelListRepository->deleteItemFromList($item->id);
+        $item = $this->marvelListRepository->item($item->id);
+        $this->assertNull($item);
     }
 }

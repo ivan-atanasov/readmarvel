@@ -16,7 +16,7 @@
                  class="img-responsive"/>
 
             {% if Auth.check() %}
-                <a href="#" class="btn btn-block" data-toggle="modal" data-target="#add-to-list-modal">
+                <a href="#" class="btn btn-block" data-toggle="modal" data-target="#add-to-list-modal" id="add-to-list">
                     {{ Lang.get('frontend/comics.add_to_list') }}
                 </a>
             {% endif %}

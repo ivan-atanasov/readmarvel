@@ -19,6 +19,8 @@
 |
 */
 
+include '../c3.php';
+
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
