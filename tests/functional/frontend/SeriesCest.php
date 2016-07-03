@@ -47,4 +47,36 @@ class SeriesCest
         $I->seeElement('.nav-tabs');
         $I->seeElement('#add-to-list');
     }
+
+    public function tryToSearchSeriesWithSearchEngine(FunctionalTester $I)
+    {
+        $I->amOnPage('/series');
+        $I->seeElement('.search-series-form');
+        $I->seeElement('.series-list');
+        $I->seeElement('.search-series-form input[type=submit]');
+        $I->fillField('input[name=query]', 'spider-man');
+        $I->click('.search-series-form input[type=submit]');
+        $I->see('Spider-Man 1602');
+    }
+
+    public function tryToSearchSeriesWithSearchEngineWithEmptyQuery(FunctionalTester $I)
+    {
+        $I->amOnPage('/series');
+        $I->seeElement('.search-series-form');
+        $I->seeElement('.series-list');
+        $I->seeElement('.search-series-form input[type=submit]');
+        $I->click('.search-series-form input[type=submit]');
+        $I->seeNumberOfElements('.details-btn', 20);
+    }
+
+    public function tryToGetJsonDataForAnItem(FunctionalTester $I, Login $loginPage)
+    {
+        $I->wantTo('Test if correct JSON is returned');
+
+        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
+        $I->seeElement($loginPage::$logoutLink);
+
+        $I->sendPOST('/series/series', ['itemId' => 1]);
+        $I->canSeeResponseIsJson();
+    }
 }
