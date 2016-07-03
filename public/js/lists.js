@@ -37,8 +37,7 @@ $(document).ready(function () {
     $('.list-item-edit').on('click', function (evn) {
         evn.preventDefault();
 
-        var $modal = $('.add-to-list'),
-            _token = $(this).data('csrf');
+        var $modal = $('.add-to-list');
 
         $.ajax({
             url: '/series/series',

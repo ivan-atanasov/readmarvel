@@ -32,9 +32,9 @@ class User extends Authenticatable
     public function profile()
     {
         // @TODO check if authenticated user is admin or user
-        if (true) {
-            return $this->hasOne('App\\Entities\\UserProfile');
-        }
+//        if (true) {
+//            return $this->hasOne('App\\Entities\\UserProfile');
+//        }
 
         return $this->hasOne('App\\Entities\\UserProfile');
     }

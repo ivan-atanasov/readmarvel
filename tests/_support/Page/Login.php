@@ -9,7 +9,7 @@ class Login
     public static $emailField = '#login-form #email';
     public static $passwordField = '#login-form #password';
     public static $loginForm = "#login-form";
-    public static $loginButton = "#login-button";
+    public static $loginButton = "#login-form input[type=submit]";
     public static $loginLink = "#login-link";
     public static $logoutLink = "#logout-link";
 
@@ -43,7 +43,7 @@ class Login
     {
         $I = $this->tester;
 
-        $I->wantTo('Login as a customer');
+        $I->wantTo('Login as a user');
         $I->amOnPage(self::$URL);
         $I->fillField(self::$emailField, $email);
         $I->fillField(self::$passwordField, $password);
