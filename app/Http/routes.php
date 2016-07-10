@@ -4,6 +4,11 @@ Route::get('/c3.php', function () {
     include '../../c3.php';
 });
 
+/**
+ * -------------------------------------------------
+ * Frontend Routes
+ * -------------------------------------------------
+ */
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/series', ['as' => 'frontend.series', 'uses' => 'SeriesController@list']);
@@ -46,6 +51,18 @@ Route::group(['namespace' => 'Frontend'], function () {
                 'uses' => 'ListController@deleteItemFromList',
             ]
         );
+    });
+});
+
+/**
+ * -------------------------------------------------
+ * Admin Routes
+ * -------------------------------------------------
+ */
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+        Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
     });
 });
 
