@@ -10,15 +10,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-
-    protected $table = 'users';
-
     /**
      * The attributes that are mass assignable.
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', "role", "context_id", "type",
+        'name', 'email', 'password',
     ];
 
     /**
@@ -34,6 +31,11 @@ class User extends Authenticatable
      */
     public function profile()
     {
+        // @TODO check if authenticated user is admin or user
+//        if (true) {
+//            return $this->hasOne('App\\Entities\\UserProfile');
+//        }
+
         return $this->hasOne('App\\Entities\\UserProfile');
     }
 
