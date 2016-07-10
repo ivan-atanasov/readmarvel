@@ -159,7 +159,6 @@ return [
         TwigBridge\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
     ],
 
     /*
