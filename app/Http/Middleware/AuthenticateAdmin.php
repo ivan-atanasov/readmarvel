@@ -10,9 +10,10 @@ class AuthenticateAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure                 $next
+     * @param  string|null              $guard
+     *
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
@@ -23,7 +24,7 @@ class AuthenticateAdmin
             } else {
                 return redirect()->guest('login');
             }
-        } elseif(Auth::check() && !Auth::user()->hasRole('admin')) {
+        } elseif (Auth::check() && !Auth::user()->hasRole('admin')) {
             return redirect()->to('/');
         }
 

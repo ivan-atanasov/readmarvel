@@ -1,0 +1,142 @@
+#wrapper {
+  width: 900px;
+  margin: 0 auto;
+}
+
+#query {
+  width: 700px;
+}
+
+#comics .card {
+  height: 650px;
+}
+
+#characters .card {
+  height: 450px;
+}
+
+.card {
+  p {
+    font-size: 15px;
+    color: #676767;
+  }
+
+  h5 {
+    line-height: 18px;
+  }
+}
+
+.pagination li {
+  display: inline-block;
+  list-style: none;
+}
+
+.index,
+.series-list {
+  .thumbnail {
+    position: relative;
+    overflow: hidden;
+
+    .caption-img {
+      width: 100%;
+      height: 280px;
+      -o-background-size: cover !important;
+      -moz-background-size: cover !important;
+      -webkit-background-size: cover !important;
+      -ms-background-size: cover !important;
+      background-size: cover !important;
+      background-repeat: no-repeat;
+      background-position: center center;
+      overflow: hidden;
+      -o-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+    }
+
+    .caption-link {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      -o-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+
+      .fa {
+        font-size: 54px;
+        position: absolute;
+        left: 50%;
+        margin-left: -20px;
+        top: 50%;
+        margin-top: -20px;
+        color: #fff6de;
+      }
+    }
+  }
+
+  .thumbnail > a:hover > .caption-link {
+    -o-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+  }
+}
+
+.caption-details {
+  width: auto;
+  height: auto;
+}
+
+.caption-details {
+  h3 {
+    font-weight: 600;
+    font-family: 'Open Sans', arial, sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    color: #0d2231;
+    text-align: center;
+    text-transform: capitalize;
+    height: 50px;
+  }
+
+  a.details-btn {
+    display: block;
+    text-align: center;
+    background: $marvelRedBtn;
+    padding: 8px 10px;
+    color: #ffffff;
+    border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  a.details-btn:hover {
+    text-decoration: none;
+    background: $marvelRedBtnHover;
+  }
+}
+
+.heading-title {
+  display: block;
+  padding-bottom: 30px;
+
+  h2 {
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: #444444;
+  }
+}
