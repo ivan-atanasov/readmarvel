@@ -15,7 +15,7 @@ class DashboardController extends HomeController
         if (\Auth::user()->can('edit_forum')) {
             echo "you can edit the forum";
         }
-        
+
         echo "";
 
         if (\Auth::user()->can('edit_funds')) {

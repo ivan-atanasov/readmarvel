@@ -10,6 +10,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.
+     *
      * @var array
      */
     protected $policies = [
@@ -19,8 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any application authentication / authorization services.
      *
-     * @param  \Illuminate\Contracts\Auth\Access\Gate $gate
-     *
+     * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
      * @return void
      */
     public function boot(GateContract $gate)

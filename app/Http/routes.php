@@ -54,7 +54,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     });
 });
 
-
 /**
  * -------------------------------------------------
  * Admin Routes
