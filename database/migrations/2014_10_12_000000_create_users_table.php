@@ -1,7 +1,14 @@
 <?php
+/**
+ * Migration genrated using LaraAdmin
+ * Help: http://laraadmin.com
+ */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\ModuleFields;
+use App\User;
 
 class CreateUsersTable extends Migration
 {
@@ -29,6 +36,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        if (Schema::hasTable('users')) {
+            Schema::drop('users');
+        }
     }
 }
