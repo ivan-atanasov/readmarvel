@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\UserHasRegistered;
 use App\User;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Validator;
 use Event;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+/**
+ * Class AuthController
+ * @package App\Http\Controllers\Auth
+ */
 class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
