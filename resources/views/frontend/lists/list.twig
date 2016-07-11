@@ -39,10 +39,7 @@
     </div>
 
     <div class="well">
-        <a href="{{ URL.route('frontend.profile') }}" class="btn">
-            <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/lists.back_to_all_lists') }}
-        </a>
-
+        {% if items|length %}
         <table class="table table-bordered table-striped table-hover table-responsive top-buffer list-items-table">
             <thead>
             <tr>
@@ -73,6 +70,9 @@
             {% endfor %}
             </tbody>
         </table>
+        {% else %}
+            {{ Lang.get('frontend/lists.empty_public_list_message') }}
+        {% endif %}
     </div>
 
 {% endblock %}
