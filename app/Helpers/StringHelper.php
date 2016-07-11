@@ -48,4 +48,14 @@ class StringHelper
 
         return $return;
     }
+
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public static function hash(string $string)
+    {
+        return md5($string . time() . rand(1, 1000));
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Entities\Permission;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -34,8 +35,15 @@ class AuthServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * @return Collection|static[]
+     */
     protected function getPermissions()
     {
-        return Permission::with(['roles'])->get();
+        if (\Schema::hasTable('roles')) {
+            return Permission::with(['roles'])->get();
+        }
+
+        return new Collection();
     }
 }

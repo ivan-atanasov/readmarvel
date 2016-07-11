@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\Entities\MarvelList;
 use App\Entities\MarvelListItem;
 use App\Helpers\ImageHelper;
+use App\Helpers\StringHelper;
 use App\User;
 use App\Repositories\Contracts\MarvelListRepository as MarvelListRepositoryInterface;
 use Carbon\Carbon;
@@ -23,6 +24,7 @@ class MarvelListRepository implements MarvelListRepositoryInterface
      */
     public function add(array $data)
     {
+        $data['hash'] = StringHelper::hash($data['title']);
         $list = MarvelList::create($data);
 
         if (isset($data['avatar'])) {
@@ -81,6 +83,14 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     public function find(int $id)
     {
         return MarvelList::find($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findByHash(string $hash)
+    {
+        return MarvelList::where('hash', '=', $hash)->first();
     }
 
     /**
