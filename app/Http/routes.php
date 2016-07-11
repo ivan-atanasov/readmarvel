@@ -14,6 +14,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/series', ['as' => 'frontend.series', 'uses' => 'SeriesController@list']);
     Route::get('/series/search', ['as' => 'frontend.series.search', 'uses' => 'SeriesController@search']);
     Route::get('/series/{id}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
+    Route::get('/lists/{list_hash}', ['as' => 'frontend.lists.public', 'uses' => 'PublicListsController@show']);
 
     Route::get('password/email', ['as' => 'reset_password_index', 'uses' => 'Auth\PasswordController@getEmail']);
     Route::post('password/email', ['as' => 'reset_password', 'uses' => 'Auth\PasswordController@postEmail']);

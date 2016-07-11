@@ -19,6 +19,7 @@ class CreateListsTables extends Migration
             $t->string('title', 255);
             $t->text('comment');
             $t->string('avatar', 255);
+            $t->string('hash', 50);
             $t->timestamps();
             $t->softDeletes();
         });

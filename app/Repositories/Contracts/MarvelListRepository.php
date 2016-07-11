@@ -38,6 +38,13 @@ interface MarvelListRepository
     public function find(int $id);
 
     /**
+     * @param string $hash
+     *
+     * @return mixed
+     */
+    public function findByHash(string $hash);
+
+    /**
      * @param int $id
      *
      * @return mixed
