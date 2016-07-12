@@ -14,7 +14,7 @@ class MarvelList extends Model
     const IMAGE_RESOURCE = 'list';
 
     /** @var array */
-    protected $fillable = ['user_id', 'title', 'avatar', 'comment'];
+    protected $fillable = ['user_id', 'title', 'avatar', 'comment', 'hash'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
