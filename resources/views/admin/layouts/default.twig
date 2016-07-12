@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>{{ Lang.get('frontend/navbar.title') }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     {% block styles %}
-        <link rel="stylesheet" href="{{ elixir('assets/css/app.css') }}"/>
-        <link rel="stylesheet" href="{{ url('assets/css/parsley.css') }}"/>
+        <!-- Bootstrap Core CSS -->
+        <link href="{{ URL.to('assets/admin/sb-admin-2/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"/>
+
+        <!-- Custom CSS -->
+        <link href="{{ URL.to('assets/admin/sb-admin-2/bootstrap/dist/css/sb-admin-2.css') }}" rel="stylesheet"/>
+
+        <!-- Custom Fonts -->
+        <link href="{{ URL.to('assets/admin/sb-admin-2/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"/>
     {% endblock %}
 </head>
+
 <body>
-{% include 'frontend/partials/_navbar.twig' %}
 
-{% block carousel %}
-{% endblock %}
+<div id="wrapper">
+    {% include 'admin/partials/_navbar.twig' %}
 
-<div class="container content-container">
-    {% block content %}
-    {% endblock %}
+    <div id="page-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 
-{% block footer %}
-    {% include 'frontend/partials/_footer.twig' %}
-{% endblock %}
-
 {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="application/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
-    <script type="application/javascript" src="{{ url('js/parsley.min.js') }}"></script>
+    <!-- jQuery -->
+    <script src="{{ URL.to('assets/admin/sb-admin-2/jquery/dist/jquery.min.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ URL.to('assets/admin/sb-admin-2/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{ URL.to('assets/admin/sb-admin-2/metisMenu/dist/metisMenu.min.js') }}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{{ URL.to('assets/admin/sb-admin-2/raphael/raphael-min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/sb-admin-2/morrisjs/morris.min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/sb-admin-2/js/morris-data.js') }}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ URL.to('assets/admin/sb-admin-2/js/sb-admin-2.js') }}"></script>
 {% endblock %}
 </body>
 </html>
