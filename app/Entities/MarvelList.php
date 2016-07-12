@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 
+use App\Helpers\StringHelper;
 use Illuminate\Database\Eloquent\Model;
 
 /**

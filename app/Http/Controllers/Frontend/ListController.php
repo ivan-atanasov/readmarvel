@@ -8,7 +8,7 @@ use App\Http\Requests\MarvelListRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
-use View;
+use Auth;
 
 /**
  * Class ListController
@@ -40,9 +40,7 @@ class ListController extends BaseController
      */
     public function store(MarvelListRequest $marvelListRequest)
     {
-        $data = [
-            'user_id' => \Auth::user()->id,
-        ];
+        $data = ['user_id' => \Auth::user()->id];
         $data = array_merge($data, $marvelListRequest->toArray());
         $this->marvelListRepository->add($data);
 
