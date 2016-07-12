@@ -24,8 +24,12 @@ class MarvelListRepository implements MarvelListRepositoryInterface
      */
     public function add(array $data)
     {
-        $data['hash'] = StringHelper::hash($data['title']);
-        $list = MarvelList::create($data);
+        $list = new MarvelList();
+        $list->user_id = $data['user_id'];
+        $list->title = $data['title'];
+        $list->hash = StringHelper::listHash($data['title']);
+        $list->comment = $data['comment'];
+        $list->save();
 
         if (isset($data['avatar'])) {
             $list->avatar = ImageHelper::crop($data['avatar'], MarvelList::IMAGE_RESOURCE, $list->id);
