@@ -54,7 +54,7 @@ class StringHelper
      *
      * @return string
      */
-    public static function hash(string $string)
+    public static function listHash(string $string)
     {
         return md5($string . time() . rand(1, 1000));
     }
