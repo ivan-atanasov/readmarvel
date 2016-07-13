@@ -1,0 +1,39 @@
+<div class="share-modal modal fade" id="share-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{ Lang.get('frontend/profile.lists.share_list') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <a href="#"
+                           class="addon-button"
+                           id="copy-list-url-to-clipboard"
+                           data-toggle="tooltip"
+                           data-placement="right"
+                           title="{{ Lang.get('frontend/profile.lists.copy_to_clipboard') }}"
+                        >
+                            <i class="glyphicon glyphicon-copy"></i>
+                            {{ Lang.get('frontend/index.copy') }}
+                        </a>
+                    </div>
+                    <input name="share_hash"
+                           id="share-hash"
+                           class="form-control"
+                           value="{{ URL.route('frontend.lists.public', { list_hash : share_hash }) }}"/>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    {{ Lang.get('frontend/index.close') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

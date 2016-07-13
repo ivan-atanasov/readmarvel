@@ -12,7 +12,7 @@ interface MarvelListRepository
     /**
      * @param array $data
      *
-     * @return MarvelList
+     * @return mixed
      */
     public function add(array $data);
 

@@ -6173,6 +6173,9 @@ button.close {
   .list-items-table .modify-btns {
     width: 103px; }
 
+.update-list-form {
+  display: inline-block; }
+
 .btn {
   color: #fff;
   background-color: #f04125;
@@ -6231,5 +6234,11 @@ button.close {
   background: white;
   cursor: inherit;
   display: block; }
+
+.addon-button {
+  color: #000; }
+
+.addon-button:hover {
+  text-decoration: none; }
 
 /*# sourceMappingURL=app.css.map */

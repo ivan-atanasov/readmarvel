@@ -26,6 +26,7 @@
             <form action="{{ URL.route('frontend.update_list_avatar') }}"
                   method="post"
                   id="upload-list-avatar-form"
+                  class="update-list-form"
                   enctype="multipart/form-data">
                 <label class="btn btn-default btn-file">
                     <i class="glyphicon glyphicon-pencil"></i>
@@ -35,6 +36,14 @@
                     {{ csrf_field() }}
                 </label>
             </form>
+
+            <a href="#"
+               class="btn btn-default btn-file"
+               data-toggle="modal"
+               data-target="#share-modal"
+               title="{{ Lang.get('frontend/profile.lists.share_btn_text') }}">
+                <i class="glyphicon glyphicon-share-alt"></i>
+            </a>
         </div>
     </div>
 
@@ -60,7 +69,7 @@
             {% for item in items %}
                 <tr>
                     <td class="title">
-                        <a href="{{ URL.route('frontend.show_series', { 'id' : item.series_id }) }}">
+                        <a href="{{ URL.route('frontend.series.show', { 'id' : item.series_id }) }}">
                             {{ item.title }}
                         </a>
                     </td>
@@ -96,10 +105,12 @@
     </div>
 
     {% include 'frontend/partials/_add_to_list_modal' with {
-                'lists' : lists,
-                'series' : series,
-                'submitUrl' : URL.route('frontend.update_item_in_list')
+    'lists' : lists,
+    'series' : series,
+    'submitUrl' : URL.route('frontend.update_item_in_list')
     } %}
+
+    {% include 'frontend/partials/_share_modal' with { 'share_hash' : list['hash'] } %}
 
     {% include 'frontend/partials/_confirm_modal.twig' with { submitUrl: URL.route('frontend.delete_from_list') } %}
 {% endblock %}

@@ -46,7 +46,7 @@ $(document).ready(function () {
                 '_token': _token
             },
             method: 'post',
-            success: function(response) {
+            success: function (response) {
                 var $startedAt = $modal.find('input[name="started_at"]'),
                     $finishedAt = $modal.find('input[name="finished_at"]');
                 $modal.find('input[name="progress"]').attr('value', response.progress);
@@ -62,5 +62,34 @@ $(document).ready(function () {
             }
         });
 
+    });
+
+    $("#copy-list-url-to-clipboard").on("click", function (evn) {
+        evn.preventDefault();
+
+        var elem = document.getElementById("share-hash"),
+            origSelectionStart,
+            origSelectionEnd;
+
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+
+        // copy the selection
+        document.execCommand("copy");
+
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
     });
 });
