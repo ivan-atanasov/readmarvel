@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-9 col-md-offset-3">
+        <h1>Comments</h1>
+
+        <form method="post" action="{{ URL.route('frontend.comments.store') }}">
+            <div class="form-group">
+                <textarea name="comment" class="form-control" rows="5"></textarea>
+
+                <div class="text-right top-buffer">
+                    <input type="submit" name="comment" value="Submit" class="btn btn-default text-right"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
