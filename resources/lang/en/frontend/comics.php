@@ -26,4 +26,6 @@ return [
     'comics'                  => 'Comics',
     'find_your_series'        => 'Find your favourite series',
     'search_placeholder'      => 'Search your favourite series',
+    'comments'                => 'Comments',
+    'submit_comment'          => 'Submit comment',
 ];

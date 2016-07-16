@@ -58,8 +58,12 @@ class SeriesController extends BaseController
             $listsContainingItem = $this->marvelListRepository->listsContainingItemByUser(Auth::user(), $id);
             $lists = $this->marvelListRepository->allForUser(Auth::user(), $listsContainingItem);
         }
+        
+        $comments = $this->seriesRepository->comments($id);
 
-        return View::make('frontend/series.page', ['series' => $series, 'lists' => $lists]);
+        return View::make(
+            'frontend/series.page', 
+            ['series' => $series, 'lists' => $lists, 'comments' => $comments]);
     }
 
     /**
