@@ -101,4 +101,16 @@ class SeriesRepository implements SeriesRepositoryInterface
 
         return [array_slice($comics['results'], 0, $limit), $search, $total];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function comments(int $id)
+    {
+        return \DB::table('comments')
+            ->join('users', 'users.id', '=', 'comments.user_id')
+            ->where('series_id', '=', $id)
+            ->orderBy('comments.created_at', 'desc')
+            ->get(['users.name', 'users.email', 'comments.comment', 'comments.created_at']);
+    }
 }

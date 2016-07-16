@@ -112,7 +112,6 @@
         </div>
     </div>
 
-    {% include 'frontend/series/partials/_comments.twig' %}
 
     {% if Auth.check() %}
         {% include 'frontend/partials/_add_to_list_modal' with {
@@ -121,6 +120,13 @@
         'submitUrl' : URL.route('frontend.add_item_to_list')
         } %}
     {% endif %}
+
+    {% include 'frontend/series/partials/_comments_form.twig' with {
+    'series_id' : series['id'],
+    'comments' : comments
+    } %}
+
+    {% include 'frontend/series/partials/_comments.twig' %}
 {% endblock %}
 
 {% block styles %}

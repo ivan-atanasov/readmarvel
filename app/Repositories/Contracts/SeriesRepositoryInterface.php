@@ -30,4 +30,11 @@ interface SeriesRepositoryInterface
      * @return array [comics, search, total]
      */
     public function search(string $query, int $limit = 20, int $offset = 0);
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function comments(int $id);
 }
