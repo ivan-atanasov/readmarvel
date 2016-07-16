@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('/list/store', ['as' => 'frontend.store_list', 'uses' => 'ListController@store']);
         Route::post('/list/update_avatar', ['as' => 'frontend.update_list_avatar', 'uses' => 'ListController@updateListAvatar']);
         Route::post('series/series', ['as' => 'frontend.get_series_json', 'uses' => 'SeriesController@seriesJson']);
+        Route::post('comments/store', ['as' => 'frontend.comments.store', 'uses' => 'CommentsController@store']);
         Route::post(
             '/list/addItemToList',
             [

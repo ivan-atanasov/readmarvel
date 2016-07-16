@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Entities\Comment;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -51,5 +52,13 @@ class User extends Authenticatable
             'list_id',
             'id'
         );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 }

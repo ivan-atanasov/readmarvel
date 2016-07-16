@@ -22,3 +22,27 @@
     }
   }
 }
+
+.chat {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #999;
+  }
+
+  li.left .chat-body {
+    margin-left: 60px;
+  }
+
+  li.right .chat-body {
+    margin-right: 60px;
+  }
+
+  li .chat-body p {
+    margin: 0;
+  }
+}
