@@ -1,15 +1,30 @@
 <?php
 
 use App\User;
+use Faker\Factory as Faker;
 
 class LoginCest
 {
     /** @var User */
     private $user;
 
+    /** @var Faker */
+    private $faker;
+
     public function _before()
     {
-        $this->user = User::first();
+        $this->faker = Faker::create();
+
+        $this->user = User::create([
+            'name'     => $this->faker->name,
+            'email'    => $this->faker->safeEmail,
+            'password' => Hash::make('secret'),
+        ]);
+    }
+
+    public function _after()
+    {
+        $this->user->delete();
     }
 
     /**
@@ -18,7 +33,7 @@ class LoginCest
      */
     public function canLoginWithValidCredentials(FunctionalTester $I, \Page\Login $loginPage)
     {
-        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'secret');
         $I->seeElement($loginPage::$logoutLink);
         $I->click($loginPage::$logoutLink);
         $I->seeElement($loginPage::$loginLink);
