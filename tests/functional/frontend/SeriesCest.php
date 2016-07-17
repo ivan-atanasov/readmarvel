@@ -2,19 +2,30 @@
 
 use App\User;
 use Page\Login;
+use Faker\Factory as Faker;
 
 class SeriesCest
 {
     /** @var User */
     private $user;
 
+    /** @var Faker */
+    private $faker;
+
     public function _before(FunctionalTester $I)
     {
-        $this->user = User::first();
+        $this->faker = Faker::create();
+
+        $this->user = User::create([
+            'name'     => $this->faker->name,
+            'email'    => $this->faker->safeEmail,
+            'password' => Hash::make('qwe123'),
+        ]);
     }
 
     public function _after(FunctionalTester $I)
     {
+        $this->user->delete();
     }
 
     public function tryToSeeAListOfSeries(FunctionalTester $I)

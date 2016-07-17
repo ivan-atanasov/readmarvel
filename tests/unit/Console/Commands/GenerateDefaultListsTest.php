@@ -31,7 +31,7 @@ class GenerateDefaultListsTest extends \Codeception\TestCase\Test
         $this->marvelListRepository = new MarvelListRepository();
         $this->generateDefaultListsCommand = new GenerateDefaultLists($this->marvelListRepository);
 
-        $this->user = \App\User::create([
+        $this->user = User::create([
             'name'     => $this->faker->name,
             'email'    => $this->faker->safeEmail,
             'password' => 'qwe123',
