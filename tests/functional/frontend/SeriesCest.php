@@ -19,7 +19,7 @@ class SeriesCest
         $this->user = User::create([
             'name'     => $this->faker->name,
             'email'    => $this->faker->safeEmail,
-            'password' => Hash::make('qwe123'),
+            'password' => Hash::make('secret'),
         ]);
     }
 
@@ -47,7 +47,7 @@ class SeriesCest
 
     public function tryToOpenASeriesPageWhenLoggedIn(FunctionalTester $I, Login $loginPage)
     {
-        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'secret');
         $I->seeElement($loginPage::$logoutLink);
 
         $I->amOnPage('/series');
@@ -84,7 +84,7 @@ class SeriesCest
     {
         $I->wantTo('Test if correct JSON is returned');
 
-        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'secret');
         $I->seeElement($loginPage::$logoutLink);
 
         $I->sendPOST('/series/series', ['itemId' => 1]);
