@@ -15,11 +15,8 @@ class ListManagementCest
     {
         $this->faker = Faker::create();
 
-        $this->user = User::create([
-            'name'     => $this->faker->name,
-            'email'    => $this->faker->safeEmail,
-            'password' => 'asdsad'//Hash::make('secret'),
-        ]);
+        $helper = new \Helper\User();
+        $this->user = $helper->create();
     }
 
     public function _after(AcceptanceTester $I)
@@ -29,19 +26,28 @@ class ListManagementCest
 
     public function tryToOpenModifyListPageWhenNotLoggedIn(AcceptanceTester $I, \Page\Login $loginPage)
     {
+        $I->am('A User');
         $I->amOnPage('/');
-        $I->amOnPage('/profile');
-        $I->dontSeeElement('.profile-card');
-        $I->dontSeeElement('#tab-lists');
+        $I->waitForElement($loginPage::$loginLink);
+        $I->seeElement($loginPage::$loginLink);
+        $I->dontSeeElement('#profile-link');
+        $I->amOnPage(\Page\UserProfile::$URL);
+        $I->amOnPage(\Page\Login::$URL);
+        $I->seeInCurrentUrl('login');
         $I->seeElement($loginPage::$loginForm);
     }
 
-    public function tryToAddANewListToProfileWithValidData(AcceptanceTester $I, \Page\Login $loginPage)
-    {
+    public function tryToAddANewListToProfileWithValidData(
+        AcceptanceTester $I,
+        \Page\Login $loginPage,
+        \Page\UserProfile $userProfilePage
+    ) {
         $I->amOnPage('/');
+        $I->waitForElement($loginPage::$loginLink);
+        $I->click($loginPage::$loginLink);
         $I->loginAsUser($loginPage, $this->user->email, 'secret');
-        $I->seeElement('#profile-link');
-        $I->click('#profile-link');
+        $I->seeElement($userProfilePage::$profileLink);
+        $I->click($userProfilePage::$profileLink);
         $I->seeElement('.profile-card');
         $I->seeElement('#tab-lists');
         $I->click('#tab-lists');

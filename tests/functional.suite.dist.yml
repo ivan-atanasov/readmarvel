@@ -6,6 +6,13 @@
 
 class_name: FunctionalTester
 modules:
-    enabled:
-        # add framework module here
-        - \Helper\Functional
+  enabled: [Laravel5, Db, \Helper\Functional, REST]
+  config:
+    REST:
+      depends: Laravel5
+    Laravel5:
+      url: http://localhost.dev
+      browser: phantomjs
+      environment_file: .env.testing
+      cleanup: false
+      wait: 1
