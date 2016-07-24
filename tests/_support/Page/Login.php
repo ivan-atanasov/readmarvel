@@ -4,7 +4,7 @@ namespace Page;
 class Login
 {
     // include url of current page
-    public static $URL = '/login';
+    public static $URL = 'login';
 
     public static $emailField = '#login-form #email';
     public static $passwordField = '#login-form #password';

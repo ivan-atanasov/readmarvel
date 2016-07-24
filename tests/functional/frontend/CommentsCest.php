@@ -15,11 +15,8 @@ class CommentsCest
     {
         $this->faker = Factory::create();
 
-        $this->user = User::create([
-            'name'     => $this->faker->name,
-            'email'    => $this->faker->safeEmail,
-            'password' => Hash::make('qwe123'),
-        ]);
+        $helper = new \Helper\User();
+        $this->user = $helper->create();
     }
 
     public function _after(FunctionalTester $I)
@@ -41,7 +38,7 @@ class CommentsCest
     public function testTryToCommentWhenIAmLoggedIn(FunctionalTester $I, \Page\Login $loginPage)
     {
         $comment = 'Test comment from Codeception';
-        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'secret');
 
         $I->amOnPage('/series');
         $I->seeElement('.search-series-form');

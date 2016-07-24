@@ -9,6 +9,7 @@ class UserProfile
     public static $realNameField = '#real-name';
     public static $aboutMeField = '#about-me';
     public static $submit = '#submit-user-profile';
+    public static $profileLink = '#profile-link';
 
     /**
      * @param $param

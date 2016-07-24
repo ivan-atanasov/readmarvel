@@ -40,7 +40,7 @@ class UserProfileCest
         $I->amOnPage('/');
         $I->dontSeeElement('#profile-link');
         $I->amOnPage(\Page\UserProfile::$URL);
-        $I->amOnPage(\Page\Login::$URL);
+        $I->seeInCurrentUrl(\Page\Login::$URL);
     }
 
     /**
