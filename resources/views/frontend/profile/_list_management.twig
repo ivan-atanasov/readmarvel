@@ -55,7 +55,7 @@
     {% endif %}
 
     <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard">
+        <div class="list-card hovercard list-block">
             <div class="card-background">
                 {% if list['avatar']|length %}
                     <img class="card-bkimg" src="{{ URL.to(list['avatar']) }}" alt="profile"/>
@@ -97,7 +97,10 @@
                 <h4 class="modal-title">{{ Lang.get('frontend/profile.lists.add') }}</h4>
             </div>
 
-            <form action="{{ URL.route('frontend.store_list') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ URL.route('frontend.store_list') }}"
+                  id="add-list-form"
+                  method="post"
+                  enctype="multipart/form-data">
                 <div class="modal-body">
                     {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
@@ -134,7 +137,7 @@
                         {{ Lang.get('frontend/comics.add_to_list_modal_close') }}
                     </button>
 
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn" id="save-list-btn">
                         {{ Lang.get('frontend/comics.save_changes') }}
                     </button>
                 </div>
