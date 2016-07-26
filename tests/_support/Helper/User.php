@@ -22,7 +22,7 @@ class User
     }
 
     /**
-     * @return static
+     * @return \App\User
      */
     public function create()
     {

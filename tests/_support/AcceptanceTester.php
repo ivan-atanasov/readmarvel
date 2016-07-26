@@ -33,7 +33,7 @@ class AcceptanceTester extends \Codeception\Actor
     public function logout()
     {
         $I = $this;
-        $I->seeElement(\Page\Login::$loginLink);
-        $I->click(\Page\Login::$loginLink);
+        $I->seeElement(\Page\Login::$logoutLink);
+        $I->click(\Page\Login::$logoutLink);
     }
 }

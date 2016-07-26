@@ -8,7 +8,7 @@
                 <h4 class="modal-title">{{ Lang.get('frontend/comics.add_to_list') }}</h4>
             </div>
 
-            <form action="{{ submitUrl }}" method="post" data-parsley-validate>
+            <form action="{{ submitUrl }}" method="post" id="add-to-list-form" data-parsley-validate>
                 <div class="modal-body">
                     {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
@@ -114,7 +114,7 @@
                         {{ Lang.get('frontend/comics.add_to_list_modal_close') }}
                     </button>
 
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn" id="add-to-list-btn">
                         {{ Lang.get('frontend/comics.save_changes') }}
                     </button>
                 </div>

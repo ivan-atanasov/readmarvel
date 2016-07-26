@@ -15,7 +15,18 @@ extensions:
 modules:
     config:
         Db:
-            dsn: ''
-            user: ''
-            password: ''
+            dsn: 'mysql:host=YOUR_HOST;dbname=YOUR_DB_NAME'
+            user: 'YOUR_DB_USERNAME'
+            password: 'YOUR_DB_PASSWORD'
             dump: tests/_data/dump.sql
+coverage:
+    enabled: true
+    remote: true
+    c3_url: 'http://localhost.dev/c3.php'
+    whitelist:
+      include:
+        - app/*
+      exclude:
+        - app/Events/*
+        - app/Exceptions/*
+        - app/Providers/*
