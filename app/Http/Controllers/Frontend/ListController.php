@@ -9,6 +9,8 @@ use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
+use Redirect;
 
 /**
  * Class ListController
@@ -44,9 +46,9 @@ class ListController extends BaseController
         $data = array_merge($data, $marvelListRequest->toArray());
         $this->marvelListRepository->add($data);
 
-        \Session::flash('messages', ['success' => \Lang::get('frontend/profile.lists.added_success')]);
+        Session::flash('messages', ['success' => \Lang::get('frontend/profile.lists.added_success')]);
 
-        return \Redirect::back();
+        return Redirect::back();
     }
 
     /**
@@ -62,7 +64,7 @@ class ListController extends BaseController
         
         $this->marvelListRepository->addItemToList($data);
 
-        return \Redirect::back();
+        return Redirect::back();
     }
 
     /**
@@ -74,7 +76,7 @@ class ListController extends BaseController
     {
         $this->marvelListRepository->updateItemInList($request->get('item_id'), $request->toArray());
 
-        return \Redirect::back();
+        return Redirect::back();
     }
 
     /**
@@ -86,7 +88,7 @@ class ListController extends BaseController
     {
         $this->marvelListRepository->updateAvatar($request->get('list_id'), $request->file('avatar'));
 
-        return \Redirect::back();
+        return Redirect::back();
     }
 
     /**

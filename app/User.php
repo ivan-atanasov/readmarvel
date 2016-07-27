@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Entities\Comment;
+use App\Entities\MarvelList;
+use App\Entities\MarvelListItem;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -41,13 +43,25 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function lists()
+    {
+        return $this->hasMany(
+            MarvelList::class,
+            'user_id',
+            'id'
+        );
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function listItems()
     {
         return $this->hasManyThrough(
-            'App\\Entities\\MarvelListItem',
-            'App\\Entities\\MarvelList',
+            MarvelListItem::class,
+            MarvelList::class,
             'user_id',
             'list_id',
             'id'

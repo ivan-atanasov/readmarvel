@@ -3,7 +3,7 @@
     {% if Auth.check %}
         <h1>{{ Lang.get('frontend/comics.comments') }}</h1>
 
-        <form method="post" action="{{ URL.route('frontend.comments.store') }}">
+        <form method="post" action="{{ URL.route('frontend.comments.store') }}" id="series-comment-form">
             <div class="form-group">
                 <textarea name="comment" class="form-control" rows="5"></textarea>
                 <input type="hidden" name="series_id" value="{{ series_id }}"/>
