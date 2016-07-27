@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use Faker\Factory as Faker;
+
 class UserProfileCest
 {
     /**
@@ -7,11 +10,26 @@ class UserProfileCest
      */
     protected $tester;
 
+    /** @var User */
     protected $user;
+
+    /** @var Faker */
+    private $faker;
 
     public function _before()
     {
-        $this->user = \App\User::find(1);
+        $this->faker = Faker::create();
+
+        $this->user = User::create([
+            'name'     => $this->faker->name,
+            'email'    => $this->faker->safeEmail,
+            'password' => Hash::make('secret'),
+        ]);
+    }
+
+    public function _after(FunctionalTester $I)
+    {
+        $this->user->delete();
     }
 
     /**
@@ -22,7 +40,7 @@ class UserProfileCest
         $I->amOnPage('/');
         $I->dontSeeElement('#profile-link');
         $I->amOnPage(\Page\UserProfile::$URL);
-        $I->amOnPage(\Page\Login::$URL);
+        $I->seeInCurrentUrl(\Page\Login::$URL);
     }
 
     /**
@@ -34,7 +52,7 @@ class UserProfileCest
         $I->amOnPage('/');
         $I->dontSeeElement('#profile-link');
         $I->amOnPage($loginPage::$URL);
-        $I->loginAsUser($loginPage, $this->user->email, 'qwe123');
+        $I->loginAsUser($loginPage, $this->user->email, 'secret');
         $I->amOnPage(\Page\UserProfile::$URL);
         $I->seeElement('#edit-user-profile-form');
         $I->fillField(\Page\UserProfile::$realNameField, 'John Doe');

@@ -20,7 +20,20 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    /**
+     * @param \Page\Login $loginPage
+     * @param $email
+     * @param $password
+     */
+    public function loginAsUser(\Page\Login $loginPage, $email, $password)
+    {
+        $loginPage->login($email, $password);
+    }
+
+    public function logout()
+    {
+        $I = $this;
+        $I->seeElement(\Page\Login::$logoutLink);
+        $I->click(\Page\Login::$logoutLink);
+    }
 }

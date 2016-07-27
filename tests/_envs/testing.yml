@@ -1,4 +1,0 @@
-modules:
-  config:
-    Laravel5:
-      environment_file: .env.testing
