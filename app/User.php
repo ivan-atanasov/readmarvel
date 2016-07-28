@@ -5,6 +5,7 @@ namespace App;
 use App\Entities\Comment;
 use App\Entities\MarvelList;
 use App\Entities\MarvelListItem;
+use App\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
+    use HasRoles;
+
     /**
      * The attributes that are mass assignable.
      * @var array

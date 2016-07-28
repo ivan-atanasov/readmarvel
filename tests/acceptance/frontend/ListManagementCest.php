@@ -40,12 +40,12 @@ class ListManagementCest
         $I->wantTo('Add a new list to my profile without being logged in');
 
         $I->amOnPage('/');
-//        $I->seeElement($loginPage::$loginLink);
-//        $I->dontSeeElement($userProfilePage::$profileLink);
-//        $I->amOnPage(\Page\UserProfile::$URL);
-//        $I->amOnPage(\Page\Login::$URL);
-//        $I->seeInCurrentUrl('login');
-//        $I->seeElement($loginPage::$loginForm);
+        $I->seeElement($loginPage::$loginLink);
+        $I->dontSeeElement($userProfilePage::$profileLink);
+        $I->amOnPage(\Page\UserProfile::$URL);
+        $I->amOnPage(\Page\Login::$URL);
+        $I->seeInCurrentUrl('login');
+        $I->seeElement($loginPage::$loginForm);
     }
 
     /**
