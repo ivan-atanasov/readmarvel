@@ -1,29 +1,20 @@
 {% extends 'admin/layouts/default.twig' %}
 
 {% block content %}
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Dashboard
-            <small>Version 2.0</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-        </ol>
-    </section>
-
     <section class="content">
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-aqua"><i class="fa fa-clone"></i></span>
-
+                    <a href="{{ URL.route('admin.static') }}">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-clone"></i></span>
+                    </a>
                     <div class="info-box-content">
                         <span class="info-box-text">
                             {{ Lang.get('admin/dashboard.static_pages') }}
                         </span>
-                        <span class="info-box-number">{{ Lang.get('admin/dashboard.static_pages') }}</span>
+                        <span class="info-box-number">
+                            {{ Lang.get('admin/dashboard.static_pages') }}
+                        </span>
                     </div>
                 </div>
             </div>
