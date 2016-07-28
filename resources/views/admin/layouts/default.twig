@@ -42,6 +42,8 @@
     {% include 'admin/partials/_left_sidebar.twig' %}
 
     <div class="content-wrapper">
+        {% include 'admin/partials/_breadcrumbs.twig' %}
+        
         {% block content %}
         {% endblock %}
     </div>

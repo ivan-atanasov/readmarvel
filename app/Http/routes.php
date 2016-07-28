@@ -61,12 +61,18 @@ Route::group(['namespace' => 'Frontend'], function () {
  * Admin Routes
  * -------------------------------------------------
  */
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-    Route::group(['middleware' => 'auth.admin'], function () {
+Route::group(
+    [
+        'namespace'  => 'Admin',
+        'prefix'     => 'admin',
+        'middleware' => 'auth.admin',
+    ],
+    function () {
         Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
-    });
-});
+        Route::get('/static', ['as' => 'admin.static', 'uses' => 'StaticPagesController@index']);
+    }
+);
 
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
