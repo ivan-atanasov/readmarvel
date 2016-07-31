@@ -1,0 +1,13 @@
+{% extends 'admin.layout' %}
+
+{% block content %}
+    {% include 'admin.partials._form_edit' with {
+    'title': 'Modify user',
+    'edit_route': ['admin.users.update', user.id],
+    'back_route': route('admin.users.index'),
+    'form': 'admin.users.form',
+    'resource': user,
+    'entry': user.FullName
+    } %}
+
+{% endblock %}
