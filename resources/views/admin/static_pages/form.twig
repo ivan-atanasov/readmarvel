@@ -1,0 +1,64 @@
+<div class="form-group {{ errors.first('title', 'has-error') }}">
+    <label for="title" class="col-sm-3 control-label">
+        {{ Lang.get('admin/static/form.title') }}
+    </label>
+
+    <div class="col-sm-6">
+        {{
+            form_text(
+                'title',
+                NULL,
+                {
+                    'class': 'form-control required',
+                    'data-minlength': 3,
+                    'required': 'required',
+                    'id' : 'title'
+                }
+            )
+        }}
+    </div>
+</div>
+
+<div class="form-group {{ errors.first('url_slug', 'has-error') }}">
+    <label for="url-slug" class="col-sm-3 control-label">
+        {{ Lang.get('admin/static/form.url_slug') }}
+    </label>
+
+    <div class="col-sm-6">
+        {{
+            form_text(
+                'url_slug',
+                NULL,
+                {
+                    'class': 'form-control required',
+                    'data-minlength': 3,
+                    'required': 'required',
+                    'id' : 'url-slug'
+                }
+            )
+        }}
+    </div>
+</div>
+
+<div class="form-group {{ errors.first('content', 'has-error') }}">
+    <label for="content" class="col-sm-3 control-label">
+        {{ Lang.get('admin/static/form.content') }}
+    </label>
+
+    <div class="col-sm-6">
+        {{
+        form_textarea(
+                'content',
+                NULL,
+                {
+                    'class': 'form-control required textarea',
+                    'data-minlength': 3,
+                    'required': 'required',
+                    'id' : 'content'
+                }
+            )
+        }}
+    </div>
+</div>
+
+{% include 'admin.partials._submit_buttons' with {'route': route('admin.static.index')} %}

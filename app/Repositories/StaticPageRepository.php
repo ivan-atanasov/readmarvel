@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Entities\StaticPage;
 use App\Repositories\Contracts\StaticPageRepositoryInterface;
+use App\User;
 
 /**
  * Class StaticPageRepository
@@ -17,5 +18,18 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     public function all()
     {
         return StaticPage::all();
+    }
+
+    /**
+     * @param User  $user
+     * @param array $data
+     *
+     * @return \App\Entities\StaticPage
+     */
+    public function create(User $user, array $data)
+    {
+        $data['created_by'] = $user->id;
+
+        return StaticPage::create($data);
     }
 }

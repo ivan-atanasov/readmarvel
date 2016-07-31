@@ -70,7 +70,11 @@ Route::group(
     function () {
         Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
         Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
-        Route::get('/static', ['as' => 'admin.static', 'uses' => 'StaticPagesController@index']);
+
+        Route::resource('static', 'StaticPagesController');
+
+//        Route::get('/static', ['as' => 'admin.static', 'uses' => 'StaticPagesController@index']);
+//        Route::get('/static', ['as' => 'admin.static.store', 'uses' => 'StaticPagesController@store']);
     }
 );
 

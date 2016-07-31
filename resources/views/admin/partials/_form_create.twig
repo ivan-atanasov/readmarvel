@@ -1,0 +1,19 @@
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary ">
+                {#{% include 'admin.partials.panel_heading_create' %}#}
+
+                <div class="panel-body">
+                    {% include 'admin.partials._errors' %}
+
+                    {{ Form.open({'route': submit_route, 'method': 'POST', 'class': 'form-horizontal'})|raw }}
+
+                    {% include form %}
+
+                    {{ Form.close()|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
