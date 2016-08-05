@@ -72,9 +72,6 @@ Route::group(
         Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 
         Route::resource('static', 'StaticPagesController');
-
-//        Route::get('/static', ['as' => 'admin.static', 'uses' => 'StaticPagesController@index']);
-//        Route::get('/static', ['as' => 'admin.static.store', 'uses' => 'StaticPagesController@store']);
     }
 );
 

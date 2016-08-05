@@ -25,9 +25,12 @@ class StaticPageRequest extends Request
      */
     public function rules()
     {
+        $uniqueRule = 'unique:static_pages,url_slug';
+        $uniqueRule .= $this->request->get('id') ? ',' . $this->request->get('id') : '';
+
         return [
             'title'    => 'required|unique:static_pages,url_slug',
-            'url_slug' => 'required|alpha_dash|unique:static_pages,url_slug',
+            'url_slug' => 'required|alpha_dash|' . $uniqueRule,
             'content'  => 'required',
         ];
     }

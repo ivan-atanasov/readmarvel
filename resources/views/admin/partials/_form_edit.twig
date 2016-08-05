@@ -1,24 +1,15 @@
-<section class="content-header">
-    <h1>{{ title }}</h1>
-    <ol class="breadcrumb">
-        {% include 'admin.partials.breadcrumb_home' %}
-        <li class="active">{{ title }}</li>
-    </ol>
-</section>
 <section class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                {% include 'admin.partials.panel_heading_edit' with { 'entry': entry, 'back_route': back_route } %}
-
                 <div class="panel-body">
-                    {% include 'admin.partials.errors' %}
+                    {% include 'admin.partials._errors' %}
 
-                    {{ form_model(resource, { 'route': edit_route, 'method': 'PUT', 'class': 'form-horizontal', 'role' : 'form' }) }}
+                    {{ Form.model(resource, { 'route': edit_route, 'method': 'PUT', 'class': 'form-horizontal', 'role' : 'form' })|raw }}
 
                     {% include form %}
 
-                    {{ form_close() }}
+                    {{ Form.close()|raw }}
                 </div>
             </div>
         </div>

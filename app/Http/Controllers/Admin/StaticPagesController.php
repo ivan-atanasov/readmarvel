@@ -51,7 +51,7 @@ class StaticPagesController extends HomeController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  StaticPageRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -77,26 +77,30 @@ class StaticPagesController extends HomeController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        //
+        $page = $this->staticPageRepository->find($id);
+
+        return View::make('admin.static_pages.edit')->with('page', $page);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  StaticPageRequest $request
+     * @param  int               $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StaticPageRequest $request, int $id)
     {
-        //
+        $this->staticPageRepository->update(\Auth::user(), $id, $request->toArray());
+
+        return Redirect::route('admin.static.index');
     }
 
     /**

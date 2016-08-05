@@ -11,22 +11,17 @@
 {% block styles %}
     {{ parent() }}
 
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" />
+    <link rel="stylesheet"
+          href="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}"/>
 {% endblock %}
 
 {% block scripts %}
     {{ parent() }}
-    <!-- CK Editor -->
     <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-
-    <!-- Bootstrap WYSIHTML5 -->
-    {#<script src="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>#}
 
     <script type="application/javascript">
         $(document).ready(function () {
             CKEDITOR.replace('content');
-//            $("textarea").wysihtml5();
         });
     </script>
 {% endblock %}
