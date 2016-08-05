@@ -19,22 +19,36 @@
                                 <th>{{ Lang.get('admin/static/index.title') }}</th>
                                 <th>{{ Lang.get('admin/static/index.url_slug') }}</th>
                                 <th>{{ Lang.get('admin/static/index.added_by') }}</th>
+                                <th>{{ Lang.get('admin/static/index.actions') }}</th>
                             </tr>
                             </thead>
+
                             <tbody>
                             {% for page in pages %}
                                 <tr>
                                     <td>{{ page.title }}</td>
                                     <td>{{ page.url_slug }}</td>
                                     <td>{{ page.user.email }}</td>
+                                    <td>
+                                        <a href="{{ URL.route('admin.static.edit', {'id' : page.id}) }}"
+                                           class="btn btn-info">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
+
                             <tfoot>
                             <tr>
                                 <th>{{ Lang.get('admin/static/index.title') }}</th>
                                 <th>{{ Lang.get('admin/static/index.url_slug') }}</th>
                                 <th>{{ Lang.get('admin/static/index.added_by') }}</th>
+                                <th>{{ Lang.get('admin/static/index.actions') }}</th>
                             </tr>
                             </tfoot>
                         </table>
