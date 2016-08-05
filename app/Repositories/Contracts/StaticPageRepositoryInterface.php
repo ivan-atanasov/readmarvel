@@ -36,4 +36,11 @@ interface StaticPageRepositoryInterface
      * @return bool|int
      */
     public function update(User $user, int $id, array $data);
+
+    /**
+     * @param int $id
+     *
+     * @return int
+     */
+    public function delete(int $id);
 }

@@ -49,4 +49,12 @@ class StaticPageRepository implements StaticPageRepositoryInterface
 
         return $page->update($data);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function delete(int $id)
+    {
+        return StaticPage::destroy($id);
+    }
 }

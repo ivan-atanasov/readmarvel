@@ -112,6 +112,8 @@ class StaticPagesController extends HomeController
      */
     public function destroy($id)
     {
-        //
+        $this->staticPageRepository->delete($id);
+
+        return Redirect::route('admin.static.index');
     }
 }
