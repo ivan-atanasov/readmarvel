@@ -35,7 +35,10 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <a href="#" class="btn btn-danger">
+                                        <a href="#" class="btn btn-danger btn-remove"
+                                           data-url="{{ URL.route('admin.static.destroy', {'id' : page.id}) }}"
+                                           data-toggle="modal"
+                                           data-target="#delete-modal">
                                             <i class="fa fa-remove"></i>
                                         </a>
                                     </td>
@@ -57,6 +60,8 @@
             </div>
         </div>
     </section>
+
+    {% include 'admin/partials/_confirm_modal' %}
 {% endblock %}
 
 {% block styles %}
@@ -72,8 +77,15 @@
     <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function() {
             $('#datatable-static-pages').DataTable();
+
+            $('.btn-remove').on('click', function (evn) {
+                evn.preventDefault();
+
+                var $deleteModal = $('#delete-modal');
+                $deleteModal.find('form').attr('action', $(this).data('url'));
+            });
         });
     </script>
 

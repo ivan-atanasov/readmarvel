@@ -1,0 +1,28 @@
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{ Lang.get('admin/index.confirm_delete_title') }}</h4>
+            </div>
+
+            <div class="modal-body">
+                {{ Lang.get('admin/index.confirm_delete_body') }}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    {{ Lang.get('admin/index.close') }}
+                </button>
+
+                {{ Form.open({'method' : 'delete', 'class' : 'inline'})|raw }}
+                    <button type="submit" class="btn btn-success">
+                        {{ Lang.get('admin/index.confirm') }}
+                    </button>
+                {{ Form.close()|raw }}
+            </div>
+        </div>
+    </div>
+</div>
