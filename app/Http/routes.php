@@ -11,25 +11,74 @@ Route::get('/c3.php', function () {
  */
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+    /**
+     * Series
+     */
     Route::get('/series', ['as' => 'frontend.series', 'uses' => 'SeriesController@list']);
     Route::get('/series/search', ['as' => 'frontend.series.search', 'uses' => 'SeriesController@search']);
     Route::get('/series/{id}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
+
+    /**
+     * Public Lists
+     */
     Route::get('/lists/{list_hash}', ['as' => 'frontend.lists.public', 'uses' => 'PublicListsController@show']);
 
+    /**
+     * Password Reset
+     */
     Route::get('password/email', ['as' => 'reset_password_index', 'uses' => 'Auth\PasswordController@getEmail']);
     Route::post('password/email', ['as' => 'reset_password', 'uses' => 'Auth\PasswordController@postEmail']);
-    Route::get('password/reset/{token}', ['as' => 'frontend.email_reset_token', 'uses' => 'Auth\PasswordController@getReset']);
+    Route::get(
+        'password/reset/{token}',
+        [
+            'as'   => 'frontend.email_reset_token',
+            'uses' => 'Auth\PasswordController@getReset',
+        ]
+    );
     Route::post('password/reset', ['as' => 'frontend.email_reset', 'uses' => 'Auth\PasswordController@postReset']);
 
+    /**
+     * Static Pages
+     */
+    Route::get('page/{url_slug}', ['as' => 'frontend.static', 'uses' => 'StaticPagesController@show']);
+
+    /**
+     * Authenticated Routes
+     */
     Route::group(['middleware' => 'auth'], function () {
+        /**
+         * Profile
+         */
         Route::get('/profile', ['as' => 'frontend.profile', 'uses' => 'ProfileController@index']);
         Route::post('/profile', ['as' => 'frontend.update_profile', 'uses' => 'ProfileController@update']);
-        Route::get('/profile/list/{id}', ['as' => 'frontend.profile_view_list', 'uses' => 'ProfileController@viewList']);
-        Route::post('/update_avatar', ['as' => 'frontend.update_avatar', 'uses' => 'ProfileController@updateAvatar']);
+        Route::get(
+            '/profile/list/{id}',
+            [
+                'as'   => 'frontend.profile_view_list',
+                'uses' => 'ProfileController@viewList',
+            ]
+        );
+        Route::post(
+            '/update_avatar',
+            [
+                'as'   => 'frontend.update_avatar',
+                'uses' => 'ProfileController@updateAvatar',
+            ]
+        );
+
+        /**
+         * Manage Lists
+         */
         Route::post('/list/store', ['as' => 'frontend.store_list', 'uses' => 'ListController@store']);
-        Route::post('/list/update_avatar', ['as' => 'frontend.update_list_avatar', 'uses' => 'ListController@updateListAvatar']);
+        Route::post(
+            '/list/update_avatar',
+            [
+                'as'   => 'frontend.update_list_avatar',
+                'uses' => 'ListController@updateListAvatar',
+            ]
+        );
         Route::post('series/series', ['as' => 'frontend.get_series_json', 'uses' => 'SeriesController@seriesJson']);
-        Route::post('comments/store', ['as' => 'frontend.comments.store', 'uses' => 'CommentsController@store']);
         Route::post(
             '/list/addItemToList',
             [
@@ -53,6 +102,12 @@ Route::group(['namespace' => 'Frontend'], function () {
                 'uses' => 'ListController@deleteItemFromList',
             ]
         );
+
+        /**
+         * Comments
+         */
+        Route::post('comments/store', ['as' => 'frontend.comments.store', 'uses' => 'CommentsController@store']);
+
     });
 });
 
@@ -61,18 +116,12 @@ Route::group(['namespace' => 'Frontend'], function () {
  * Admin Routes
  * -------------------------------------------------
  */
-Route::group(
-    [
-        'namespace'  => 'Admin',
-        'prefix'     => 'admin',
-        'middleware' => 'auth.admin',
-    ],
-    function () {
-        Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
-        Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth.admin'], function () {
+    Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+    Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 
-        Route::resource('static', 'StaticPagesController');
-    }
+    Route::resource('static', 'StaticPagesController');
+}
 );
 
 Route::group(['namespace' => 'Auth'], function () {

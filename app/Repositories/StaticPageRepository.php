@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Entities\StaticPage;
 use App\Repositories\Contracts\StaticPageRepositoryInterface;
 use App\User;
+use Cache;
 
 /**
  * Class StaticPageRepository
@@ -17,7 +18,7 @@ class StaticPageRepository implements StaticPageRepositoryInterface
      */
     public function all()
     {
-        return StaticPage::all();
+        return StaticPage::with(['user'])->get();
     }
 
     /**
@@ -25,7 +26,7 @@ class StaticPageRepository implements StaticPageRepositoryInterface
      */
     public function create(User $user, array $data)
     {
-        $data['created_by'] = $data['last_updated_by'] =$user->id;
+        $data['created_by'] = $data['last_updated_by'] = $user->id;
 
         return StaticPage::create($data);
     }
@@ -56,5 +57,28 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     public function delete(int $id)
     {
         return StaticPage::destroy($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fundByUrlSlug(string $urlSlug)
+    {
+        return StaticPage::where('url_slug', '=', $urlSlug)->first();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function urlList()
+    {
+        if (!Cache::tags(['static_pages'])->has('full_url_list')) {
+            $all = StaticPage::get(['id', 'title', 'url_slug']);
+            Cache::tags(['static_pages'])->put('full_url_list', $all, \Config::get('marvel.cache_time'));
+
+            return $all;
+        }
+
+        return Cache::tags(['static_pages'])->get('full_url_list');
     }
 }

@@ -43,4 +43,16 @@ interface StaticPageRepositoryInterface
      * @return int
      */
     public function delete(int $id);
+
+    /**
+     * @param string $urlSlug
+     *
+     * @return mixed
+     */
+    public function fundByUrlSlug(string $urlSlug);
+
+    /**
+     * @return mixed
+     */
+    public function urlList();
 }

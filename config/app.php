@@ -159,6 +159,12 @@ return [
         TwigBridge\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        /*
+         * Custom Service Providers...
+         */
+        \App\Providers\FooterServiceProvider::class,
 
     ],
 
@@ -209,6 +215,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
