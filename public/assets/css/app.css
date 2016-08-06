@@ -6191,6 +6191,15 @@ button.close {
 .update-list-form {
   display: inline-block; }
 
+.footer .container {
+  padding-top: 30px;
+  color: #fff; }
+
+.footer ul {
+  list-style: none; }
+  .footer ul li a {
+    color: #fff; }
+
 .btn {
   color: #fff;
   background-color: #f04125;

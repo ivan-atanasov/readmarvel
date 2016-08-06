@@ -1,9 +1,19 @@
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">
+        <div class="row">
+            <div class="col-3">
+                <h3>Learn more about us</h3>
 
-
-
-        </p>
+                <ul>
+                    {% for page in pages %}
+                        <li>
+                            <a href="{{ URL.route('frontend.static', { 'url_slug': page.url_slug }) }}">
+                                {{ page.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 </footer>

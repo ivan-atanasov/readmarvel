@@ -75,18 +75,5 @@
 
     <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#datatable-static-pages').DataTable();
-
-            $('.btn-remove').on('click', function (evn) {
-                evn.preventDefault();
-
-                var $deleteModal = $('#delete-modal');
-                $deleteModal.find('form').attr('action', $(this).data('url'));
-            });
-        });
-    </script>
-
+    <script src="{{ URL.to('assets/admin/admin-lte/js/pages/static_pages.js') }}"></script>
 {% endblock %}
