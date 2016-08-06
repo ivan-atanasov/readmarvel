@@ -21,5 +21,10 @@ class UsersTableSeeder extends Seeder
 
             Artisan::call('lists:generate', ['user_id' => $user->id]);
         }
+
+        /** @var \App\User $adminUser */
+        $adminUser = \App\User::first();
+        $adminUser->assignRole('admin');
+        $this->command->getOutput()->writeln("User with email {$adminUser->email} is now admin. Password is 'secret'");
     }
 }

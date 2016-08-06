@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\SeriesRepository;
-use App\Http\Requests;
 use Config;
 use View;
 
