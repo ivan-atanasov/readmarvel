@@ -14,7 +14,7 @@ class CommentRepository implements CommentRepositoryInterface
     /**
      * @param array $data
      *
-     * @return static
+     * @return Comment
      */
     public function add(array $data)
     {
