@@ -1,0 +1,17 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    {% include 'admin.partials._errors' %}
+
+                    {{ Form.model(resource, { 'route': edit_route, 'method': 'PUT', 'class': 'form-horizontal', 'role' : 'form' })|raw }}
+
+                    {% include form %}
+
+                    {{ Form.close()|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

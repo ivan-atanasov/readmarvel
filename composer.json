@@ -24,7 +24,8 @@
     "symfony/css-selector": "2.8.*|3.0.*",
     "symfony/dom-crawler": "2.8.*|3.0.*",
     "codeception/codeception": "^2.1",
-    "codeception/c3": "2.*"
+    "codeception/c3": "2.*",
+    "barryvdh/laravel-debugbar": "^2.2"
   },
   "autoload": {
     "classmap": [

@@ -188,6 +188,7 @@ return [
             'last',
             'csrf_field',
             'old',
+            'form_open',
             'form_model',
             'form_close',
         ],

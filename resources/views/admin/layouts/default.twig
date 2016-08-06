@@ -12,26 +12,21 @@
 
     {% block styles %}
         <!-- Bootstrap Core CSS -->
-        <link href="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-        {#<link href="{{ URL.to('assets/admin/sb-admin-2/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"/>#}
+        <link href="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
 
         <!-- Font Awesome -->
         <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
 
         <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
-        <!-- jvectormap -->
-        {#<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" />#}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
 
         <!-- Theme style -->
-        <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/css/AdminLTE.min.css') }}"/>
+        <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/css/AdminLTE.min.css') }}" />
 
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/css/skins/_all-skins.min.css') }}"/>
-        {#<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />#}
+        <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/css/skins/_all-skins.min.css') }}" />
     {% endblock %}
 </head>
 
@@ -42,6 +37,8 @@
     {% include 'admin/partials/_left_sidebar.twig' %}
 
     <div class="content-wrapper">
+        {% include 'admin/partials/_breadcrumbs.twig' %}
+
         {% block content %}
         {% endblock %}
     </div>
@@ -75,9 +72,6 @@
 
     <!-- ChartJS 1.0.1 -->
     <script src="{{ URL.to('assets/admin/admin-lte/plugins/chartjs/Chart.min.js') }}"></script>
-
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ URL.to('assets/admin/admin-lte/js/pages/dashboard2.js') }}"></script>
 
     <!-- AdminLTE for demo purposes -->
     <script src="{{ URL.to('assets/admin/admin-lte/js/demo.js') }}"></script>
