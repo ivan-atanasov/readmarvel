@@ -1,5 +1,4 @@
 <header class="main-header">
-
     <!-- Logo -->
     <a href="{{ URL.route('admin.dashboard') }}" class="logo">
         <span class="logo-mini"><b>R</b>Mv</span>
@@ -30,7 +29,9 @@
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ URL.route('admin.change_password') }}" class="btn btn-default btn-flat">
+                                    {{ Lang.get('admin/menu.profile') }}
+                                </a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ URL.route('logout') }}"

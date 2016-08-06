@@ -5,4 +5,5 @@ return [
     'dashboard'       => 'Dashboard',
     'static_pages'    => 'Static pages',
     'logout'          => 'Logout',
+    'profile'         => 'Profile',
 ];
