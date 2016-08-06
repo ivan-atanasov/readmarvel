@@ -26,6 +26,9 @@ class StaticPageRepository implements StaticPageRepositoryInterface
      */
     public function create(User $user, array $data)
     {
+        if (Cache::tags(['static_pages'])->has('full_url_list')) {
+            Cache::tags(['static_pages'])->forget('full_url_list');
+        }
         $data['created_by'] = $data['last_updated_by'] = $user->id;
 
         return StaticPage::create($data);
@@ -44,6 +47,10 @@ class StaticPageRepository implements StaticPageRepositoryInterface
      */
     public function update(User $user, int $id, array $data)
     {
+        if (Cache::tags(['static_pages'])->has('full_url_list')) {
+            Cache::tags(['static_pages'])->forget('full_url_list');
+        }
+
         $data['last_updated_by'] = $user->id;
 
         $page = $this->find($id);
