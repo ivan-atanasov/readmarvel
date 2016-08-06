@@ -152,6 +152,7 @@ return [
             'Form',
             'HTML',
             'Session',
+            'Breadcrumbs',
         ],
 
         /*
