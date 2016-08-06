@@ -1,6 +1,8 @@
 {% extends 'admin/layouts/default.twig' %}
 
 {% block content %}
+    {{ Breadcrumbs.render('static_pages_create')|raw }}
+
     {% include 'admin.partials._form_create' with {
     'title': 'Add a static page',
     'submit_route': 'admin.static.store',

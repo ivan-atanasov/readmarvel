@@ -1,6 +1,8 @@
 {% extends 'admin/layouts/default' %}
 
 {% block content %}
+    {{ Breadcrumbs.render('static_pages_edit', page)|raw }}
+
     {% include 'admin.partials._form_edit' with {
     'title': 'Modify user',
     'edit_route': ['admin.static.update', page.id],

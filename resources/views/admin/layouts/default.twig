@@ -33,18 +33,16 @@
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div id="wrapper">
-    {% include 'admin/partials/_navbar.twig' %}
-    {% include 'admin/partials/_left_sidebar.twig' %}
+    {% include 'admin/partials/_navbar' %}
+    {% include 'admin/partials/_left_sidebar' %}
 
     <div class="content-wrapper">
-        {% include 'admin/partials/_breadcrumbs.twig' %}
-
         {% block content %}
         {% endblock %}
     </div>
 
-    {% include 'admin/partials/_footer.twig' %}
-    {% include 'admin/partials/_control_sidebar.twig' %}
+    {% include 'admin/partials/_footer' %}
+    {% include 'admin/partials/_control_sidebar' %}
 </div>
 
 {% block scripts %}
