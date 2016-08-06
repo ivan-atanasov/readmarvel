@@ -13,6 +13,8 @@
 {% if Session.get('messages') %}
     {% if Session.get('messages.success') %}
         <div class="alert alert-success alert-dismissible" role="alert">
+    {% elseif Session.get('messages.error') %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
     {% elseif Session.get('messages.info') %}
         <div class="alert alert-info alert-dismissible" role="alert">
     {% elseif Session.get('messages.warning') %}

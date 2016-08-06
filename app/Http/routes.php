@@ -31,10 +31,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('password/email', ['as' => 'reset_password', 'uses' => 'Auth\PasswordController@postEmail']);
     Route::get(
         'password/reset/{token}',
-        [
-            'as'   => 'frontend.email_reset_token',
-            'uses' => 'Auth\PasswordController@getReset',
-        ]
+        ['as' => 'frontend.email_reset_token', 'uses' => 'Auth\PasswordController@getReset']
     );
     Route::post('password/reset', ['as' => 'frontend.email_reset', 'uses' => 'Auth\PasswordController@postReset']);
 
@@ -54,10 +51,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('/profile', ['as' => 'frontend.update_profile', 'uses' => 'ProfileController@update']);
         Route::get(
             '/profile/list/{id}',
-            [
-                'as'   => 'frontend.profile_view_list',
-                'uses' => 'ProfileController@viewList',
-            ]
+            ['as' => 'frontend.profile_view_list', 'uses' => 'ProfileController@viewList']
         );
         Route::post(
             '/update_avatar',
@@ -73,34 +67,22 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('/list/store', ['as' => 'frontend.store_list', 'uses' => 'ListController@store']);
         Route::post(
             '/list/update_avatar',
-            [
-                'as'   => 'frontend.update_list_avatar',
-                'uses' => 'ListController@updateListAvatar',
-            ]
+            ['as' => 'frontend.update_list_avatar', 'uses' => 'ListController@updateListAvatar']
         );
         Route::post('series/series', ['as' => 'frontend.get_series_json', 'uses' => 'SeriesController@seriesJson']);
         Route::post(
             '/list/addItemToList',
-            [
-                'as'   => 'frontend.add_item_to_list',
-                'uses' => 'ListController@addItemToList',
-            ]
+            ['as' => 'frontend.add_item_to_list', 'uses' => 'ListController@addItemToList']
         );
 
         Route::post(
             '/list/updateItemInList',
-            [
-                'as'   => 'frontend.update_item_in_list',
-                'uses' => 'ListController@updateItemInList',
-            ]
+            ['as' => 'frontend.update_item_in_list', 'uses' => 'ListController@updateItemInList']
         );
 
         Route::post(
             '/list/deleteItemFromList',
-            [
-                'as'   => 'frontend.delete_from_list',
-                'uses' => 'ListController@deleteItemFromList',
-            ]
+            ['as' => 'frontend.delete_from_list', 'uses' => 'ListController@deleteItemFromList']
         );
 
         /**
@@ -121,6 +103,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 
     Route::resource('static', 'StaticPagesController');
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('change-password', ['as' => 'admin.change_password', 'uses' => 'ProfileController@changePassword']);
+        Route::post(
+            'change-password',
+            ['as' => 'admin.change_password_post', 'uses' => 'ProfileController@changePasswordPost']
+        );
+    });
 }
 );
 
