@@ -69,7 +69,7 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function fundByUrlSlug(string $urlSlug)
+    public function findByUrlSlug(string $urlSlug)
     {
         return StaticPage::where('url_slug', '=', $urlSlug)->first();
     }
