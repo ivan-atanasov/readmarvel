@@ -5,13 +5,12 @@ namespace App\Repositories;
 use Cache;
 use Config;
 use GuzzleHttp\Client;
-use App\Repositories\Contracts\ComicRepository as ComicRepositoryInterface;
 
 /**
  * Class ComicRepository
  * @package App\Repositories
  */
-class ComicRepository implements ComicRepositoryInterface
+class ComicRepository
 {
     /** @var Client */
     protected $apiClient;

@@ -5,7 +5,6 @@ namespace App\Repositories;
 
 use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
-use App\Repositories\Contracts\UserProfileRepositoryInterface;
 use App\User;
 use Illuminate\Http\UploadedFile;
 
@@ -13,10 +12,13 @@ use Illuminate\Http\UploadedFile;
  * Class UserProfileRepository
  * @package App\Repositories
  */
-class UserProfileRepository implements UserProfileRepositoryInterface
+class UserProfileRepository
 {
+
     /**
-     * @inheritdoc
+     * @param int $userId
+     *
+     * @return mixed
      */
     public function find(int $userId)
     {
@@ -24,7 +26,10 @@ class UserProfileRepository implements UserProfileRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param int   $userId
+     * @param array $data
+     *
+     * @return bool
      */
     public function updateOrCreate(int $userId, array $data)
     {
@@ -47,7 +52,10 @@ class UserProfileRepository implements UserProfileRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param int          $userId
+     * @param UploadedFile $avatar
+     *
+     * @return UserProfile|mixed
      */
     public function updateAvatar(int $userId, UploadedFile $avatar)
     {
@@ -64,11 +72,13 @@ class UserProfileRepository implements UserProfileRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param User   $user
+     * @param string $newPassword
+     *
+     * @return bool
      */
     public function updatePassword(User $user, string $newPassword)
     {
-        $user = \Auth::user();
         $user->password = \Hash::make($newPassword);
         return $user->save();
     }
