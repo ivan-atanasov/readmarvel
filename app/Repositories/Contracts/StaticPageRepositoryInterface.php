@@ -49,7 +49,7 @@ interface StaticPageRepositoryInterface
      *
      * @return mixed
      */
-    public function fundByUrlSlug(string $urlSlug);
+    public function findByUrlSlug(string $urlSlug);
 
     /**
      * @return mixed

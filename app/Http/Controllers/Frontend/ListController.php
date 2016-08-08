@@ -61,7 +61,7 @@ class ListController extends BaseController
         $data = $request->toArray();
         $series = $this->seriesRepository->find($data['series_id']);
         $data['title'] = $series['title'];
-        
+
         $this->marvelListRepository->addItemToList($data);
 
         return Redirect::back();

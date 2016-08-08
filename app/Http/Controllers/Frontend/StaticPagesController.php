@@ -33,7 +33,7 @@ class StaticPagesController extends BaseController
      */
     public function show(string $urlSlug)
     {
-        $page = $this->staticPageRepository->fundByUrlSlug($urlSlug);
+        $page = $this->staticPageRepository->findByUrlSlug($urlSlug);
 
         return View::make('frontend.static_pages.index')->with('page', $page);
     }
