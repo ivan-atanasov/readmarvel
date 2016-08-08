@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\SeriesRepositoryInterface;
 use Cache;
 use Config;
 use GuzzleHttp\Client;
@@ -11,7 +10,7 @@ use GuzzleHttp\Client;
  * Class SeriesRepository
  * @package App\Repositories
  */
-class SeriesRepository implements SeriesRepositoryInterface
+class SeriesRepository
 {
     /** @var Client */
     protected $apiClient;
@@ -27,7 +26,9 @@ class SeriesRepository implements SeriesRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $count
+     *
+     * @return array
      */
     public function random(int $count)
     {
@@ -54,7 +55,9 @@ class SeriesRepository implements SeriesRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param $id
+     *
+     * @return mixed
      */
     public function find($id)
     {
@@ -74,7 +77,11 @@ class SeriesRepository implements SeriesRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $query
+     * @param int    $limit
+     * @param int    $offset
+     *
+     * @return array
      */
     public function search(string $query, int $limit = 20, int $offset = 0)
     {
@@ -103,7 +110,9 @@ class SeriesRepository implements SeriesRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     *
+     * @return array|static[]
      */
     public function comments(int $id)
     {
