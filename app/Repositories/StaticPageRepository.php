@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Entities\StaticPage;
-use App\Repositories\Contracts\StaticPageRepositoryInterface;
 use App\User;
 use Cache;
 
@@ -11,10 +10,10 @@ use Cache;
  * Class StaticPageRepository
  * @package App\Repositories
  */
-class StaticPageRepository implements StaticPageRepositoryInterface
+class StaticPageRepository
 {
     /**
-     * @inheritdoc
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function all()
     {
@@ -22,7 +21,10 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param User  $user
+     * @param array $data
+     *
+     * @return StaticPage
      */
     public function create(User $user, array $data)
     {
@@ -34,8 +36,10 @@ class StaticPageRepository implements StaticPageRepositoryInterface
         return StaticPage::create($data);
     }
 
-    /**
-     * @inheritdoc
+    /***
+     * @param int $id
+     *
+     * @return mixed
      */
     public function find(int $id)
     {
@@ -43,7 +47,11 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param User  $user
+     * @param int   $id
+     * @param array $data
+     *
+     * @return mixed
      */
     public function update(User $user, int $id, array $data)
     {
@@ -59,7 +67,9 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param int $id
+     *
+     * @return int
      */
     public function delete(int $id)
     {
@@ -67,7 +77,9 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @param string $urlSlug
+     *
+     * @return mixed
      */
     public function findByUrlSlug(string $urlSlug)
     {
@@ -75,7 +87,7 @@ class StaticPageRepository implements StaticPageRepositoryInterface
     }
 
     /**
-     * @inheritdoc
+     * @return mixed
      */
     public function urlList()
     {
