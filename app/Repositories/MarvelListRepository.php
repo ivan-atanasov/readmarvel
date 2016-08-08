@@ -8,7 +8,6 @@ use App\Entities\MarvelListItem;
 use App\Helpers\ImageHelper;
 use App\Helpers\StringHelper;
 use App\User;
-use App\Repositories\Contracts\MarvelListRepository as MarvelListRepositoryInterface;
 use Carbon\Carbon;
 use Config;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -17,10 +16,12 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Class MarvelListRepository
  * @package App\Repositories
  */
-class MarvelListRepository implements MarvelListRepositoryInterface
+class MarvelListRepository
 {
     /**
-     * {@inheritdoc}
+     * @param array $data
+     *
+     * @return MarvelList
      */
     public function add(array $data)
     {
@@ -40,7 +41,10 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param User  $user
+     * @param array $except
+     *
+     * @return mixed
      */
     public function allForUser(User $user, array $except = [])
     {
@@ -51,7 +55,9 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $data
+     *
+     * @return MarvelListItem
      */
     public function addItemToList(array $data)
     {
@@ -65,7 +71,10 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int   $itemId
+     * @param array $data
+     *
+     * @return mixed
      */
     public function updateItemInList(int $itemId, array $data)
     {
@@ -82,7 +91,9 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     *
+     * @return mixed
      */
     public function find(int $id)
     {
@@ -90,7 +101,9 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $hash
+     *
+     * @return mixed
      */
     public function findByHash(string $hash)
     {
@@ -98,7 +111,9 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     *
+     * @return mixed
      */
     public function items(int $id)
     {
@@ -108,7 +123,10 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int          $id
+     * @param UploadedFile $avatar
+     *
+     * @return mixed
      */
     public function updateAvatar(int $id, UploadedFile $avatar)
     {
@@ -121,7 +139,10 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param User $user
+     * @param int  $seriesId
+     *
+     * @return array
      */
     public function listsContainingItemByUser(User $user, int $seriesId)
     {
@@ -135,7 +156,9 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $itemId
+     *
+     * @return int
      */
     public function deleteItemFromList(int $itemId)
     {
@@ -143,7 +166,9 @@ class MarvelListRepository implements MarvelListRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $itemId
+     *
+     * @return mixed
      */
     public function item(int $itemId)
     {
