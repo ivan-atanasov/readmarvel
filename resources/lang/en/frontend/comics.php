@@ -28,4 +28,5 @@ return [
     'search_placeholder'      => 'Search your favourite series',
     'comments'                => 'Comments',
     'submit_comment'          => 'Submit comment',
+    'see_at_marvel'           => 'See at Marvel.com',
 ];
