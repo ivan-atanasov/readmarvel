@@ -8,12 +8,17 @@ use App\Helpers\ImageHelper;
 use App\Http\Requests\UserProfileRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\UserProfileRepository;
+use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
 use Auth;
 
+/**
+ * Class ProfileController
+ * @package App\Http\Controllers\Frontend
+ */
 class ProfileController extends BaseController
 {
     /** @var UserProfileRepository */
@@ -102,6 +107,28 @@ class ProfileController extends BaseController
         $lists = $this->marvelListRepository->allForUser(Auth::user());
 
         return View::make('frontend/profile.list', ['list' => $list, 'items' => $items, 'lists' => $lists]);
+    }
+
+    public function publicProfile(int $id)
+    {
+        $profile = $this->userProfileRepository->find($id);
+        $user = $profile->user;
+
+        $avatars = [];
+        if (isset($user->profile) && strlen($user->profile->avatar)) {
+            $avatars = $this->getUserAvatars($user);
+        }
+
+        $lists = $this->marvelListRepository->allForUser($user)->toArray();
+        $this->getListsAvatars($lists);
+
+        $viewData = [
+            'profile' => $user->profile,
+            'avatar'  => $avatars,
+            'lists'   => $lists,
+        ];
+
+        return View::make('frontend/profile.public', $viewData);
     }
 
     /**
