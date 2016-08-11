@@ -6191,14 +6191,17 @@ button.close {
 .update-list-form {
   display: inline-block; }
 
-.footer .container {
-  padding-top: 30px;
-  color: #fff; }
-
-.footer ul {
-  list-style: none; }
-  .footer ul li a {
+.footer {
+  background-image: url("/images/footer.jpg");
+  height: 380px;
+  margin-top: 20px; }
+  .footer .container {
+    padding-top: 30px;
     color: #fff; }
+  .footer ul {
+    list-style: none; }
+    .footer ul li a {
+      color: #fff; }
 
 .btn {
   color: #fff;
@@ -6229,10 +6232,11 @@ button.close {
   background-color: #d32a0e;
   border-color: #b1240c; }
 
-.footer {
-  background-image: url("/images/footer.jpg");
-  height: 500px;
-  margin-top: 20px; }
+.btn-black {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+  display: inline-block; }
 
 .top-buffer {
   margin-top: 20px; }

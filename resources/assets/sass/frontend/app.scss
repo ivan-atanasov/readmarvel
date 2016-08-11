@@ -43,10 +43,11 @@ $marvelRedBorderBtnHover: #b1240c;
   border-color: $marvelRedBorderBtnHover;
 }
 
-.footer {
-  background-image: url('/images/footer.jpg');
-  height: 500px;
-  margin-top: 20px;
+.btn-black {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+  display: inline-block;
 }
 
 .top-buffer {

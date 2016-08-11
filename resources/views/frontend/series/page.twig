@@ -15,6 +15,10 @@
                  alt="{{ series['title'] }} thumbnail"
                  class="img-responsive"/>
 
+            <a href="{{ series['urls'][0]['url'] }}" class="btn btn-block btn-black" target="_blank">
+                {{ Lang.get('frontend/comics.see_at_marvel') }}
+            </a>
+
             {% if Auth.check() %}
                 <a href="#" class="btn btn-block" data-toggle="modal" data-target="#add-to-list-modal" id="add-to-list">
                     {{ Lang.get('frontend/comics.add_to_list') }}
