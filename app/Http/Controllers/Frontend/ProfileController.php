@@ -109,6 +109,11 @@ class ProfileController extends BaseController
         return View::make('frontend/profile.list', ['list' => $list, 'items' => $items, 'lists' => $lists]);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function publicProfile(int $id)
     {
         $profile = $this->userProfileRepository->find($id);

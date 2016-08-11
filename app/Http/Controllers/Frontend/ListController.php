@@ -8,7 +8,6 @@ use App\Http\Requests\MarvelListRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
-use Auth;
 use Session;
 use Redirect;
 
