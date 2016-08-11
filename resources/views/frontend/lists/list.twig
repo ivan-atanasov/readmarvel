@@ -22,54 +22,56 @@
             <span class="card-title">{{ list['title'] }}</span>
         </div>
 
-        <div class="text-right">
-            <form action="{{ URL.route('frontend.update_list_avatar') }}"
-                  method="post"
-                  id="upload-list-avatar-form"
-                  enctype="multipart/form-data">
-                <label class="btn btn-default btn-file">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    <input type="file" name="avatar" style="display: none;" id="upload-list-avatar">
-                    <input type="hidden" name="list_id" value="{{ list['id'] }}">
+        {% if public is not defined and public %}
+            <div class="text-right">
+                <form action="{{ URL.route('frontend.update_list_avatar') }}"
+                      method="post"
+                      id="upload-list-avatar-form"
+                      enctype="multipart/form-data">
+                    <label class="btn btn-default btn-file">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        <input type="file" name="avatar" style="display: none;" id="upload-list-avatar">
+                        <input type="hidden" name="list_id" value="{{ list['id'] }}">
 
-                    {{ csrf_field() }}
-                </label>
-            </form>
-        </div>
+                        {{ csrf_field() }}
+                    </label>
+                </form>
+            </div>
+        {% endif %}
     </div>
 
     <div class="well">
         {% if items|length %}
-        <table class="table table-bordered table-striped table-hover table-responsive top-buffer list-items-table">
-            <thead>
-            <tr>
-                <th>{{ Lang.get('frontend/lists.title') }}</th>
-                <th class="score">{{ Lang.get('frontend/lists.score') }}</th>
-                <th class="reread">{{ Lang.get('frontend/lists.reread_value') }}</th>
-                <th class="progress">{{ Lang.get('frontend/lists.progress') }}</th>
-                <th class="started">{{ Lang.get('frontend/lists.started_at') }}</th>
-                <th class="finished">{{ Lang.get('frontend/lists.finished_at') }}</th>
-                <th class="modify-btns"></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            {% for item in items %}
+            <table class="table table-bordered table-striped table-hover table-responsive top-buffer list-items-table">
+                <thead>
                 <tr>
-                    <td class="title">
-                        <a href="{{ URL.route('frontend.show_series', { 'id' : item.series_id }) }}">
-                            {{ item.title }}
-                        </a>
-                    </td>
-                    <td class="score">{{ item.score }}</td>
-                    <td class="re-read-value">{{ item.reread_value }}</td>
-                    <td class="progress">{{ item.progress }}</td>
-                    <td class="started-at">{{ item.started_at }}</td>
-                    <td class="finished-at">{{ item.finished_at }}</td>
+                    <th>{{ Lang.get('frontend/lists.title') }}</th>
+                    <th class="score">{{ Lang.get('frontend/lists.score') }}</th>
+                    <th class="reread">{{ Lang.get('frontend/lists.reread_value') }}</th>
+                    <th class="progress">{{ Lang.get('frontend/lists.progress') }}</th>
+                    <th class="started">{{ Lang.get('frontend/lists.started_at') }}</th>
+                    <th class="finished">{{ Lang.get('frontend/lists.finished_at') }}</th>
+                    <th class="modify-btns"></th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td class="title">
+                            <a href="{{ URL.route('frontend.show_series', { 'id' : item.series_id }) }}">
+                                {{ item.title }}
+                            </a>
+                        </td>
+                        <td class="score">{{ item.score }}</td>
+                        <td class="re-read-value">{{ item.reread_value }}</td>
+                        <td class="progress">{{ item.progress }}</td>
+                        <td class="started-at">{{ item.started_at }}</td>
+                        <td class="finished-at">{{ item.finished_at }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         {% else %}
             {{ Lang.get('frontend/lists.empty_public_list_message') }}
         {% endif %}
