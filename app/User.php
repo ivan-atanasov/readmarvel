@@ -39,7 +39,7 @@ class User extends Authenticatable
     {
         // @TODO check if authenticated user is admin or user
 //        if (true) {
-//            return $this->hasOne('App\\Entities\\UserProfile');
+//            return $this->hasOne('App\\Entities\\AdminUserProfile');
 //        }
 
         return $this->hasOne('App\\Entities\\UserProfile');
