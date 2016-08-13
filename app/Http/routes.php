@@ -41,6 +41,11 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('page/{url_slug}', ['as' => 'frontend.static', 'uses' => 'StaticPagesController@show']);
 
     /**
+     * Public profile
+     */
+    Route::get('profile/public/{id}', ['as' => 'frontend.public_profile', 'uses' => 'ProfileController@publicProfile']);
+
+    /**
      * Authenticated Routes
      */
     Route::group(['middleware' => 'auth'], function () {
@@ -55,10 +60,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         );
         Route::post(
             '/update_avatar',
-            [
-                'as'   => 'frontend.update_avatar',
-                'uses' => 'ProfileController@updateAvatar',
-            ]
+            ['as'   => 'frontend.update_avatar', 'uses' => 'ProfileController@updateAvatar']
         );
 
         /**
