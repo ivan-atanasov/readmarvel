@@ -1,0 +1,51 @@
+$navbarHeight: 80px;
+
+.navbar {
+  height: $navbarHeight;
+  background: #000000;
+
+  .container {
+    height: $navbarHeight;
+  }
+
+  .navbar-brand {
+    padding: 0;
+
+    img {
+      height: $navbarHeight;
+    }
+  }
+
+  .navbar-nav {
+    padding-top: 30px;
+
+    a {
+      transition: color 150ms ease-in;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+
+.carousel {
+  margin-top: $navbarHeight;
+  border-top: 10px solid #222;
+
+  background-image: url("/images/bg_black_stripes.jpg");
+
+  .carousel-inner {
+    width: 1500px;
+    margin: 0 auto;
+
+    .item {
+      border-left: 7px solid #f0fafb;
+      border-right: 7px solid #f0fafb;
+    }
+  }
+
+  .carousel-control {
+    .right {
+      background: #fff;
+    }
+  }
+}
