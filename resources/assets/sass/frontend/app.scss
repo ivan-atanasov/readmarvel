@@ -13,6 +13,42 @@ $marvelRedBorderBtnHover: #b1240c;
 @import "footer";
 @import "header";
 
+body {
+  background-image: url("/images/bg-gray-lines.jpg");
+}
+
+.container.content-container {
+  margin-top: 25px;
+}
+
+.heading-title {
+  h2 {
+    text-align: left;
+    line-height: 1em;
+    position: relative;
+    letter-spacing: -1px;
+    font-size: 37px;
+    text-transform: uppercase;
+    color: #000;
+  }
+}
+
+
+.heading-title h2:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  height: 77%;
+  background: #000;
+  width: 1000px;
+  -webkit-transform: skew(-11deg,0);
+  -ms-transform: skew(-11deg,0);
+  transform: skew(-11deg,0);
+  margin: 3px 12px 0 0;
+}
+
 .btn {
   color: $white;
   background-color: $marvelRedBtn;
@@ -53,10 +89,6 @@ $marvelRedBorderBtnHover: #b1240c;
 
 .top-buffer {
   margin-top: 20px;
-}
-
-.container.content-container {
-  margin-top: 65px;
 }
 
 .btn-file {

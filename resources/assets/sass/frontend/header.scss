@@ -36,11 +36,8 @@ $navbarHeight: 80px;
   .carousel-inner {
     width: 1500px;
     margin: 0 auto;
-
-    .item {
-      border-left: 7px solid #f0fafb;
-      border-right: 7px solid #f0fafb;
-    }
+    border-left: 7px solid #f0fafb;
+    border-right: 7px solid #f0fafb;
   }
 
   .carousel-control {
