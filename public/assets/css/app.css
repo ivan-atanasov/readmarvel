@@ -6203,6 +6203,35 @@ button.close {
     .footer ul li a {
       color: #fff; }
 
+.navbar {
+  height: 80px;
+  background: #000000; }
+  .navbar .container {
+    height: 80px; }
+  .navbar .navbar-brand {
+    padding: 0; }
+    .navbar .navbar-brand img {
+      height: 80px; }
+  .navbar .navbar-nav {
+    padding-top: 30px; }
+    .navbar .navbar-nav a {
+      transition: color 150ms ease-in;
+      font-weight: bold;
+      font-size: 16px; }
+
+.carousel {
+  margin-top: 80px;
+  border-top: 10px solid #222;
+  background-image: url("/images/bg_black_stripes.jpg"); }
+  .carousel .carousel-inner {
+    width: 1500px;
+    margin: 0 auto; }
+    .carousel .carousel-inner .item {
+      border-left: 7px solid #f0fafb;
+      border-right: 7px solid #f0fafb; }
+  .carousel .carousel-control .right {
+    background: #fff; }
+
 .btn {
   color: #fff;
   background-color: #f04125;
