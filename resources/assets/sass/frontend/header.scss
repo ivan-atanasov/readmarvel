@@ -3,6 +3,7 @@ $navbarHeight: 80px;
 .navbar {
   height: $navbarHeight;
   background: #000000;
+  font-weight: bold;
 
   .container {
     height: $navbarHeight;
@@ -30,7 +31,6 @@ $navbarHeight: 80px;
 .carousel {
   margin-top: $navbarHeight;
   border-top: 10px solid #222;
-
   background-image: url("/images/bg_black_stripes.jpg");
 
   .carousel-inner {
