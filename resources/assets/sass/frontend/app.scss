@@ -1,5 +1,5 @@
 $white: #fff;
-$marvelRedBtn: #f04125;
+$marvelRedBtn: #E92227;
 $marvelRedBorderBtn: #ea2f10;
 $marvelRedBtnHover: #d32a0e;
 $marvelRedBorderBtnHover: #b1240c;
@@ -15,10 +15,7 @@ $marvelRedBorderBtnHover: #b1240c;
 
 body {
   background-image: url("/images/bg-gray-lines.jpg");
-}
-
-.container.content-container {
-  margin-top: 25px;
+  font-family: "Helvetica", Helvetica, Arial, sans-serif;
 }
 
 .heading-title {
@@ -32,7 +29,6 @@ body {
     color: #000;
   }
 }
-
 
 .heading-title h2:before {
   display: block;
@@ -94,6 +90,7 @@ body {
 .btn-file {
   position: relative;
   overflow: hidden;
+  border: 1px solid #fff;
 }
 
 .btn-file input[type=file] {
@@ -118,4 +115,22 @@ body {
 
 .addon-button:hover {
   text-decoration: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.btn-marvel {
+  background: #000000;
+  border: 2px solid #fff;
+}
+
+.btn-marvel:hover {
+  background: #2E2E2E;
+  border: 2px solid #fff;
+}
+
+.remove-padding {
+  padding: 0;
 }

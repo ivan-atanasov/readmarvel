@@ -5827,7 +5827,7 @@ button.close {
 .caption-details a.details-btn {
   display: block;
   text-align: center;
-  background: #f04125;
+  background: #E92227;
   padding: 8px 10px;
   color: #ffffff;
   border-radius: 3px;
@@ -5893,7 +5893,7 @@ button.close {
 
 .form-module button.submit {
   cursor: pointer;
-  background: #f04125;
+  background: #E92227;
   width: 100%;
   border: 0;
   padding: 10px 15px;
@@ -5921,11 +5921,13 @@ button.close {
   width: 280px; }
 
 .add-to-list.modal .modal-header {
-  border-bottom: 5px solid #f04125; }
+  border-bottom: 5px solid #E92227; }
 
-.series-page .series-title {
-  font-weight: bold;
-  margin-top: 0; }
+.series-page {
+  margin-top: 140px; }
+  .series-page .series-title {
+    font-weight: bold;
+    margin-top: 0; }
 
 .search-series-form .input-group .form-control {
   height: 39px; }
@@ -5945,7 +5947,34 @@ button.close {
   .chat li .chat-body p {
     margin: 0; }
 
-/* USER PROFILE PAGE */
+.series-page-container {
+  margin-top: 100px; }
+  .series-page-container .nav-tabs li a {
+    color: #2e2e2e;
+    font-size: 21px; }
+  .series-page-container .nav-tabs > li.active > a,
+  .series-page-container .nav-tabs > li.active > a:hover,
+  .series-page-container .nav-tabs > li.active > a:focus {
+    background: #2e2e2e;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-bottom: none;
+    font-weight: bold;
+    color: #fff;
+    font-size: 21px; }
+
+.list-group-item {
+  background-color: #2e2e2e;
+  color: #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+  border-top: none; }
+
+.list-group-item:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 0; }
+
 .profile-card {
   padding: 30px;
   background-color: rgba(214, 224, 226, 0.2);
@@ -5961,7 +5990,8 @@ button.close {
   overflow: hidden;
   text-align: center;
   background-color: #fff;
-  background-color: white; }
+  background-color: white;
+  border-bottom: 2px solid #E9E9E9; }
   .profile-card.hovercard .card-background {
     height: 130px; }
     .profile-card.hovercard .card-background img {
@@ -6156,10 +6186,6 @@ button.close {
   overflow: hidden;
   text-align: center;
   background-color: rgba(214, 224, 226, 0.2); }
-  .list-card.hovercard .cardheader {
-    background: url("http://lorempixel.com/850/280/nature/4/");
-    background-size: cover;
-    height: 135px; }
   .list-card.hovercard .avatar {
     position: relative;
     top: -50px;
@@ -6187,6 +6213,14 @@ button.close {
       text-overflow: ellipsis;
       padding-bottom: 20px; }
 
+.profile-page-container {
+  margin-top: 100px; }
+  .profile-page-container .btn-group-lg div button.btn {
+    background-color: #d32a0e; }
+  .profile-page-container .btn-group-lg div button.btn:hover,
+  .profile-page-container .btn-group-lg div button.btn.active {
+    background-color: #E92227; }
+
 .list-items-table {
   text-align: center; }
   .list-items-table th {
@@ -6203,6 +6237,9 @@ button.close {
 .update-list-form {
   display: inline-block; }
 
+.list-page-container {
+  margin-top: 100px; }
+
 .footer {
   background-image: url("/images/footer.jpg");
   height: 380px;
@@ -6217,7 +6254,8 @@ button.close {
 
 .navbar {
   height: 80px;
-  background: #000000; }
+  background: #000000;
+  font-weight: bold; }
   .navbar .container {
     height: 80px; }
   .navbar .navbar-brand {
@@ -6244,10 +6282,8 @@ button.close {
     background: #fff; }
 
 body {
-  background-image: url("/images/bg-gray-lines.jpg"); }
-
-.container.content-container {
-  margin-top: 25px; }
+  background-image: url("/images/bg-gray-lines.jpg");
+  font-family: "Helvetica", Helvetica, Arial, sans-serif; }
 
 .heading-title h2 {
   text-align: left;
@@ -6272,7 +6308,7 @@ body {
 
 .btn {
   color: #fff;
-  background-color: #f04125;
+  background-color: #E92227;
   border-color: #ea2f10;
   display: inline-block;
   margin-bottom: 0;
@@ -6310,7 +6346,8 @@ body {
 
 .btn-file {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  border: 1px solid #fff; }
 
 .btn-file input[type=file] {
   position: absolute;
@@ -6332,5 +6369,19 @@ body {
 
 .addon-button:hover {
   text-decoration: none; }
+
+.bold {
+  font-weight: bold; }
+
+.btn-marvel {
+  background: #000000;
+  border: 2px solid #fff; }
+
+.btn-marvel:hover {
+  background: #2E2E2E;
+  border: 2px solid #fff; }
+
+.remove-padding {
+  padding: 0; }
 
 /*# sourceMappingURL=app.css.map */
