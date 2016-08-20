@@ -5760,17 +5760,24 @@ button.close {
 .index .thumbnail,
 .series-list .thumbnail {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-color: transparent;
+  border-bottom: 1px solid #9D9D9D; }
   .index .thumbnail .caption-img,
   .series-list .thumbnail .caption-img {
     width: 100%;
-    height: 280px;
+    height: 400px;
     -ms-background-size: cover !important;
     background-size: cover !important;
     background-repeat: no-repeat;
     background-position: center center;
     overflow: hidden;
-    border-radius: 4px; }
+    border-radius: 4px;
+    transition: all 0.1s ease-in;
+    border: 0 solid #000; }
   .index .thumbnail .caption-link,
   .series-list .thumbnail .caption-link {
     position: absolute;
@@ -5798,6 +5805,11 @@ button.close {
   opacity: 0.2;
   filter: alpha(opacity=20); }
 
+.index .thumbnail .caption-img:hover,
+.series-list .thumbnail .caption-img:hover {
+  transition: all 0.1s ease-in;
+  border: 5px solid #000; }
+
 .caption-details {
   width: auto;
   height: auto; }
@@ -5808,14 +5820,14 @@ button.close {
   font-size: 14px;
   line-height: 16px;
   color: #0d2231;
-  text-align: center;
+  text-align: left;
   text-transform: capitalize;
-  height: 50px; }
+  height: 40px; }
 
 .caption-details a.details-btn {
   display: block;
   text-align: center;
-  background: #f04125;
+  background: #E92227;
   padding: 8px 10px;
   color: #ffffff;
   border-radius: 3px;
@@ -5881,7 +5893,7 @@ button.close {
 
 .form-module button.submit {
   cursor: pointer;
-  background: #f04125;
+  background: #E92227;
   width: 100%;
   border: 0;
   padding: 10px 15px;
@@ -5909,11 +5921,13 @@ button.close {
   width: 280px; }
 
 .add-to-list.modal .modal-header {
-  border-bottom: 5px solid #f04125; }
+  border-bottom: 5px solid #E92227; }
 
-.series-page .series-title {
-  font-weight: bold;
-  margin-top: 0; }
+.series-page {
+  margin-top: 140px; }
+  .series-page .series-title {
+    font-weight: bold;
+    margin-top: 0; }
 
 .search-series-form .input-group .form-control {
   height: 39px; }
@@ -5933,7 +5947,34 @@ button.close {
   .chat li .chat-body p {
     margin: 0; }
 
-/* USER PROFILE PAGE */
+.series-page-container {
+  margin-top: 100px; }
+  .series-page-container .nav-tabs li a {
+    color: #2e2e2e;
+    font-size: 21px; }
+  .series-page-container .nav-tabs > li.active > a,
+  .series-page-container .nav-tabs > li.active > a:hover,
+  .series-page-container .nav-tabs > li.active > a:focus {
+    background: #2e2e2e;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-bottom: none;
+    font-weight: bold;
+    color: #fff;
+    font-size: 21px; }
+
+.list-group-item {
+  background-color: #2e2e2e;
+  color: #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+  border-top: none; }
+
+.list-group-item:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 0; }
+
 .profile-card {
   padding: 30px;
   background-color: rgba(214, 224, 226, 0.2);
@@ -5949,7 +5990,8 @@ button.close {
   overflow: hidden;
   text-align: center;
   background-color: #fff;
-  background-color: white; }
+  background-color: white;
+  border-bottom: 2px solid #E9E9E9; }
   .profile-card.hovercard .card-background {
     height: 130px; }
     .profile-card.hovercard .card-background img {
@@ -6144,10 +6186,6 @@ button.close {
   overflow: hidden;
   text-align: center;
   background-color: rgba(214, 224, 226, 0.2); }
-  .list-card.hovercard .cardheader {
-    background: url("http://lorempixel.com/850/280/nature/4/");
-    background-size: cover;
-    height: 135px; }
   .list-card.hovercard .avatar {
     position: relative;
     top: -50px;
@@ -6175,6 +6213,14 @@ button.close {
       text-overflow: ellipsis;
       padding-bottom: 20px; }
 
+.profile-page-container {
+  margin-top: 100px; }
+  .profile-page-container .btn-group-lg div button.btn {
+    background-color: #d32a0e; }
+  .profile-page-container .btn-group-lg div button.btn:hover,
+  .profile-page-container .btn-group-lg div button.btn.active {
+    background-color: #E92227; }
+
 .list-items-table {
   text-align: center; }
   .list-items-table th {
@@ -6191,6 +6237,9 @@ button.close {
 .update-list-form {
   display: inline-block; }
 
+.list-page-container {
+  margin-top: 100px; }
+
 .footer {
   background-image: url("/images/footer.jpg");
   height: 380px;
@@ -6203,9 +6252,63 @@ button.close {
     .footer ul li a {
       color: #fff; }
 
+.navbar {
+  height: 80px;
+  background: #000000;
+  font-weight: bold; }
+  .navbar .container {
+    height: 80px; }
+  .navbar .navbar-brand {
+    padding: 0; }
+    .navbar .navbar-brand img {
+      height: 80px; }
+  .navbar .navbar-nav {
+    padding-top: 30px; }
+    .navbar .navbar-nav a {
+      transition: color 150ms ease-in;
+      font-weight: bold;
+      font-size: 16px; }
+
+.carousel {
+  margin-top: 80px;
+  border-top: 10px solid #222;
+  background-image: url("/images/bg_black_stripes.jpg"); }
+  .carousel .carousel-inner {
+    width: 1500px;
+    margin: 0 auto;
+    border-left: 7px solid #f0fafb;
+    border-right: 7px solid #f0fafb; }
+  .carousel .carousel-control .right {
+    background: #fff; }
+
+body {
+  background-image: url("/images/bg-gray-lines.jpg");
+  font-family: "Helvetica", Helvetica, Arial, sans-serif; }
+
+.heading-title h2 {
+  text-align: left;
+  line-height: 1em;
+  position: relative;
+  letter-spacing: -1px;
+  font-size: 37px;
+  text-transform: uppercase;
+  color: #000; }
+
+.heading-title h2:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  height: 77%;
+  background: #000;
+  width: 1000px;
+  transform: skew(-11deg, 0);
+  margin: 3px 12px 0 0; }
+
 .btn {
   color: #fff;
-  background-color: #f04125;
+  background-color: #E92227;
   border-color: #ea2f10;
   display: inline-block;
   margin-bottom: 0;
@@ -6241,12 +6344,10 @@ button.close {
 .top-buffer {
   margin-top: 20px; }
 
-.container.content-container {
-  margin-top: 65px; }
-
 .btn-file {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  border: 1px solid #fff; }
 
 .btn-file input[type=file] {
   position: absolute;
@@ -6268,5 +6369,19 @@ button.close {
 
 .addon-button:hover {
   text-decoration: none; }
+
+.bold {
+  font-weight: bold; }
+
+.btn-marvel {
+  background: #000000;
+  border: 2px solid #fff; }
+
+.btn-marvel:hover {
+  background: #2E2E2E;
+  border: 2px solid #fff; }
+
+.remove-padding {
+  padding: 0; }
 
 /*# sourceMappingURL=app.css.map */

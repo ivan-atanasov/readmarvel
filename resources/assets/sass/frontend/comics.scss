@@ -9,6 +9,8 @@
 }
 
 .series-page {
+  margin-top: 140px;
+
   .series-title {
     font-weight: bold;
     margin-top: 0;
@@ -45,4 +47,44 @@
   li .chat-body p {
     margin: 0;
   }
+}
+
+.series-page-container {
+  margin-top: 100px;
+
+  .nav-tabs {
+    li {
+      a {
+        color: #2e2e2e;
+        font-size: 21px;
+      }
+    }
+  }
+
+  .nav-tabs > li.active > a,
+  .nav-tabs > li.active > a:hover,
+  .nav-tabs > li.active > a:focus {
+    background: #2e2e2e;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-bottom: none;
+
+    font-weight: bold;
+    color: #fff;
+    font-size: 21px;
+  }
+}
+
+.list-group-item {
+  background-color: #2e2e2e;
+  color: #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+  border-top: none;
+}
+
+.list-group-item:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 0;
 }

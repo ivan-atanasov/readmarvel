@@ -8,46 +8,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ URL.route('home') }}">ReadMarvel.com</a>
+            <a class="navbar-brand" href="{{ URL.route('home') }}">
+                <img src="{{ URL.to('images/logo.png') }}" alt="read-marvel-com"/>
+            </a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="{{ URL.route('home') }}">
-                        <i class="glyphicon glyphicon-home"></i> {{ Lang.get('frontend/navbar.home') }}
+                        {{ Lang.get('frontend/navbar.home') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ URL.route('frontend.series') }}">
-                        <i class="glyphicon glyphicon-list"></i> {{ Lang.get('frontend/navbar.series') }}
+                        {{ Lang.get('frontend/navbar.series') }}
                     </a>
                 </li>
-                {#<li>
-                    <a href="{{ URL.route('frontend.characters') }}">
-                        <i class="glyphicon glyphicon-user"></i> {{ Lang.get('frontend/navbar.characters') }}
-                    </a>
-                </li>#}
-            </ul>
-
-            <div class="navbar-form navbar-right">
                 {% if Auth.check %}
-                    <a href="{{ URL.route('frontend.profile') }}" id="profile-link" class="btn">
-                        <i class="glyphicon glyphicon-user"></i> {{ Lang.get('frontend/navbar.profile') }}
-                    </a>
+                    <li>
+                        <a href="{{ URL.route('frontend.profile') }}" id="profile-link">
+                            {{ Lang.get('frontend/navbar.profile') }}
+                        </a>
+                    </li>
 
-                    <a href="{{ URL.route('logout') }}" id="logout-link" class="btn">
-                        <i class="glyphicon glyphicon-log-out"></i> {{ Lang.get('frontend/navbar.logout') }}
-                    </a>
+                    <li>
+                        <a href="{{ URL.route('logout') }}" id="logout-link">
+                            {{ Lang.get('frontend/navbar.logout') }}
+                        </a>
+                    </li>
                 {% else %}
-                    <a href="{{ URL.route('login_index') }}" id="login-link" class="btn">
-                        <i class="glyphicon glyphicon-log-in"></i> {{ Lang.get('frontend/navbar.login') }}
-                    </a>
-                    <a href="{{ URL.route('register_index') }}" id="register-link" class="btn">
-                        {{ Lang.get('frontend/navbar.register') }}
-                    </a>
+                    <li>
+                        <a href="{{ URL.route('login_index') }}" id="login-link">
+                            {{ Lang.get('frontend/navbar.login') }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ URL.route('register_index') }}" id="register-link">
+                            {{ Lang.get('frontend/navbar.register') }}
+                        </a>
+                    </li>
                 {% endif %}
-            </div>
+            </ul>
         </div>
     </div>
 </nav>
