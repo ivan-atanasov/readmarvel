@@ -16,10 +16,7 @@
                            id="search-series"
                            value="{{ query }}"/>
                     <span class="input-group-btn">
-                        <input type="submit" value="{{ Lang.get('frontend/comics.search') }}" />
-                        {#<button class="btn btn-block" >#}
-                            {#<i class="glyphicon glyphicon-search"></i> {{ Lang.get('frontend/comics.search') }}#}
-                        {#</button>#}
+                        <input type="submit" value="{{ Lang.get('frontend/comics.search') }}" class="btn"/>
                     </span>
                 </div>
             </div>
@@ -39,13 +36,12 @@
 
             <div class="col-lg-3 col-sm-6">
                 <div class="thumbnail">
-                    <div class="caption-img"
-                         style="background: url({{ comic['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }});"></div>
+                    <a href="{{ URL.route('frontend.series.show', {'id': comic['id']}) }}" class="details-btn">
+                        <div class="caption-img"
+                             style="background: url({{ comic['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }});"></div>
+                    </a>
                     <div class="caption-details">
                         <h3>{{ comic['title'] }}</h3>
-                        <a href="{{ URL.route('frontend.series.show', {'id': comic['id']}) }}" class="details-btn">
-                            Details
-                        </a>
                     </div>
                 </div>
             </div>
