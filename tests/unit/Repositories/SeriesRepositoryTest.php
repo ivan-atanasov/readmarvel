@@ -26,6 +26,8 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
      */
     protected $apiClient;
 
+    protected $scenario;
+
     protected function _before()
     {
         $ts = time();
@@ -41,13 +43,13 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         ]);
 
         $this->seriesRepository = new SeriesRepository($this->apiClient);
+
+        $this->scenario = new \Codeception\Scenario($this);
     }
 
-    /**
-     * @skip
-     */
     public function testRandomMethodReturnsRandomSeries()
     {
+        $this->scenario->skip('this is a skipped test');
         $series = $this->seriesRepository->random(5);
         $this->assertEquals(5, count($series));
 
@@ -58,11 +60,9 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         $this->assertNotEquals(8, count($series));
     }
 
-    /**
-     * @skip
-     */
     public function testFindMethodReturnsCorrectSeries()
     {
+        $this->scenario->skip('this is a skipped test');
         $series = $this->seriesRepository->find(9996);
         $this->assertEquals(9996, $series['id']);
         $this->assertEquals('Acts of Vengeance (2011)', $series['title']);
@@ -73,11 +73,9 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         $this->assertEquals('Acts of Vengeance (2011)', $series['title']);
     }
 
-    /**
-     * @skip
-     */
     public function testSearchMethod()
     {
+        $this->scenario->skip('this is a skipped test');
         $query = 'Spider-Man';
         $results = $this->seriesRepository->search($query, 20, 0);
 
