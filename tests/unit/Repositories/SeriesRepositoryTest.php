@@ -43,10 +43,9 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         $this->seriesRepository = new SeriesRepository($this->apiClient);
     }
 
-    protected function _after()
-    {
-    }
-
+    /**
+     * @skip
+     */
     public function testRandomMethodReturnsRandomSeries()
     {
         $series = $this->seriesRepository->random(5);
@@ -59,6 +58,9 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         $this->assertNotEquals(8, count($series));
     }
 
+    /**
+     * @skip
+     */
     public function testFindMethodReturnsCorrectSeries()
     {
         $series = $this->seriesRepository->find(9996);
