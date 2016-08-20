@@ -71,6 +71,9 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         $this->assertEquals('Acts of Vengeance (2011)', $series['title']);
     }
 
+    /**
+     * @skip
+     */
     public function testSearchMethod()
     {
         $query = 'Spider-Man';
