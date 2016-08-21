@@ -43,7 +43,8 @@
   },
   "scripts": {
     "post-root-package-install": [
-      "php -r \"copy('.env.example', '.env');\""
+      "php -r \"copy('.env.example', '.env');\"",
+      "php -r \"copy('codeception.dist.yml', 'codeception.yml');\""
     ],
     "post-create-project-cmd": [
       "php artisan key:generate"
