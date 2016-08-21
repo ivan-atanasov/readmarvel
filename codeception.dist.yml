@@ -13,7 +13,7 @@ extensions:
     enabled:
         - Codeception\Extension\RunFailed
 params:
-  - .env
+  - env
 modules:
     config:
         Db:
