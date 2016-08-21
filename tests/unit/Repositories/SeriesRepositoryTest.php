@@ -47,7 +47,7 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
         $this->scenario = new \Codeception\Scenario($this);
     }
 
-    public function testRandomMethodReturnsRandomSeries() 
+    public function testRandomMethodReturnsRandomSeries()
     {
         $this->scenario->skip('this is a skipped test');
         $series = $this->seriesRepository->random(5);

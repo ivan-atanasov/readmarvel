@@ -12,17 +12,21 @@ settings:
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+params:
+  - .env
 modules:
     config:
         Db:
-            dsn: 'mysql:host=YOUR_HOST;dbname=YOUR_DB_NAME'
-            user: 'YOUR_DB_USERNAME'
-            password: 'YOUR_DB_PASSWORD'
+            dsn: 'mysql:host=%DB_HOST%;dbname=%DB_DATABASE%'
+            user: '%DB_USERNAME%'
+            password: '%DB_PASSWORD%'
             dump: tests/_data/dump.sql
+            cleanup: true
+            populate: true
 coverage:
     enabled: true
     remote: true
-    c3_url: 'http://localhost.dev/c3.php'
+    c3_url: '%APP_URL%/c3.php'
     whitelist:
       include:
         - app/*
