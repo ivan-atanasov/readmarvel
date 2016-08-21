@@ -37,7 +37,7 @@ class UserProfileRepositoryTest extends \Codeception\TestCase\Test
     /** @var string */
     protected $copiedAvatar;
 
-    protected function _before()
+    protected function _before() 
     {
         $this->avatar = 'tests/_data/image.png';
         $this->copiedAvatar = 'tests/_data/image1.png';
