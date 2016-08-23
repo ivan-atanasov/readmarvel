@@ -10,6 +10,7 @@ $navbarHeight: 80px;
   }
 
   .navbar-brand {
+    height: $navbarHeight;
     padding: 0;
 
     img {
@@ -18,11 +19,11 @@ $navbarHeight: 80px;
   }
 
   .navbar-nav {
-    padding-top: 30px;
+    padding: 15px 0;
 
     a {
+      font-weight: normal;
       transition: color 150ms ease-in;
-      font-weight: bold;
       font-size: 16px;
     }
   }
@@ -31,18 +32,41 @@ $navbarHeight: 80px;
 .carousel {
   margin-top: $navbarHeight;
   border-top: 10px solid #222;
+  border-bottom: 10px solid #222;
   background-image: url("/images/bg_black_stripes.jpg");
 
   .carousel-inner {
-    width: 1500px;
-    margin: 0 auto;
-    border-left: 7px solid #f0fafb;
-    border-right: 7px solid #f0fafb;
+    border: 0 none;
+    width: auto;
   }
 
   .carousel-control {
     .right {
       background: #fff;
     }
+  }
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  margin-left: 0;
+}
+
+.navbar-inverse {
+  .navbar-nav > li > a {
+    color: #fff;
+  }
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  color: #e92227;
+}
+
+#register-link {
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .navbar-collapse.collapse {
+    float: right;
   }
 }
