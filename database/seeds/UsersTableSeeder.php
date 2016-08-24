@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
 
         foreach (range(1, 10) as $index) {
             $user = \App\User::create([
+                'nickname' => $faker->name,
                 'name'     => $faker->name,
                 'email'    => $faker->email,
                 'password' => Hash::make('secret'),
@@ -25,6 +26,9 @@ class UsersTableSeeder extends Seeder
         /** @var \App\User $adminUser */
         $adminUser = \App\User::first();
         $adminUser->assignRole('admin');
-        $this->command->getOutput()->writeln("User with email {$adminUser->email} is now admin. Password is 'secret'");
+        $this->command->getOutput()->writeln(
+            "User with email {$adminUser->email} is now admin. Password is 'secret'." .
+            "You are highly encouraged to change this password from the admin panel!"
+        );
     }
 }

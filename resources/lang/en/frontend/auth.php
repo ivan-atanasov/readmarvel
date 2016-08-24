@@ -12,6 +12,7 @@ return [
     'register'       => [
         'title'                 => 'Registration',
         'name'                  => 'Name',
+        'nickname'              => 'Nickname',
         'email'                 => 'E-mail Address',
         'password'              => 'Password',
         'password_confirmation' => 'Confirm password',
