@@ -6240,10 +6240,11 @@ button.close {
 
 .footer {
   background-image: url("/images/footer.jpg");
-  height: 380px;
+  height: auto;
   margin-top: 20px; }
   .footer .container {
     padding-top: 30px;
+    padding-bottom: 30px;
     color: #fff; }
   .footer ul {
     list-style: none; }
@@ -6400,7 +6401,7 @@ body {
   padding: 0; }
 
 .container.content-container {
-  padding-top: 50px; }
+  padding-top: 20px; }
 
 .thumbnail {
   border-radius: 0; }
