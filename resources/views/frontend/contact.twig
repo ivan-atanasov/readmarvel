@@ -12,11 +12,27 @@
                        name="email"
                        value="{{ old('email') }}"
                        class="form-control"
-                       placeholder="{{ Lang.get('frontend/auth.login.email') }}" autofocus/>
+                       placeholder="{{ Lang.get('frontend/contact.email') }}" autofocus/>
+                <input type="text"
+                       id="name"
+                       name="name"
+                       value="{{ old('name') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/contact.name') }}"/>
+                <input type="text"
+                       id="subject"
+                       name="subject"
+                       value="{{ old('subject') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/contact.subject') }}"/>
+                <textarea name="content"
+                          id="content"
+                          class="form-control"
+                          placeholder="{{ Lang.get('frontend/contact.content') }}"></textarea>
 
                 {{ csrf_field() }}
 
-                <input type="submit" value="{{ Lang.get('frontend/auth.login.sign_in') }}"/>
+                <input type="submit" value="{{ Lang.get('frontend/contact.submit') }}"/>
             </form>
         </div>
     </div>
