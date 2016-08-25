@@ -4,7 +4,7 @@
     <div class="module form-module">
         {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
-        <div class="form" style="display: block;">
+        <div class="form">
             <h2>{{ Lang.get('frontend/auth.login.title') }}</h2>
             <form action="{{ URL.route('login') }}" method="post" id="login-form">
                 <input type="email"

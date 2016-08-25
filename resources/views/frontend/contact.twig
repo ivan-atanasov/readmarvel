@@ -1,0 +1,23 @@
+{% extends 'frontend/layouts/default' %}
+
+{% block content %}
+    <div class="module form-module">
+        {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
+
+        <div class="form">
+            <h2>{{ Lang.get('frontend/contact.title') }}</h2>
+            <form action="{{ URL.route('frontend.contact') }}" method="post">
+                <input type="email"
+                       id="email"
+                       name="email"
+                       value="{{ old('email') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/auth.login.email') }}" autofocus/>
+
+                {{ csrf_field() }}
+
+                <input type="submit" value="{{ Lang.get('frontend/auth.login.sign_in') }}"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

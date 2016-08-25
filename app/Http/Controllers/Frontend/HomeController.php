@@ -34,4 +34,12 @@ class HomeController extends BaseController
 
         return View::make('frontend.index', ['comics' => $comics]);
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function contact()
+    {
+        return View::make('frontend.contact');
+    }
 }

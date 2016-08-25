@@ -10,4 +10,5 @@ return [
     'register'   => 'Register',
     'profile'    => 'Profile',
     'series'     => 'Series',
+    'contact'    => 'Contact us',
 ];
