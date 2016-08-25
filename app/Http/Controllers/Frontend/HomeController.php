@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Illuminate\Http\Request;
 use App\Repositories\SeriesRepository;
 use Config;
 use View;
@@ -41,5 +42,10 @@ class HomeController extends BaseController
     public function contact()
     {
         return View::make('frontend.contact');
+    }
+
+    public function sendContactFormMail(Request $request)
+    {
+
     }
 }
