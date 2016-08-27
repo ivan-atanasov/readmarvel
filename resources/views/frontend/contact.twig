@@ -1,0 +1,39 @@
+{% extends 'frontend/layouts/default' %}
+
+{% block content %}
+    <div class="module form-module">
+        {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
+
+        <div class="form">
+            <h2>{{ Lang.get('frontend/contact.title') }}</h2>
+            <form action="{{ URL.route('frontend.contact') }}" method="post" data-parsley-validate>
+                <input type="email"
+                       id="email"
+                       name="email"
+                       value="{{ old('email') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/contact.email') }}" autofocus data-parsley-required/>
+                <input type="text"
+                       id="name"
+                       name="name"
+                       value="{{ old('name') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/contact.name') }}" data-parsley-required/>
+                <input type="text"
+                       id="subject"
+                       name="subject"
+                       value="{{ old('subject') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/contact.subject') }}" data-parsley-required/>
+                <textarea name="content"
+                          id="content"
+                          class="form-control"
+                          placeholder="{{ Lang.get('frontend/contact.content') }}" data-parsley-required></textarea>
+
+                {{ csrf_field() }}
+
+                <input type="submit" value="{{ Lang.get('frontend/contact.submit') }}"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

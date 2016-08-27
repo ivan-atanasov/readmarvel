@@ -25,6 +25,11 @@
                         {{ Lang.get('frontend/navbar.series') }}
                     </a>
                 </li>
+                <li>
+                    <a href="{{ URL.route('frontend.contact') }}">
+                        {{ Lang.get('frontend/navbar.contact') }}
+                    </a>
+                </li>
                 {% if Auth.check %}
                     <li>
                         <a href="{{ URL.route('frontend.profile') }}" id="profile-link">
