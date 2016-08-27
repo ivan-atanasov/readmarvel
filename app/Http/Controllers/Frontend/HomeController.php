@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Requests\ContactFormRequest;
 use App\Repositories\SeriesRepository;
 use Config;
 use View;
+use Mail;
 
 /**
  * Class HomeController
@@ -33,5 +35,32 @@ class HomeController extends BaseController
         $comics = $this->seriesRepository->random(Config::get('homepage.random_comics_limit'));
 
         return View::make('frontend.index', ['comics' => $comics]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function contact()
+    {
+        return View::make('frontend.contact');
+    }
+
+    /**
+     * @param ContactFormRequest $request
+     */
+    public function sendContactFormMail(ContactFormRequest $request)
+    {
+        $data = [
+            'user'    => \Auth::check() ? \Auth::user()->nickname : '',
+            'email'   => $request->get('email'),
+            'name'    => $request->get('name'),
+            'content' => $request->get('content'),
+            'subject' => $request->get('subject'),
+        ];
+
+        Mail::send('emails.contact_form', $data, function ($m) use ($data) {
+            $m->from('hello@app.com', 'Your Application');
+            $m->to(Config::get('mail.contact_form_to_email'), $data['name'])->subject($data['subject']);
+        });
     }
 }

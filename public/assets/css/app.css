@@ -5859,61 +5859,52 @@ button.close {
   border-top: 5px solid #d32a0e;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 150px auto 150px auto; }
-
-.form-module .form {
-  display: none;
-  padding: 40px; }
-
-.form-module .form:nth-child(2) {
-  display: block; }
-
-.form-module h2 {
-  margin: 0 0 20px;
-  color: #000;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1; }
-
-.form-module input {
-  outline: none;
-  display: block;
-  width: 100%;
-  border: 1px solid #d9d9d9;
-  margin: 0 0 20px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  font-wieght: 400;
-  transition: 0.3s ease; }
-
-.form-module input:focus {
-  border: 1px solid #d32a0e;
-  color: #333333; }
-
-.form-module button.submit {
-  cursor: pointer;
-  background: #E92227;
-  width: 100%;
-  border: 0;
-  padding: 10px 15px;
-  color: #fff;
-  transition: 0.3s ease; }
-
-.form-module button.submit:hover {
-  background: #d32a0e; }
-
-.form-module .cta {
-  background: #f2f2f2;
-  width: 100%;
-  padding: 15px 40px;
-  box-sizing: border-box;
-  color: #666666;
-  font-size: 12px;
-  text-align: center;
-  border-bottom: 1px solid #ea2f10; }
-
-.form-module .cta a {
-  color: #333333;
-  text-decoration: none; }
+  .form-module .form {
+    display: block;
+    padding: 40px; }
+  .form-module .form:nth-child(2) {
+    display: block; }
+  .form-module h2 {
+    margin: 0 0 20px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1; }
+  .form-module input {
+    outline: none;
+    display: block;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-weight: 400;
+    transition: 0.3s ease; }
+  .form-module input:focus {
+    border: 1px solid #d32a0e;
+    color: #333333; }
+  .form-module button.submit {
+    cursor: pointer;
+    background: #E92227;
+    width: 100%;
+    border: 0;
+    padding: 10px 15px;
+    color: #fff;
+    transition: 0.3s ease; }
+  .form-module button.submit:hover {
+    background: #d32a0e; }
+  .form-module .cta {
+    background: #f2f2f2;
+    width: 100%;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    color: #666666;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ea2f10; }
+    .form-module .cta a {
+      color: #333333;
+      text-decoration: none; }
 
 .comic-thumbnail {
   width: 280px; }
@@ -6281,6 +6272,8 @@ button.close {
   .carousel .carousel-inner {
     border: 0 none;
     width: auto; }
+    .carousel .carousel-inner img {
+      margin: 0 auto; }
   .carousel .carousel-control .right {
     background: #fff; }
 

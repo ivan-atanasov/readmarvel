@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Frontend'], function () {
      * Static Pages
      */
     Route::get('page/{url_slug}', ['as' => 'frontend.static', 'uses' => 'StaticPagesController@show']);
+    Route::get('contact', ['as' => 'frontend.contact', 'uses' => 'HomeController@contact']);
+    Route::post('contact', ['as' => 'frontend.contact', 'uses' => 'HomeController@sendContactFormMail']);
 
     /**
      * Public profile
