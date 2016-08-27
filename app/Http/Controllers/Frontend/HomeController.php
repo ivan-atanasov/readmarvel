@@ -7,6 +7,8 @@ use App\Repositories\SeriesRepository;
 use Config;
 use View;
 use Mail;
+use Redirect;
+use Session;
 
 /**
  * Class HomeController
@@ -47,6 +49,8 @@ class HomeController extends BaseController
 
     /**
      * @param ContactFormRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function sendContactFormMail(ContactFormRequest $request)
     {
@@ -59,8 +63,11 @@ class HomeController extends BaseController
         ];
 
         Mail::send('emails.contact_form', $data, function ($m) use ($data) {
-            $m->from('hello@app.com', 'Your Application');
+            $m->from('readmarvel@readmarvel.com', 'Read Marvel.com');
             $m->to(Config::get('mail.contact_form_to_email'), $data['name'])->subject($data['subject']);
         });
+
+        Session::put('messages', ['success' => 'Message sent']);
+        return Redirect::back();
     }
 }
