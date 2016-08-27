@@ -6268,6 +6268,8 @@ button.close {
   .carousel .carousel-inner {
     border: 0 none;
     width: auto; }
+    .carousel .carousel-inner img {
+      margin: 0 auto; }
   .carousel .carousel-control .right {
     background: #fff; }
 

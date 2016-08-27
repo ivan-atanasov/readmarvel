@@ -1,0 +1,7 @@
+User <b>{{ name }}</b> sent you an e-mail through the contact form. Here's what he they wrote:
+<br/>
+{{ content }}
+<br/>
+{% if user is not empty %}
+    The user: {{ user }}
+{% endif %}

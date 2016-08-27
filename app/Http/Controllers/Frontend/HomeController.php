@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactFormRequest;
 use App\Repositories\SeriesRepository;
 use Config;
 use View;
+use Mail;
 
 /**
  * Class HomeController
@@ -44,8 +45,22 @@ class HomeController extends BaseController
         return View::make('frontend.contact');
     }
 
-    public function sendContactFormMail(Request $request)
+    /**
+     * @param ContactFormRequest $request
+     */
+    public function sendContactFormMail(ContactFormRequest $request)
     {
+        $data = [
+            'user'    => \Auth::check() ? \Auth::user()->nickname : '',
+            'email'   => $request->get('email'),
+            'name'    => $request->get('name'),
+            'content' => $request->get('content'),
+            'subject' => $request->get('subject'),
+        ];
 
+        Mail::send('emails.contact_form', $data, function ($m) use ($data) {
+            $m->from('hello@app.com', 'Your Application');
+            $m->to(Config::get('mail.contact_form_to_email'), $data['name'])->subject($data['subject']);
+        });
     }
 }
