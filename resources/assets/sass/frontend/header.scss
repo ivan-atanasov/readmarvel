@@ -38,6 +38,10 @@ $navbarHeight: 80px;
   .carousel-inner {
     border: 0 none;
     width: auto;
+
+    img {
+      margin: 0 auto;
+    }
   }
 
   .carousel-control {
