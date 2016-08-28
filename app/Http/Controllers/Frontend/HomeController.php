@@ -52,7 +52,7 @@ class HomeController extends BaseController
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendContactFormMail(ContactFormRequest $request)
+    public function sendContactFormMail(ContactFormRequest $request) 
     {
         $data = [
             'user'    => \Auth::check() ? \Auth::user()->nickname : '',
