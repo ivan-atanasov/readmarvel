@@ -67,7 +67,7 @@ class HomeController extends BaseController
             $m->to(Config::get('mail.contact_form_to_email'), $data['name'])->subject($data['subject']);
         });
 
-        Session::put('messages', ['success' => 'Message sent']);
+        Session::flash('messages', ['success' => 'Message sent']);
         return Redirect::back();
     }
 }
