@@ -73,7 +73,7 @@ class ListController extends BaseController
      */
     public function updateItemInList(MarvelListItemRequest $request)
     {
-        $this->marvelListRepository->updateItemInList($request->get('item_id'), $request->toArray());
+        $this->marvelListRepository->updateItemInList((int)$request->get('item_id'), $request->toArray());
 
         return Redirect::back();
     }

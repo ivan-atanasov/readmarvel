@@ -42,11 +42,11 @@ $(document).ready(function () {
         $.ajax({
             url: '/series/series',
             data: {
-                'itemId': $(this).data('itemId'),
-                '_token': _token
+                'itemId': $(this).data('itemId')
             },
             method: 'post',
             success: function (response) {
+                console.log(response.started_at);
                 var $startedAt = $modal.find('input[name="started_at"]'),
                     $finishedAt = $modal.find('input[name="finished_at"]');
                 $modal.find('input[name="progress"]').attr('value', response.progress);
@@ -54,8 +54,18 @@ $(document).ready(function () {
                 $modal.find('select[name="score"]').val(response.score);
                 $modal.find('select[name="reread_value"]').val(response.reread_value);
                 $modal.find('select[name="list_id"]').val(response.list_id);
-                $startedAt.val(response.started_at);
-                $finishedAt.val(response.finished_at);
+
+                var startedAtDate = new Date(response.started_at),
+                    finishedAtDate = new Date(response.finished_at),
+                    monthStarted = startedAtDate.getMonth().length > 1 ?
+                        startedAtDate.getMonth() + 1:
+                        '0' + (startedAtDate.getMonth() + 1),
+                    monthFinished = finishedAtDate.getMonth().length > 1 ?
+                        finishedAtDate.getMonth() + 1 :
+                        '0' + (finishedAtDate.getMonth() + 1);
+
+                $startedAt.val(startedAtDate.getFullYear() + '/' + monthStarted);
+                $finishedAt.val(finishedAtDate.getFullYear() + '/' + monthFinished);
 
                 $startedAt.datetimepicker({format: 'yyyy/mm'});
                 $finishedAt.datetimepicker({format: 'yyyy/mm'});
