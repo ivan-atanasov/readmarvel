@@ -7,4 +7,19 @@ return [
     'close'                => 'Close',
     'confirm'              => 'Confirm',
     'copy'                 => 'Copy',
+    'slides'               => [
+        'slide_1' => [
+            'title'       => 'Create your Marvel lists',
+            'description' => 'Make lists with all comic books you love and share them with the world',
+        ],
+        'slide_2' => [
+            'title'       => 'Register now and start building your library',
+            'description' => 'It takes less than 2 minutes. Register, go to your profile and manage your lists',
+        ],
+        'slide_3' => [
+            'title'       => 'Give us feedback',
+            'description' => 'Use the contact form to give us feedback, ' .
+                'so we can continue to improve the nerdy experience',
+        ],
+    ],
 ];
