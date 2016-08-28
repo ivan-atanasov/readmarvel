@@ -22,4 +22,6 @@ return [
                 'so we can continue to improve the nerdy experience',
         ],
     ],
+    'footer_copyright'     => 'Data provided by Marvel. &copy; 2014 Marvel',
+    'footer_learn_more'    => 'Learn more',
 ];

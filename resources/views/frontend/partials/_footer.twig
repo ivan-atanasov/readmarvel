@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h3>Learn more about us</h3>
+                <h3>{{ Lang.get('frontend/index.footer_learn_more') }}</h3>
                 <ul>
                     {% for page in pages %}
                         <li>
@@ -15,6 +15,6 @@
             </div>
         </div>
 
-        <div class=“text-center”>Data provided by Marvel. &copy; 2014 Marvel</div>
+        <div class="text-center">{{ Lang.get('frontend/index.footer_copyright')|raw }}</div>
     </div>
 </footer>
