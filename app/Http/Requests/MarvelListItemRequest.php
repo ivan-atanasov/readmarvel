@@ -25,8 +25,8 @@ class MarvelListItemRequest extends Request
     {
         return [
             'list_id'     => 'required|min: 1',
-            'started_at'  => 'date',
-            'finished_at' => 'date',
+            'started_at'  => 'date_format:"Y/m"',
+            'finished_at' => 'date_format:"Y/m"',
         ];
     }
 }
