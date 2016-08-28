@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Required by codeception to run tests with code coverage
+ * The c3.php file is copied when composer install runs
+ */
 Route::get('/c3.php', function () {
     include '../../c3.php';
 });

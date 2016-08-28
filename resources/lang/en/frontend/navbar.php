@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title'      => 'Marvel Viewer',
+    'title'      => 'Read Marvel.com - Create you Marvel comic books lists',
     'home'       => 'Home',
     'comics'     => 'Comics',
     'characters' => 'Characters',

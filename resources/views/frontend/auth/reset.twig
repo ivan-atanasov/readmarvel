@@ -30,6 +30,7 @@
                        class="form-control"
                        placeholder="{{ Lang.get('frontend/auth.reset_password.password_confirmation') }}"/>
 
+                <input type="hidden" name="token" value="{{ token }}">
                 <div>
                     <button class="submit">{{ Lang.get('frontend/auth.reset_password.reset') }}</button>
                 </div>
