@@ -46,7 +46,6 @@ $(document).ready(function () {
             },
             method: 'post',
             success: function (response) {
-                console.log(response.started_at);
                 var $startedAt = $modal.find('input[name="started_at"]'),
                     $finishedAt = $modal.find('input[name="finished_at"]');
                 $modal.find('input[name="progress"]').attr('value', response.progress);
@@ -55,17 +54,8 @@ $(document).ready(function () {
                 $modal.find('select[name="reread_value"]').val(response.reread_value);
                 $modal.find('select[name="list_id"]').val(response.list_id);
 
-                var startedAtDate = new Date(response.started_at),
-                    finishedAtDate = new Date(response.finished_at),
-                    monthStarted = startedAtDate.getMonth().length > 1 ?
-                        startedAtDate.getMonth() + 1:
-                        '0' + (startedAtDate.getMonth() + 1),
-                    monthFinished = finishedAtDate.getMonth().length > 1 ?
-                        finishedAtDate.getMonth() + 1 :
-                        '0' + (finishedAtDate.getMonth() + 1);
-
-                $startedAt.val(startedAtDate.getFullYear() + '/' + monthStarted);
-                $finishedAt.val(finishedAtDate.getFullYear() + '/' + monthFinished);
+                $startedAt.val(getCorrectDate(response.started_at));
+                $finishedAt.val(getCorrectDate(response.finished_at));
 
                 $startedAt.datetimepicker({format: 'yyyy/mm'});
                 $finishedAt.datetimepicker({format: 'yyyy/mm'});
@@ -103,3 +93,22 @@ $(document).ready(function () {
         elem.setSelectionRange(origSelectionStart, origSelectionEnd);
     });
 });
+
+/**
+ * Returns properly formatted date or an empty string
+ *
+ * @param dateToCheck
+ * @returns string
+ */
+function getCorrectDate(dateToCheck) {
+    if (dateToCheck == null || dateToCheck == 'undefined' || dateToCheck.length == 0) {
+        return '';
+    }
+
+    var startedAtDate = new Date(dateToCheck),
+        monthStarted = startedAtDate.getMonth().toString().length > 1 ?
+            startedAtDate.getMonth() + 1 :
+            '0' + (startedAtDate.getMonth() + 1);
+
+    return startedAtDate.getFullYear() + '/' + monthStarted;
+}
