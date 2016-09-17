@@ -49,7 +49,6 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
 
     public function testRandomMethodReturnsRandomSeries()
     {
-        $this->scenario->skip('this is a skipped test');
         $series = $this->seriesRepository->random(5);
         $this->assertEquals(5, count($series));
 
@@ -62,7 +61,6 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
 
     public function testFindMethodReturnsCorrectSeries()
     {
-        $this->scenario->skip('this is a skipped test');
         $series = $this->seriesRepository->find(9996);
         $this->assertEquals(9996, $series['id']);
         $this->assertEquals('Acts of Vengeance (2011)', $series['title']);
@@ -75,7 +73,6 @@ class SeriesRepositoryTest extends \Codeception\TestCase\Test
 
     public function testSearchMethod()
     {
-        $this->scenario->skip('this is a skipped test');
         $query = 'Spider-Man';
         $results = $this->seriesRepository->search($query, 20, 0);
 

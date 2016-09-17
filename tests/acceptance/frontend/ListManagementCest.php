@@ -161,7 +161,7 @@ class ListManagementCest
     )
     {
         $I->am('A User');
-        $I->wantTo('Add a new list to my profile and then add an item to this list');
+        $I->wantTo('Add a new list to my profile and then delete an item to this list');
 
         $this->createNewList($I, $loginPage, $userProfilePage);
 
