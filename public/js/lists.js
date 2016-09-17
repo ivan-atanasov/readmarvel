@@ -42,8 +42,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/series/series',
             data: {
-                'itemId': $(this).data('itemId'),
-                '_token': _token
+                'itemId': $(this).data('itemId')
             },
             method: 'post',
             success: function (response) {
@@ -54,8 +53,9 @@ $(document).ready(function () {
                 $modal.find('select[name="score"]').val(response.score);
                 $modal.find('select[name="reread_value"]').val(response.reread_value);
                 $modal.find('select[name="list_id"]').val(response.list_id);
-                $startedAt.val(response.started_at);
-                $finishedAt.val(response.finished_at);
+
+                $startedAt.val(getCorrectDate(response.started_at));
+                $finishedAt.val(getCorrectDate(response.finished_at));
 
                 $startedAt.datetimepicker({format: 'yyyy/mm'});
                 $finishedAt.datetimepicker({format: 'yyyy/mm'});
@@ -93,3 +93,22 @@ $(document).ready(function () {
         elem.setSelectionRange(origSelectionStart, origSelectionEnd);
     });
 });
+
+/**
+ * Returns properly formatted date or an empty string
+ *
+ * @param dateToCheck
+ * @returns string
+ */
+function getCorrectDate(dateToCheck) {
+    if (dateToCheck == null || dateToCheck == 'undefined' || dateToCheck.length == 0) {
+        return '';
+    }
+
+    var startedAtDate = new Date(dateToCheck),
+        monthStarted = startedAtDate.getMonth().toString().length > 1 ?
+            startedAtDate.getMonth() + 1 :
+            '0' + (startedAtDate.getMonth() + 1);
+
+    return startedAtDate.getFullYear() + '/' + monthStarted;
+}
