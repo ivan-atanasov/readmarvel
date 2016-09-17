@@ -18,7 +18,7 @@ return [
         ],
         'slide_3' => [
             'title'       => 'Give us feedback',
-            'description' => 'Use the contact form to give us feedback, ' .
+            'description' => 'Use the <a href="/contact">contact form</a> to give us feedback, ' .
                 'so we can continue to improve the nerdy experience',
         ],
     ],
