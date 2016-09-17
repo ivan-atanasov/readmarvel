@@ -50,11 +50,7 @@ class User extends Authenticatable
      */
     public function lists()
     {
-        return $this->hasMany(
-            MarvelList::class,
-            'user_id',
-            'id'
-        );
+        return $this->hasMany(MarvelList::class, 'user_id', 'id');
     }
 
     /**

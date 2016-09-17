@@ -2,8 +2,7 @@
 .form-module {
   position: relative;
   background: $white;
-  max-width: 320px;
-  width: 100%;
+  width: 385px;
   border-top: 5px solid $marvelRedBtnHover;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 150px auto 150px auto;
@@ -72,5 +71,9 @@
       color: #333333;
       text-decoration: none;
     }
+  }
+
+  .g-recaptcha {
+    margin-bottom: 20px;
   }
 }
