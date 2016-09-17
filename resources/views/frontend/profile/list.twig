@@ -76,8 +76,8 @@
                     <td class="score">{{ item.score }}</td>
                     <td class="re-read-value">{{ item.reread_value }}</td>
                     <td class="progress">{{ item.progress }}</td>
-                    <td class="started-at">{{ item.started_at }}</td>
-                    <td class="finished-at">{{ item.finished_at }}</td>
+                    <td class="started-at">{{ item.started_at ? item.started_at|date("Y/m") : '-' }}</td>
+                    <td class="finished-at">{{ item.finished_at ? item.finished_at|date("Y/m") : '-' }}</td>
                     <td>
                         <a href="#" class="btn list-item-edit"
                            data-item-id="{{ item.id }}"
