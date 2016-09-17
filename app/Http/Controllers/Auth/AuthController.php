@@ -44,7 +44,7 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        return view('frontend.register');
+        return view('frontend.register')->with('show_recaptcha', env('RECAPTCHA_ON'));
     }
 
     /**
@@ -69,6 +69,15 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = $this->validator($request->all());
+
+        if (env('RECAPTCHA_ON') && !$this->validateCaptcha($request)) {
+            \Session::flash(
+                'messages',
+                ['warning' => Lang::get('frontend/auth.login.g-recaptcha-response-required')]
+            );
+
+            return \Redirect::route('register_index')->withInput($request->input());
+        }
 
         if ($validator->fails()) {
             $this->throwValidationException($request, $validator);
@@ -165,7 +174,7 @@ class AuthController extends Controller
                 ['warning' => Lang::get('frontend/auth.login.g-recaptcha-response-required')]
             );
 
-            return \Redirect::to('/login')->withInput($request->input());
+            return \Redirect::route('login_index')->withInput($request->input());
         }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
