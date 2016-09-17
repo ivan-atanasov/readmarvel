@@ -6,6 +6,7 @@ class Register
     // include url of current page
     public static $URL = '/register';
 
+    public static $nicknameField = '#register-form #nickname';
     public static $nameField = '#register-form #name';
     public static $emailField = '#register-form #email';
     public static $passwordField = '#register-form #password';

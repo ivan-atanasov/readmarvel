@@ -43,10 +43,10 @@ class Login
     {
         $I = $this->tester;
 
-        $I->wantTo('Login as a user');
         $I->amOnPage(self::$URL);
         $I->fillField(self::$emailField, $email);
         $I->fillField(self::$passwordField, $password);
+
         $I->click(self::$loginButton);
     }
 }

@@ -5854,8 +5854,7 @@ button.close {
 .form-module {
   position: relative;
   background: #fff;
-  max-width: 320px;
-  width: 100%;
+  width: 385px;
   border-top: 5px solid #d32a0e;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 150px auto 150px auto; }
@@ -5905,6 +5904,8 @@ button.close {
     .form-module .cta a {
       color: #333333;
       text-decoration: none; }
+  .form-module .g-recaptcha {
+    margin-bottom: 20px; }
 
 .comic-thumbnail {
   width: 280px; }

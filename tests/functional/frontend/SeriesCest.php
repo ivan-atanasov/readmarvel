@@ -47,6 +47,8 @@ class SeriesCest
 
     public function tryToOpenASeriesPageWhenLoggedIn(FunctionalTester $I, Login $loginPage)
     {
+        $I->wantTo('Open a series page when logged in');
+
         $I->loginAsUser($loginPage, $this->user->email, 'secret');
         $I->seeElement($loginPage::$logoutLink);
 
@@ -67,7 +69,7 @@ class SeriesCest
         $I->seeElement('.search-series-form input[type=submit]');
         $I->fillField('input[name=query]', 'spider-man');
         $I->click('.search-series-form input[type=submit]');
-        $I->see('Spider-Man 1602');
+        $I->see('Spider-Man (1990 - 1998');
     }
 
     public function tryToSearchSeriesWithSearchEngineWithEmptyQuery(FunctionalTester $I)
