@@ -2,12 +2,13 @@
 
 return [
     'login'          => [
-        'title'           => 'Please sign in',
-        'email'           => 'E-mail Address',
-        'password'        => 'Password',
-        'sign_in'         => 'Sign In',
-        'forgot_password' => 'Forgot your password?',
-        'no_account'      => 'You don\'t have an account?',
+        'title'                         => 'Please sign in',
+        'email'                         => 'E-mail Address',
+        'password'                      => 'Password',
+        'sign_in'                       => 'Sign In',
+        'forgot_password'               => 'Forgot your password?',
+        'no_account'                    => 'You don\'t have an account?',
+        'g-recaptcha-response-required' => 'Confirm that you are a human by checking the ReCaptcha checkbox',
     ],
     'register'       => [
         'title'                 => 'Registration',

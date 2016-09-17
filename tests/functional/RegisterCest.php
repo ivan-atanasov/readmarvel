@@ -23,7 +23,7 @@ class RegisterCest
         $name = $this->faker->name;
         $email = $this->faker->safeEmail;
 
-        $I->wantTo('register as a user');
+        $I->wantTo('register as a user with valid credentials');
         $I->amOnPage('/');
         $I->seeElement($registerPage::$registerLink);
         $I->click($registerPage::$registerLink);
@@ -31,13 +31,14 @@ class RegisterCest
         $I->amOnPage($registerPage::$URL);
         $I->seeElement($registerPage::$registerForm);
 //        $I->seeElement($registerPage::$registerButton);
+        $I->fillField($registerPage::$nicknameField, $name);
         $I->fillField($registerPage::$nameField, $name);
         $I->fillField($registerPage::$emailField, $email);
         $I->fillField($registerPage::$passwordField, '123456');
         $I->fillField($registerPage::$passwordConfirmationField, '123456');
         $I->click($registerPage::$registerButton);
 
-        $I->amOnPage(\Page\Login::$URL);
+//        $I->amOnPage(\Page\Login::$URL);
         $I->seeElement(\Page\Login::$loginButton);
         $I->seeInDatabase('users', ['email' => $email]);
     }
