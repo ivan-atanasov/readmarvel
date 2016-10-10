@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Frontend'], function () {
      */
     Route::get('/series', ['as' => 'frontend.series', 'uses' => 'SeriesController@list']);
     Route::get('/series/search', ['as' => 'frontend.series.search', 'uses' => 'SeriesController@search']);
-    Route::get('/series/{id}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
+    Route::get('/series/{id}/{url_slug?}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
 
     /**
      * Public Lists
