@@ -34,17 +34,7 @@
                 <div class="row">
             {% endif %}
 
-            <div class="col-lg-3 col-sm-6">
-                <div class="thumbnail">
-                    <a href="{{ URL.route('frontend.series.show', {'id': comic['id']}) }}" class="details-btn">
-                        <div class="caption-img"
-                             style="background: url({{ comic['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }});"></div>
-                    </a>
-                    <div class="caption-details">
-                        <h3>{{ comic['title'] }}</h3>
-                    </div>
-                </div>
-            </div>
+            {% include 'frontend/partials/_series_thumbnail' with {'comic' : comic} %}
 
             {% if i is divisible by(4) or i == series|length %}
                 </div>
