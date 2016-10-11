@@ -192,6 +192,7 @@ return [
             'form_open',
             'form_model',
             'form_close',
+            'str_slug',
         ],
 
         /*
