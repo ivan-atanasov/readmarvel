@@ -87,10 +87,10 @@ class SeriesRepository
     {
         $search = strtolower($query);
 
-//        if (Cache::tags(['search_series'])->has("{$offset}_{$search}")) {
-//            $comics = Cache::tags(['search_series'])->get("{$offset}_{$search}");
-//            $total = $comics['total'];
-//        } else {
+        if (Cache::tags(['search_series'])->has("{$offset}_{$search}")) {
+            $comics = Cache::tags(['search_series'])->get("{$offset}_{$search}");
+            $total = $comics['total'];
+        } else {
             $query = $this->apiClient->getConfig('query');
             $query['offset'] = $offset * $limit;
             $query['titleStartsWith'] = $search;
@@ -104,7 +104,7 @@ class SeriesRepository
             $total = $response['data']['total'];
 
             Cache::tags(['search_series'])->put("{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
-//        }
+        }
 
         return [array_slice($comics['results'], 0, $limit), $search, $total];
     }
