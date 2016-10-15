@@ -23,6 +23,16 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/series/{id}/{url_slug?}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
 
     /**
+     * Characters
+     */
+    Route::get('/characters', ['as' => 'frontend.characters', 'uses' => 'CharactersController@list']);
+    Route::get('/characters/search', ['as' => 'frontend.characters.search', 'uses' => 'CharactersController@search']);
+    Route::get(
+        '/characters/{id}/{url_slug?}',
+        ['as' => 'frontend.characters.show', 'uses' => 'CharactersController@show']
+    );
+
+    /**
      * Public Lists
      */
     Route::get('/lists/{list_hash}', ['as' => 'frontend.lists.public', 'uses' => 'PublicListsController@show']);

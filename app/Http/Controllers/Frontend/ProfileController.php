@@ -8,7 +8,6 @@ use App\Helpers\ImageHelper;
 use App\Http\Requests\UserProfileRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\UserProfileRepository;
-use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -36,8 +35,7 @@ class ProfileController extends BaseController
     public function __construct(
         UserProfileRepository $userProfileRepository,
         MarvelListRepository $marvelListRepository
-    )
-    {
+    ) {
         parent::__construct();
 
         $this->userProfileRepository = $userProfileRepository;
