@@ -3,8 +3,8 @@
 {% block content %}
     <div class="row">
         <div class="col-md-3">
-            <a href="{{ URL.route('frontend.series') }}" class="btn btn-block btn-marvel">
-                <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/comics.back_to_series') }}
+            <a href="{{ URL.route('frontend.characters') }}" class="btn btn-block btn-marvel">
+                <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/characters.back_to_characters') }}
             </a>
         </div>
 
@@ -14,7 +14,7 @@
                    data-toggle="modal"
                    data-target="#add-to-list-modal"
                    id="add-to-list">
-                    {{ Lang.get('frontend/comics.add_to_list') }}
+                    {{ Lang.get('frontend/characters.add_to_favourites') }}
                 </a>
             {% endif %}
         </div>
@@ -22,94 +22,63 @@
 
     <div class="row series-page top-buffer">
         <div class="col-md-3">
-            <img src="{{ series['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }}"
-                 alt="{{ series['title'] }} thumbnail"
-                 class="img-responsive"/>
+            <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
+                 alt="{{ character['name'] }} thumbnail" class="img-responsive"/>
 
-                <a href="{{ series['urls'][0]['url'] }}" class="btn btn-block btn-black btn-marvel" target="_blank">
-                    {{ Lang.get('frontend/comics.see_at_marvel') }}
-                </a>
+            <a href="{{ character['urls'][0]['url'] }}" class="btn btn-block btn-black btn-marvel" target="_blank">
+                {{ Lang.get('frontend/characters.see_at_marvel') }}
+            </a>
         </div>
 
         <div class="col-md-9">
-            <h2 class="series-title">{{ series['title'] }}</h2>
+            <h2 class="series-title">{{ character['name'] }}</h2>
 
-            <div class="years">
-                <div>
-                    <span class="bold">{{ Lang.get('frontend/comics.period') }}:</span>  {{ series['startYear'] }} -
-                    {% if series['endYear'] != 2099 %}
-                        {{ series['endYear'] }}
-                    {% else %}
-                        {{ Lang.get('frontend/comics.present') }}
-                    {% endif %}
-                </div>
-            </div>
-
-            {% if series['rating'] %}
-                <div class="rating">
-                    <span class="bold">{{ Lang.get('frontend/comics.rating') }}:</span> {{ series['rating'] }}
-                </div>
-            {% endif %}
-
-            <p>{{ series['description'] }}</p>
+            <p>{{ character['description'] }}</p>
 
             <ul class="nav nav-tabs top-buffer" role="tablist">
-                {% if series['creators']['available'] > 0 %}
+                {% if character['series']['available'] > 0 %}
                     <li class="active">
-                        <a href="#creators" aria-controls="creators" role="tab" data-toggle="tab">
-                            <span>{{ Lang.get('frontend/comics.creators') }}</span>
+                        <a href="#series" aria-controls="series" role="tab" data-toggle="tab">
+                            <span>{{ Lang.get('frontend/characters.series') }}</span>
                         </a>
                     </li>
                 {% endif %}
 
-                {% if series['characters']['available'] > 0 %}
+                {% if character['events']['available'] > 0 %}
                     <li>
-                        <a href="#characters" aria-controls="characters" role="tab" data-toggle="tab">
-                            {{ Lang.get('frontend/comics.characters') }}
-                        </a>
-                    </li>
-                {% endif %}
-
-                {% if series['comics']['available'] > 0 %}
-                    <li>
-                        <a href="#comics" aria-controls="comics" role="tab" data-toggle="tab">
-                            {{ Lang.get('frontend/comics.comics') }}
+                        <a href="#events" aria-controls="events" role="tab" data-toggle="tab">
+                            {{ Lang.get('frontend/characters.events') }}
                         </a>
                     </li>
                 {% endif %}
             </ul>
 
             <div class="tab-content">
-                {% if series['creators']['available'] > 0 %}
-                    <div role="tabpanel" class="tab-pane fade in active" id="creators">
-                        <div class="creators">
+                {% if character['series']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade in active" id="series">
+                        <div class="series">
                             <ul class="list-group">
-                                {% for creator in series['creators']['items'] %}
-                                    <li class="list-group-item">{{ creator['name'] }} ({{ creator['role'] }})</li>
+                                {% for series in character['series']['items'] %}
+                                    {% set series_id = series['resourceURI']|split('/') %}
+                                    <li class="list-group-item">
+                                        <a href="{{ URL.route('frontend.series.show', {'id' : series_id|last, 'url_slug' : str_slug(series['name'])}) }}">
+                                            {{ series['name'] }}
+                                        </a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>
                     </div>
                 {% endif %}
 
-                {% if series['characters']['available'] > 0 %}
-                    <div role="tabpanel" class="tab-pane fade" id="characters">
-                        <div class="characters">
+                {% if character['events']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade" id="events">
+                        <div class="events">
                             <ul class="list-group">
-                                {% for character in series['characters']['items'] %}
-                                    <li class="list-group-item">{{ character['name'] }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                {% endif %}
-
-                {% if series['comics']['available'] > 0 %}
-                    <div role="tabpanel" class="tab-pane fade" id="comics">
-                        <div class="comics">
-                            <ul class="list-group">
-                                {% for comic in series['comics']['items'] %}
-                                    <li class="list-group-item">{{ comic['name'] }}</li>
+                                {% for event in character['events']['items'] %}
+                                    <li class="list-group-item">
+                                        {{ event['name'] }}
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -125,29 +94,4 @@
             {% include 'frontend/series/partials/_comments.twig' %}
         </div>
     </div>
-
-    {% if Auth.check() %}
-        {% include 'frontend/partials/_add_to_list_modal' with {
-        'lists' : lists,
-        'series' : series,
-        'submitUrl' : URL.route('frontend.add_item_to_list')
-        } %}
-    {% endif %}
-{% endblock %}
-
-{% block styles %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ URL.to('assets/css/datetimepicker.css') }}"/>
-{% endblock %}
-
-{% block scripts %}
-    {{ parent() }}
-
-    <script type="application/javascript" src="{{ URL.to('js/datetimepicker.js') }}"></script>
-
-    <script type="application/javascript">
-        $('#started-at').datetimepicker({format: 'yyyy/mm'});
-        $('#finished-at').datetimepicker({format: 'yyyy/mm'});
-    </script>
 {% endblock %}

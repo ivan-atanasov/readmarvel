@@ -56,6 +56,30 @@ class CharacterRepository
         return array_slice($characters, 0, $count);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function find(int $id)
+    {
+        if (Cache::tags(['characters'])->has('characters_' . $id)) {
+            $characters = Cache::tags(['characters'])->get('characters_' . $id);
+
+            return $characters;
+        }
+
+        $response = $this->apiClient->get(
+            Config::get('marvel.base_uri') . Config::get('marvel.endpoints.characters') . '/' . $id
+        );
+        $response = json_decode($response->getBody(), true);
+        $characters = $response['data']['results'][0];
+
+        Cache::tags(['characters'])->put('characters_' . $id, $characters, Config::get('marvel.cache_time'));
+
+        return $characters;
+    }
+
     public function findByUser(User $user)
     {
 

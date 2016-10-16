@@ -34,4 +34,16 @@ class CharactersController extends BaseController
 
         return View::make('frontend/characters.list', ['characters' => $characters]);
     }
+
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show(int $id)
+    {
+        $character = $this->characterRepository->find($id);
+
+        return View::make('frontend/characters.page', ['character' => $character]);
+    }
 }
