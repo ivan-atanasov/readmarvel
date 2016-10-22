@@ -14,6 +14,6 @@ return [
         'thumbnail' => 'portrait_uncanny.jpg',
     ],
     'characters'  => [
-        'thumbnail' => 'portrait_incredible.jpg',
+        'thumbnail' => 'portrait_uncanny.jpg',
     ],
 ];
