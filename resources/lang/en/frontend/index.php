@@ -24,4 +24,5 @@ return [
     ],
     'footer_copyright'     => 'Data provided by Marvel. &copy; 2014 Marvel',
     'footer_learn_more'    => 'Learn more',
+    'footer_characters'    => 'Featured characters',
 ];
