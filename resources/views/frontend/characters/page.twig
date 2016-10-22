@@ -1,0 +1,99 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ URL.route('frontend.characters') }}" class="btn btn-block btn-marvel">
+                <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/characters.back_to_characters') }}
+            </a>
+        </div>
+
+        <div class="col-md-2 col-md-offset-7">
+            {% if Auth.check() %}
+                <a href="#" class="btn btn-block btn-marvel"
+                   data-toggle="modal"
+                   data-target="#add-to-list-modal"
+                   id="add-to-list">
+                    {{ Lang.get('frontend/characters.add_to_favourites') }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row series-page top-buffer">
+        <div class="col-md-3">
+            <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
+                 alt="{{ character['name'] }} thumbnail" class="img-responsive"/>
+
+            <a href="{{ character['urls'][0]['url'] }}" class="btn btn-block btn-black btn-marvel" target="_blank">
+                {{ Lang.get('frontend/characters.see_at_marvel') }}
+            </a>
+        </div>
+
+        <div class="col-md-9">
+            <h2 class="series-title">{{ character['name'] }}</h2>
+
+            <p>{{ character['description']|raw }}</p>
+
+            <ul class="nav nav-tabs top-buffer" role="tablist">
+                {% if character['series']['available'] > 0 %}
+                    <li class="active">
+                        <a href="#series" aria-controls="series" role="tab" data-toggle="tab">
+                            <span>{{ Lang.get('frontend/characters.series') }}</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if character['events']['available'] > 0 %}
+                    <li>
+                        <a href="#events" aria-controls="events" role="tab" data-toggle="tab">
+                            {{ Lang.get('frontend/characters.events') }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <div class="tab-content">
+                {% if character['series']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade in active" id="series">
+                        <div class="series">
+                            <ul class="list-group">
+                                {% for series in character['series']['items'] %}
+                                    {% set series_id = series['resourceURI']|split('/') %}
+                                    <li class="list-group-item">
+                                        <a href="{{ URL.route('frontend.series.show', {'id' : series_id|last, 'url_slug' : str_slug(series['name'])}) }}"
+                                            class="series-link">
+                                            <i class="glyphicon glyphicon-open"></i>
+                                            {{ series['name'] }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if character['events']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade" id="events">
+                        <div class="events">
+                            <ul class="list-group">
+                                {% for event in character['events']['items'] %}
+                                    <li class="list-group-item">
+                                        {{ event['name'] }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% include 'frontend/series/partials/_comments_form.twig' with {
+            'series_id' : series['id'],
+            'comments' : comments
+            } %}
+
+            {% include 'frontend/series/partials/_comments.twig' %}
+        </div>
+    </div>
+{% endblock %}

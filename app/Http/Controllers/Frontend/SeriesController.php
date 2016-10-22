@@ -75,7 +75,7 @@ class SeriesController extends BaseController
     {
         $query = '';
         if ($request->has('query')) {
-            $offset = $request->has('page') ? $request->input('page') : 0;
+            $offset = $request->has('page') ? $request->input('page') - 1 : 0;
             list($series, $query, $total) = $this->seriesRepository->search(
                 $request->input('query'),
                 Config::get('homepage.per_page_comics'),
