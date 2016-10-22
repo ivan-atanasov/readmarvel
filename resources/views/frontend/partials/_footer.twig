@@ -13,6 +13,37 @@
                     {% endfor %}
                 </ul>
             </div>
+
+            <div class="col-md-3">
+                <h3>{{ Lang.get('frontend/index.footer_characters') }}</h3>
+                <ul>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009610, 'url_slug': 'spider-man' }) }}">
+                            Spider-Man
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009664, 'url_slug': 'thor' }) }}">
+                            Thor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009368, 'url_slug': 'iron-man' }) }}">
+                            Iron Man
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009351, 'url_slug': 'hulk' }) }}">
+                            The Hulk
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009227, 'url_slug': 'carnage' }) }}">
+                            Carnage
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="text-center">{{ Lang.get('frontend/index.footer_copyright')|raw }}</div>
