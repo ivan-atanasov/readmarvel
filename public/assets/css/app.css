@@ -5965,6 +5965,67 @@ button.close {
   border-top-right-radius: 4px;
   border-top-left-radius: 0; }
 
+#series .series-link {
+  color: #f0fafb; }
+
+.comic-thumbnail {
+  width: 280px; }
+
+.add-to-list.modal .modal-header {
+  border-bottom: 5px solid #E92227; }
+
+.series-page {
+  margin-top: 140px; }
+  .series-page .series-title {
+    font-weight: bold;
+    margin-top: 0; }
+
+.search-series-form .input-group .form-control {
+  height: 39px; }
+
+.chat {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .chat li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #999; }
+  .chat li.left .chat-body {
+    margin-left: 60px; }
+  .chat li.right .chat-body {
+    margin-right: 60px; }
+  .chat li .chat-body p {
+    margin: 0; }
+
+.series-page-container {
+  margin-top: 100px; }
+  .series-page-container .nav-tabs li a {
+    color: #2e2e2e;
+    font-size: 21px; }
+  .series-page-container .nav-tabs > li.active > a,
+  .series-page-container .nav-tabs > li.active > a:hover,
+  .series-page-container .nav-tabs > li.active > a:focus {
+    background: #2e2e2e;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-bottom: none;
+    font-weight: bold;
+    color: #fff;
+    font-size: 21px; }
+
+.list-group-item {
+  background-color: #2e2e2e;
+  color: #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+  border-top: none; }
+
+.list-group-item:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 0; }
+
 .profile-card {
   padding: 30px;
   background-color: rgba(214, 224, 226, 0.2);
@@ -6314,7 +6375,7 @@ button.close {
 
 .navbar-collapse {
   background-color: #000;
-  border: 10px solid #222;
+  border: 10px solid #000;
   padding: 0; }
 
 .navbar-fixed-top + * {

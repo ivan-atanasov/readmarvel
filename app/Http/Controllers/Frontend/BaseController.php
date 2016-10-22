@@ -29,14 +29,14 @@ class BaseController extends Controller
      */
     protected function initializeApiClient()
     {
-        $ts = time();
-        $hash = md5($ts . Config::get('marvel.private_key') . Config::get('marvel.public_key'));
+        $timeStamp = time();
+        $hash = md5($timeStamp . Config::get('marvel.private_key') . Config::get('marvel.public_key'));
 
         return new Client([
             'base_uri' => Config::get('marvel.base_uri'),
             'query'    => [
                 'apikey' => Config::get('marvel.public_key'),
-                'ts'     => $ts,
+                'ts'     => $timeStamp,
                 'hash'   => $hash,
             ],
         ]);
