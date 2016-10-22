@@ -18,7 +18,7 @@ class CharactersController extends BaseController
     protected $characterRepository;
 
     /**
-     * SeriesController constructor.
+     * CharactersController constructor.
      */
     public function __construct()
     {

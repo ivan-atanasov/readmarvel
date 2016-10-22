@@ -91,10 +91,10 @@ class CharacterRepository
     {
         $search = strtolower($query);
 
-//        if (Cache::tags(['search_characters'])->has("{$offset}_{$search}")) {
-//            $comics = Cache::tags(['search_characters'])->get("{$offset}_{$search}");
-//            $total = $comics['total'];
-//        } else {
+        if (Cache::tags(['search_characters'])->has("{$offset}_{$search}")) {
+            $comics = Cache::tags(['search_characters'])->get("{$offset}_{$search}");
+            $total = $comics['total'];
+        } else {
             $query = $this->apiClient->getConfig('query');
             $query['offset'] = $offset * $limit;
             $query['nameStartsWith'] = $search;
@@ -108,7 +108,7 @@ class CharacterRepository
             $total = $response['data']['total'];
 
             Cache::tags(['search_characters'])->put("{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
-//        }
+        }
 
         return [array_slice($comics['results'], 0, $limit), $search, $total];
     }
