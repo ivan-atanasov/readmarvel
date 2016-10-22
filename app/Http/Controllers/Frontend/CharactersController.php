@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Repositories\CharacterRepository;
 use Config;
 use View;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class CharactersController
@@ -45,5 +47,29 @@ class CharactersController extends BaseController
         $character = $this->characterRepository->find($id);
 
         return View::make('frontend/characters.page', ['character' => $character]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function search(Request $request)
+    {
+        $query = '';
+        if ($request->has('query')) {
+            $offset = $request->has('page') ? $request->input('page') - 1 : 0;
+            list($characters, $query, $total) = $this->characterRepository->search(
+                $request->input('query'),
+                Config::get('homepage.per_page_comics'),
+                $offset
+            );
+
+            $characters = new LengthAwarePaginator($characters, $total, Config::get('homepage.per_page_comics'));
+        } else {
+            $characters = $this->characterRepository->random(Config::get('homepage.random_characters_limit'));
+        }
+
+        return View::make('frontend/characters.list', ['characters' => $characters, 'query' => $query]);
     }
 }

@@ -80,6 +80,39 @@ class CharacterRepository
         return $characters;
     }
 
+    /**
+     * @param string $query
+     * @param int    $limit
+     * @param int    $offset
+     *
+     * @return array
+     */
+    public function search(string $query, int $limit = 20, int $offset = 0)
+    {
+        $search = strtolower($query);
+
+//        if (Cache::tags(['search_characters'])->has("{$offset}_{$search}")) {
+//            $comics = Cache::tags(['search_characters'])->get("{$offset}_{$search}");
+//            $total = $comics['total'];
+//        } else {
+            $query = $this->apiClient->getConfig('query');
+            $query['offset'] = $offset * $limit;
+            $query['nameStartsWith'] = $search;
+
+            $response = $this->apiClient->get(
+                Config::get('marvel.base_uri') . Config::get('marvel.endpoints.characters'),
+                ['query' => $query]
+            );
+            $response = json_decode($response->getBody(), true);
+            $comics = $response['data'];
+            $total = $response['data']['total'];
+
+            Cache::tags(['search_characters'])->put("{$offset}_{$search}", $comics, Config::get('marvel.cache_time'));
+//        }
+
+        return [array_slice($comics['results'], 0, $limit), $search, $total];
+    }
+
     public function findByUser(User $user)
     {
 
