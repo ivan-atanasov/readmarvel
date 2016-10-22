@@ -44,6 +44,17 @@
                     </li>
                 </ul>
             </div>
+
+
+            <div class="col-md-3">
+                <h3>{{ Lang.get('frontend/index.footer_social') }}</h3>
+                <a href="{{ Config.get('marvel.social_links.twitter') }}" target="_blank"
+                   class="ion-social-twitter social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.facebook') }}" target="_blank"
+                   class="ion-social-facebook social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.instagram') }}" target="_blank"
+                   class="ion-social-instagram social" data-pack="social" data-tags="follow, post, share"></a>
+            </div>
         </div>
 
         <div class="text-center">{{ Lang.get('frontend/index.footer_copyright')|raw }}</div>
