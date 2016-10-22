@@ -114,3 +114,12 @@ $navbarHeight: 80px;
 .navbar-fixed-top + * {
   margin-top: $navbarHeight;
 }
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border: 0;
+  padding-top: 10px;
+}
+
+.navbar .navbar-nav li + li a {
+  border-top: 0;
+}

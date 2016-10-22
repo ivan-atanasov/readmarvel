@@ -6381,6 +6381,13 @@ button.close {
 .navbar-fixed-top + * {
   margin-top: 80px; }
 
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border: 0;
+  padding-top: 10px; }
+
+.navbar .navbar-nav li + li a {
+  border-top: 0; }
+
 body {
   background: #fff;
   font-family: 'Montserrat', sans-serif; }
