@@ -87,13 +87,6 @@
                     </div>
                 {% endif %}
             </div>
-
-            {% include 'frontend/series/partials/_comments_form.twig' with {
-            'series_id' : series['id'],
-            'comments' : comments
-            } %}
-
-            {% include 'frontend/series/partials/_comments.twig' %}
         </div>
     </div>
 {% endblock %}
