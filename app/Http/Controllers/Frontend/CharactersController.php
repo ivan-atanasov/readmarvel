@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Domain\FavouriteCharacter;
 use App\Repositories\CharacterRepository;
 use Config;
+use Auth;
 use View;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -16,15 +18,22 @@ class CharactersController extends BaseController
 {
     /** @var CharacterRepository */
     protected $characterRepository;
+    /**
+     * @var FavouriteCharacter
+     */
+    private $favouriteCharacter;
 
     /**
      * CharactersController constructor.
+     *
+     * @param FavouriteCharacter  $favouriteCharacter
      */
-    public function __construct()
+    public function __construct(FavouriteCharacter $favouriteCharacter)
     {
         parent::__construct();
 
         $this->characterRepository = new CharacterRepository($this->client);
+        $this->favouriteCharacter = $favouriteCharacter;
     }
 
     /**
@@ -45,8 +54,12 @@ class CharactersController extends BaseController
     public function show(int $id)
     {
         $character = $this->characterRepository->find($id);
+        $isFavourited = false;
+        if (Auth::check()) {
+            $isFavourited = $this->favouriteCharacter->isFavouritedByUser(Auth::user()->id, $id);
+        }
 
-        return View::make('frontend/characters.page', ['character' => $character]);
+        return View::make('frontend/characters.page', ['character' => $character, 'isFavourited' => $isFavourited]);
     }
 
     /**

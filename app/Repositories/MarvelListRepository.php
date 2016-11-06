@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 use App\Entities\MarvelList;
 use App\Entities\MarvelListItem;
 use App\Helpers\ImageHelper;
