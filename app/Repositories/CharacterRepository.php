@@ -112,9 +112,4 @@ class CharacterRepository
 
         return [array_slice($comics['results'], 0, $limit), $search, $total];
     }
-
-    public function findByUser(User $user)
-    {
-
-    }
 }
