@@ -7,17 +7,6 @@
                 <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/characters.back_to_characters') }}
             </a>
         </div>
-
-        <div class="col-md-2 col-md-offset-7">
-            {% if Auth.check() %}
-                <a href="#" class="btn btn-block btn-marvel"
-                   data-toggle="modal"
-                   data-target="#add-to-list-modal"
-                   id="add-to-list">
-                    {{ Lang.get('frontend/characters.add_to_favourites') }}
-                </a>
-            {% endif %}
-        </div>
     </div>
 
     <div class="row series-page top-buffer">
@@ -28,6 +17,19 @@
             <a href="{{ character['urls'][0]['url'] }}" class="btn btn-block btn-black btn-marvel" target="_blank">
                 {{ Lang.get('frontend/characters.see_at_marvel') }}
             </a>
+
+            {% if Auth.check() %}
+                <a href="#" class="btn btn-block btn-marvel {{ isFavourited ? 'hide' : '' }}"
+                   id="add-to-favourites" data-character-id="{{ character['id'] }}">
+                    <i class="glyphicon glyphicon-heart"></i>
+                    {{ Lang.get('frontend/characters.add_to_favourites') }}
+                </a>
+                <a href="#" class="btn btn-block {{ isFavourited ? '' : 'hide' }}"
+                   id="remove-from-favourites" data-character-id="{{ character['id'] }}">
+                    <i class="glyphicon glyphicon-heart"></i>
+                    {{ Lang.get('frontend/characters.remove_from_favourites') }}
+                </a>
+            {% endif %}
         </div>
 
         <div class="col-md-9">
@@ -89,4 +91,10 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="{{ URL.to('js/characters.js') }}"></script>
 {% endblock %}
