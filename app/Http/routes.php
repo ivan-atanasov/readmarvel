@@ -23,10 +23,23 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/series/{id}/{url_slug?}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
 
     /**
+     * Favourite Characters
+     */
+    Route::get(
+        '/characters/favourite/{character_id}',
+        ['as' => 'frontend.characters.favourite', 'uses' => 'FavouriteCharactersController@favourite']
+    );
+    Route::get(
+        '/characters/unfavourite/{character_id}',
+        ['as' => 'frontend.characters.unfavourite', 'uses' => 'FavouriteCharactersController@unfavourite']
+    );
+
+    /**
      * Characters
      */
     Route::get('/characters', ['as' => 'frontend.characters', 'uses' => 'CharactersController@list']);
     Route::get('/characters/search', ['as' => 'frontend.characters.search', 'uses' => 'CharactersController@search']);
+
     Route::get(
         '/characters/{id}/{url_slug?}',
         ['as' => 'frontend.characters.show', 'uses' => 'CharactersController@show']
