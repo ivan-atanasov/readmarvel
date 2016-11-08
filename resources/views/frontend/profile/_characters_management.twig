@@ -1,6 +1,6 @@
 {% set i = 0 %}
 {% set shouldOpen = 1 %}
-{% for list in lists %}
+{% for character in characters %}
     {% set i = i+1 %}
 
     {% if shouldOpen == 1 %}
@@ -9,33 +9,24 @@
     {% endif %}
 
     <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard list-block">
+        <div class="list-card characters hovercard list-block">
             <div class="card-background">
-                {% if list['avatar']|length %}
-                    <img class="card-bkimg" src="{{ URL.to(list['avatar']) }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                {% endif %}
+                <img class="card-bkimg" src="{{ URL.to(character['thumbnail']['path'] ~ '/' ~ Config.get('marvel.characters.profile_small_thumbnail')) }}" alt="profile"/>
             </div>
 
             <div class="avatar">
-                <a href="{{ URL.route('frontend.profile_view_list', {'id' : list['id']}) }}">
-                    {% if list['avatar']|length %}
-                        <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
-                    {% else %}
-                        <img alt="avatar" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                    {% endif %}
+                <a href="{{ URL.route('frontend.characters.show', {'id' : character['id'], 'url_slug' : str_slug(character['name'])}) }}">
+                    <img alt="avatar" src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
                 </a>
             </div>
 
             <div class="info">
-                <div class="title">{{ list['title'] }}</div>
-                <div class="desc">{{ list['comment'] }}</div>
+                <div class="title">{{ character['name'] }}</div>
             </div>
         </div>
     </div>
 
-    {% if i is divisible by(4) or i == lists|length %}
+    {% if i is divisible by(4) or i == characters|length %}
         </div>
         {% set shouldOpen = 1 %}
     {% endif %}
