@@ -1,31 +1,6 @@
-<div class="row">
-    <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard">
-            <div class="card-background">
-                {% if avatar|length %}
-                    <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}"/>
-                {% endif %}
-            </div>
-
-            <div class="avatar">
-                <a href="#" data-toggle="modal" data-target="#add-list-modal" id="add-list-link">
-                    <img alt="" src="{{ URL.to('images/gray_plus.png') }}">
-                </a>
-            </div>
-
-            <div class="info">
-                <div class="title">{{ Lang.get('frontend/profile.add_new_list') }}</div>
-                <div class="desc">{{ Lang.get('frontend/profile.add_new_list_description') }}</div>
-            </div>
-        </div>
-    </div>
-</div>
-
 {% set i = 0 %}
 {% set shouldOpen = 1 %}
-{% for list in lists %}
+{% for character in characters %}
     {% set i = i+1 %}
 
     {% if shouldOpen == 1 %}
@@ -34,93 +9,25 @@
     {% endif %}
 
     <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard list-block">
+        <div class="list-card characters hovercard list-block">
             <div class="card-background">
-                {% if list['avatar']|length %}
-                    <img class="card-bkimg" src="{{ URL.to(list['avatar']) }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                {% endif %}
+                <img class="card-bkimg" src="{{ URL.to(character['thumbnail']['path'] ~ '/' ~ Config.get('marvel.characters.profile_small_thumbnail')) }}" alt="profile"/>
             </div>
 
             <div class="avatar">
-                <a href="{{ URL.route('frontend.profile_view_list', {'id' : list['id']}) }}">
-                    {% if list['avatar']|length %}
-                        <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
-                    {% else %}
-                        <img alt="avatar" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                    {% endif %}
+                <a href="{{ URL.route('frontend.characters.show', {'id' : character['id'], 'url_slug' : str_slug(character['name'])}) }}">
+                    <img alt="avatar" src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
                 </a>
             </div>
 
             <div class="info">
-                <div class="title">{{ list['title'] }}</div>
-                <div class="desc">{{ list['comment'] }}</div>
+                <div class="title">{{ character['name'] }}</div>
             </div>
         </div>
     </div>
 
-    {% if i is divisible by(4) or i == lists|length %}
+    {% if i is divisible by(4) or i == characters|length %}
         </div>
         {% set shouldOpen = 1 %}
     {% endif %}
 {% endfor %}
-
-<div class="add-list modal fade" id="add-list-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">{{ Lang.get('frontend/profile.lists.add') }}</h4>
-            </div>
-
-            <form action="{{ URL.route('frontend.store_list') }}"
-                  id="add-list-form"
-                  method="post"
-                  enctype="multipart/form-data">
-                <div class="modal-body">
-                    {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
-
-                    <div class="row top-buffer">
-                        <div class="col-md-12">
-                            <label for="list-avatar">{{ Lang.get('frontend/profile.lists.avatar') }}</label>
-
-                            <input type="file" name="avatar" id="list-avatar" class="btn-file"/>
-                        </div>
-                    </div>
-
-                    <div class="row top-buffer">
-                        <div class="col-md-12">
-                            <label for="title">{{ Lang.get('frontend/profile.lists.title') }}</label>
-
-                            <input type="text" name="title" id="title" class="form-control"/>
-                        </div>
-                    </div>
-
-                    <div class="row top-buffer">
-                        <div class="col-md-12">
-                            <label for="comment">{{ Lang.get('frontend/profile.lists.comment') }}</label>
-
-                            <textarea name="comment" id="comment" class="form-control"></textarea>
-                            <p class="note">{{ Lang.get('frontend/profile.lists.comment_note') }}</p>
-                        </div>
-                    </div>
-
-                    {{ csrf_field() }}
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal">
-                        {{ Lang.get('frontend/comics.add_to_list_modal_close') }}
-                    </button>
-
-                    <button type="submit" class="btn" id="save-list-btn">
-                        {{ Lang.get('frontend/comics.save_changes') }}
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>

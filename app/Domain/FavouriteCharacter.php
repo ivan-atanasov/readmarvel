@@ -1,8 +1,10 @@
 <?php
 namespace App\Domain;
 
+use App\Repositories\CharacterRepository;
 use Carbon\Carbon;
 use DB;
+use GuzzleHttp\Client;
 
 /**
  * Class Favourite
@@ -10,6 +12,31 @@ use DB;
  */
 class FavouriteCharacter
 {
+    /**
+     * @var Client
+     */
+    private $client;
+
+    /**
+     * @return Client
+     */
+    public function getClient(): Client
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param Client $client
+     *
+     * @return $this
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
     /**
      * @param int $userId
      * @param int $characterId
@@ -50,5 +77,25 @@ class FavouriteCharacter
         return DB::table('users_to_characters')->where('user_id', '=', $userId)
             ->where('character_id', '=', $characterId)
             ->count();
+    }
+
+    /**
+     * @param int $userId
+     *
+     * @return array
+     */
+    public function forUser(int $userId)
+    {
+        $favouriteCharacters = DB::table('users_to_characters')
+            ->where('user_id', '=', $userId)
+            ->get(['character_id']);
+
+        $characterRepository = new CharacterRepository($this->getClient());
+        $characters = [];
+        foreach ($favouriteCharacters as $characterId) {
+            $characters[] = $characterRepository->find($characterId->character_id);
+        }
+
+        return $characters;
     }
 }
