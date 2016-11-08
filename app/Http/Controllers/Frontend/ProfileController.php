@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Domain\FavouriteCharacter;
 use App\Entities\MarvelList;
 use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
@@ -25,6 +26,9 @@ class ProfileController extends BaseController
 
     /** @var MarvelListRepository */
     protected $marvelListRepository;
+
+    /** @var FavouriteCharacter */
+    private $favouriteCharacter;
 
     /**
      * ProfileController constructor.
@@ -57,10 +61,14 @@ class ProfileController extends BaseController
         $lists = $this->marvelListRepository->allForUser($user)->toArray();
         $this->getListsAvatars($lists);
 
+        $favourite = new FavouriteCharacter();
+        $favouriteCharacters = $favourite->setClient($this->client)->forUser($user->id);
+
         $viewData = [
-            'profile' => $user->profile,
-            'avatar'  => $avatars,
-            'lists'   => $lists,
+            'profile'    => $user->profile,
+            'avatar'     => $avatars,
+            'lists'      => $lists,
+            'characters' => $favouriteCharacters,
         ];
 
         return View::make('frontend/profile.layout', $viewData);

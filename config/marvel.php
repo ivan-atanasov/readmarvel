@@ -14,7 +14,8 @@ return [
         'thumbnail' => 'portrait_uncanny.jpg',
     ],
     'characters'   => [
-        'thumbnail' => 'portrait_uncanny.jpg',
+        'thumbnail'               => 'portrait_uncanny.jpg',
+        'profile_small_thumbnail' => 'portrait_medium.jpg',
     ],
     'social_links' => [
         'twitter'   => 'https://twitter.com/readmarvel',
