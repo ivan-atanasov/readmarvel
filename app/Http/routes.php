@@ -71,7 +71,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     /**
      * Public profile
      */
-    Route::get('profile/public/{nickname}',
+    Route::get('profile/{nickname}',
         ['as' => 'frontend.public_profile', 'uses' => 'ProfileController@publicProfile']
     );
 
