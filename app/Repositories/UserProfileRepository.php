@@ -82,4 +82,14 @@ class UserProfileRepository
         $user->password = \Hash::make($newPassword);
         return $user->save();
     }
+
+    /**
+     * @param string $nickname
+     *
+     * @return mixed
+     */
+    public function findByNickname(string $nickname)
+    {
+        return User::where('nickname', '=', $nickname)->first();
+    }
 }
