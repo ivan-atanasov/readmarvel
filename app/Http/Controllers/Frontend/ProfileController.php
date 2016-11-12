@@ -120,10 +120,9 @@ class ProfileController extends BaseController
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function publicProfile(int $id)
+    public function publicProfile(string $nickname)
     {
-        $profile = $this->userProfileRepository->find($id);
-        $user = $profile->user;
+        $user = $this->userProfileRepository->findByNickname($nickname);
 
         $avatars = [];
         if (isset($user->profile) && strlen($user->profile->avatar)) {
@@ -131,12 +130,16 @@ class ProfileController extends BaseController
         }
 
         $lists = $this->marvelListRepository->allForUser($user)->toArray();
-        $this->getListsAvatars($lists);
+        $this->getListsAvatars($lists);;
+
+        $favourite = new FavouriteCharacter();
+        $favouriteCharacters = $favourite->setClient($this->client)->forUser($user->id);
 
         $viewData = [
-            'profile' => $user->profile,
-            'avatar'  => $avatars,
-            'lists'   => $lists,
+            'profile'    => $user->profile,
+            'avatar'     => $avatars,
+            'lists'      => $lists,
+            'characters' => $favouriteCharacters,
         ];
 
         return View::make('frontend/profile.public', $viewData);
