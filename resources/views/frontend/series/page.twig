@@ -135,16 +135,8 @@
     {% endif %}
 {% endblock %}
 
-{% block styles %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ URL.to('assets/css/datetimepicker.css') }}"/>
-{% endblock %}
-
 {% block scripts %}
     {{ parent() }}
-
-    <script type="application/javascript" src="{{ URL.to('js/datetimepicker.js') }}"></script>
 
     <script type="application/javascript">
         $('#started-at').datetimepicker({format: 'yyyy/mm'});
