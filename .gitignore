@@ -17,5 +17,5 @@ codeception.yml
 /public/uploads
 /public/build/assets
 c3.php
-/public/assets/css/app.css
-/public/assets/css/app.css.map
+/public/assets/css
+/public/assets/js

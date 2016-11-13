@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
         <link rel="stylesheet" href="{{ elixir('assets/css/app.css') }}"/>
-        <link rel="stylesheet" href="{{ url('assets/css/parsley.css') }}"/>
     {% endblock %}
 </head>
 <body>
@@ -29,8 +28,8 @@
 {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="application/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
-    <script type="application/javascript" src="{{ url('js/parsley.min.js') }}"></script>
+    <script type="application/javascript" src="{{ url('assets/js/all.js') }}"></script>
+
     {% include 'frontend/partials/_ga_tracking_code' %}
 {% endblock %}
 </body>
