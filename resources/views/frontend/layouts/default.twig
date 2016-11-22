@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ Lang.get('frontend/navbar.title') }}</title>
+
+    {% block styles %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="{{ elixir('assets/css/app.css') }}"/>
+    {% endblock %}
+</head>
+<body>
+{% include 'frontend/partials/_navbar.twig' %}
+
+{% block carousel %}
+{% endblock %}
+
+<div class="container content-container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% block footer %}
+    {% include 'frontend/partials/_footer.twig' %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="application/javascript" src="{{ url('assets/js/all.js') }}"></script>
+
+    {% include 'frontend/partials/_ga_tracking_code' %}
+{% endblock %}
+</body>
+</html>

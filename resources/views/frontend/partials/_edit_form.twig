@@ -1,0 +1,15 @@
+{% include 'frontend/partials/_errors.twig' %}
+
+{{ Form.model( resource,
+{
+    'route': edit_route,
+    'method': 'post',
+    'class': classes,
+    'role': 'form',
+    'id': id,
+    'files': files
+}) | raw }}
+
+{% include form %}
+
+{{ Form.close() | raw }}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Read Marvel - Admin Panel</title>
+
+    {% block styles %}
+        <!-- Bootstrap Core CSS -->
+        <link href="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/css/AdminLTE.min.css') }}" />
+
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/css/skins/_all-skins.min.css') }}" />
+    {% endblock %}
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div id="wrapper">
+    {% include 'admin/partials/_navbar' %}
+    {% include 'admin/partials/_left_sidebar' %}
+
+    <div class="content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'admin/partials/_footer' %}
+    {% include 'admin/partials/_control_sidebar' %}
+</div>
+
+{% block scripts %}
+    <!-- jQuery 2.2.3 -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+
+    <!-- Bootstrap 3.3.6 -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- FastClick -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/fastclick/fastclick.js') }}"></script>
+
+    <!-- AdminLTE App -->
+    <script src="{{ URL.to('assets/admin/admin-lte/js/app.min.js') }}"></script>
+
+    <!-- Sparkline -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- jvectormap -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+
+    <!-- SlimScroll 1.3.0 -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- ChartJS 1.0.1 -->
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/chartjs/Chart.min.js') }}"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ URL.to('assets/admin/admin-lte/js/demo.js') }}"></script>
+{% endblock %}
+</body>
+</html>

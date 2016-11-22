@@ -1,0 +1,145 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ URL.route('frontend.series') }}" class="btn btn-block btn-marvel">
+                <i class="glyphicon glyphicon-arrow-left"></i> {{ Lang.get('frontend/comics.back_to_series') }}
+            </a>
+        </div>
+
+        <div class="col-md-2 col-md-offset-7">
+            {% if Auth.check() %}
+                <a href="#" class="btn btn-block btn-marvel"
+                   data-toggle="modal"
+                   data-target="#add-to-list-modal"
+                   id="add-to-list">
+                    {{ Lang.get('frontend/comics.add_to_list') }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row series-page top-buffer">
+        <div class="col-md-3">
+            <img src="{{ series['thumbnail']['path'] }}/{{ Config.get('marvel.series.thumbnail') }}"
+                 alt="{{ series['title'] }} thumbnail"
+                 class="img-responsive"/>
+
+                <a href="{{ series['urls'][0]['url'] }}" class="btn btn-block btn-black btn-marvel" target="_blank">
+                    {{ Lang.get('frontend/comics.see_at_marvel') }}
+                </a>
+        </div>
+
+        <div class="col-md-9">
+            <h2 class="series-title">{{ series['title'] }}</h2>
+
+            <div class="years">
+                <div>
+                    <span class="bold">{{ Lang.get('frontend/comics.period') }}:</span>  {{ series['startYear'] }} -
+                    {% if series['endYear'] != 2099 %}
+                        {{ series['endYear'] }}
+                    {% else %}
+                        {{ Lang.get('frontend/comics.present') }}
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if series['rating'] %}
+                <div class="rating">
+                    <span class="bold">{{ Lang.get('frontend/comics.rating') }}:</span> {{ series['rating'] }}
+                </div>
+            {% endif %}
+
+            <p>{{ series['description'] }}</p>
+
+            <ul class="nav nav-tabs top-buffer" role="tablist">
+                {% if series['creators']['available'] > 0 %}
+                    <li class="active">
+                        <a href="#creators" aria-controls="creators" role="tab" data-toggle="tab">
+                            <span>{{ Lang.get('frontend/comics.creators') }}</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if series['characters']['available'] > 0 %}
+                    <li>
+                        <a href="#characters" aria-controls="characters" role="tab" data-toggle="tab">
+                            {{ Lang.get('frontend/comics.characters') }}
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if series['comics']['available'] > 0 %}
+                    <li>
+                        <a href="#comics" aria-controls="comics" role="tab" data-toggle="tab">
+                            {{ Lang.get('frontend/comics.comics') }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <div class="tab-content">
+                {% if series['creators']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade in active" id="creators">
+                        <div class="creators">
+                            <ul class="list-group">
+                                {% for creator in series['creators']['items'] %}
+                                    <li class="list-group-item">{{ creator['name'] }} ({{ creator['role'] }})</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if series['characters']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade" id="characters">
+                        <div class="characters">
+                            <ul class="list-group">
+                                {% for character in series['characters']['items'] %}
+                                    <li class="list-group-item">{{ character['name'] }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if series['comics']['available'] > 0 %}
+                    <div role="tabpanel" class="tab-pane fade" id="comics">
+                        <div class="comics">
+                            <ul class="list-group">
+                                {% for comic in series['comics']['items'] %}
+                                    <li class="list-group-item">{{ comic['name'] }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% include 'frontend/series/partials/_comments_form.twig' with {
+            'series_id' : series['id'],
+            'comments' : comments
+            } %}
+
+            {% include 'frontend/series/partials/_comments.twig' %}
+        </div>
+    </div>
+
+    {% if Auth.check() %}
+        {% include 'frontend/partials/_add_to_list_modal' with {
+        'lists' : lists,
+        'series' : series,
+        'submitUrl' : URL.route('frontend.add_item_to_list')
+        } %}
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script type="application/javascript">
+        $('#started-at').datetimepicker({format: 'yyyy/mm'});
+        $('#finished-at').datetimepicker({format: 'yyyy/mm'});
+    </script>
+{% endblock %}

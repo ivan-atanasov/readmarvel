@@ -1,0 +1,30 @@
+{% extends 'admin/layouts/default' %}
+
+{% block content %}
+    {{ Breadcrumbs.render('static_pages_edit', page)|raw }}
+
+    {% include 'admin.partials._form_edit' with {
+    'title': 'Modify user',
+    'edit_route': ['admin.static.update', page.id],
+    'form': 'admin.static_pages.form',
+    'resource': page
+    } %}
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+
+    <link rel="stylesheet"
+          href="{{ URL.to('assets/admin/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
+    <script type="application/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('content');
+        });
+    </script>
+{% endblock %}

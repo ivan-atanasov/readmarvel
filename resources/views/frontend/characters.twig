@@ -1,0 +1,26 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div id="content">
+        <h2>{{ Lang.get('frontend/characters.title') }}</h2>
+
+        <div id="characters" class="results">
+            {% for character in characters %}
+                <article class="card">
+                    <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
+                         alt="{{ character['name'] }} thumbnail" />
+
+                    <footer>
+                        <h5>
+                            <a href="#" class="card-title">{{ character['name'] }}</a>
+                        </h5>
+                    </footer>
+                </article>
+            {% endfor %}
+        </div>
+
+        <div id="pagination">
+            {{ characters.setPath('characters').render|raw }}
+        </div>
+    </div>
+{% endblock %}

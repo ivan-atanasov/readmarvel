@@ -1,0 +1,124 @@
+<div class="add-to-list modal fade" id="add-to-list-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{ Lang.get('frontend/comics.add_to_list') }}</h4>
+            </div>
+
+            <form action="{{ submitUrl }}" method="post" id="add-to-list-form" data-parsley-validate>
+                <div class="modal-body">
+                    {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label for="marvel-list">{{ Lang.get('frontend/comics.pick_a_list') }}</label>
+
+                            <select id="marvel-list"
+                                    name="list_id"
+                                    class="form-control"
+                                    data-parsley-required>
+                                <option value="">{{ Lang.get('frontend/comics.select_a_list') }}</option>
+                                {% for list in lists %}
+                                    <option value="{{ list.id }}"> {{ list.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-6">
+                            <label for="score">{{ Lang.get('frontend/comics.score') }}</label>
+                            <select name="score"
+                                    id="score"
+                                    class="form-control"
+                                    data-parsley-min="1"
+                                    data-parsley-max="10">
+                                {% for i in 1..10 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="reread-value">{{ Lang.get('frontend/comics.reread_value') }}</label>
+
+                            <select name="reread_value"
+                                    id="reread-value"
+                                    class="form-control"
+                                    data-parsley-min="1"
+                                    data-parsley-max="10">
+                                {% for i in 1..10 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label for="progress">{{ Lang.get('frontend/comics.progress') }}</label>
+
+                            <div class="input-group">
+                                <input type="text"
+                                       class="form-control text-center"
+                                       placeholder="{{ Lang.get('frontend/comics.already_finished_count') }}"
+                                       id="progress"
+                                       name="progress"
+                                       value="">
+                                <div class="input-group-addon">/</div>
+                                <input type="text"
+                                       class="form-control text-center"
+                                       placeholder="{{ series['stories']['available'] }}"
+                                       disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <label>{{ Lang.get('frontend/comics.period') }}</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">{{ Lang.get('frontend/comics.from') }}</div>
+                                <input type="text"
+                                       class="form-control text-center"
+                                       id="started-at"
+                                       placeholder="Started at"
+                                       data-start-view="4"
+                                       name="started_at"
+                                       data-min-view="3"/>
+
+                                <div class="input-group-addon">{{ Lang.get('frontend/comics.to') }}</div>
+                                <input type="text"
+                                       class="form-control text-center"
+                                       id="finished-at"
+                                       placeholder="Finished at"
+                                       data-start-view="4"
+                                       name="finished_at"
+                                       data-min-view="3"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="series_id" value="{{ series['id'] }}"/>
+                    <input type="hidden" name="item_id" value=""/>
+
+                    {{ csrf_field() }}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">
+                        {{ Lang.get('frontend/comics.add_to_list_modal_close') }}
+                    </button>
+
+                    <button type="submit" class="btn" id="add-to-list-btn">
+                        {{ Lang.get('frontend/comics.save_changes') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

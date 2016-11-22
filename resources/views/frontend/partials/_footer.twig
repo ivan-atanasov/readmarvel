@@ -1,0 +1,62 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>{{ Lang.get('frontend/index.footer_learn_more') }}</h3>
+                <ul>
+                    {% for page in pages %}
+                        <li>
+                            <a href="{{ URL.route('frontend.static', { 'url_slug': page.url_slug }) }}">
+                                {{ page.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h3>{{ Lang.get('frontend/index.footer_characters') }}</h3>
+                <ul>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009610, 'url_slug': 'spider-man' }) }}">
+                            Spider-Man
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009664, 'url_slug': 'thor' }) }}">
+                            Thor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009368, 'url_slug': 'iron-man' }) }}">
+                            Iron Man
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009351, 'url_slug': 'hulk' }) }}">
+                            The Hulk
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.characters.show', { 'id' : 1009227, 'url_slug': 'carnage' }) }}">
+                            Carnage
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="col-md-3">
+                <h3>{{ Lang.get('frontend/index.footer_social') }}</h3>
+                <a href="{{ Config.get('marvel.social_links.twitter') }}" target="_blank"
+                   class="ion-social-twitter social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.facebook') }}" target="_blank"
+                   class="ion-social-facebook social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.instagram') }}" target="_blank"
+                   class="ion-social-instagram social" data-pack="social" data-tags="follow, post, share"></a>
+            </div>
+        </div>
+
+        <div class="text-center">{{ Lang.get('frontend/index.footer_copyright')|raw }}</div>
+    </div>
+</footer>

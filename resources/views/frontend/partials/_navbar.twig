@@ -1,0 +1,75 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ URL.route('home') }}">
+                <img src="{{ URL.to('images/logo.png') }}" alt="read-marvel-com"/>
+            </a>
+
+            <div class="social-block">
+                <a href="{{ Config.get('marvel.social_links.twitter') }}" target="_blank"
+                   class="ion-social-twitter social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.facebook') }}" target="_blank"
+                   class="ion-social-facebook social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.instagram') }}" target="_blank"
+                   class="ion-social-instagram social" data-pack="social" data-tags="follow, post, share"></a>
+            </div>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ URL.route('home') }}">
+                        {{ Lang.get('frontend/navbar.home') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL.route('frontend.series') }}">
+                        {{ Lang.get('frontend/navbar.series') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL.route('frontend.characters') }}">
+                        {{ Lang.get('frontend/navbar.characters') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL.route('frontend.contact') }}">
+                        {{ Lang.get('frontend/navbar.contact') }}
+                    </a>
+                </li>
+                {% if Auth.check %}
+                    <li>
+                        <a href="{{ URL.route('frontend.profile') }}" id="profile-link">
+                            {{ Lang.get('frontend/navbar.profile') }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ URL.route('logout') }}" id="logout-link">
+                            {{ Lang.get('frontend/navbar.logout') }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ URL.route('login_index') }}" id="login-link">
+                            {{ Lang.get('frontend/navbar.login') }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ URL.route('register_index') }}" id="register-link">
+                            {{ Lang.get('frontend/navbar.register') }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

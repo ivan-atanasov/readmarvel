@@ -11,6 +11,21 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
+elixir(function (mix) {
+    mix.sass([
+            'frontend/app.scss'
+        ], 'public/assets/css')
+        .scripts([
+            'frontend/bootstrap.js',
+            'frontend/characters.js',
+            'frontend/datetimepicker.js',
+            'frontend/lists.js',
+            'frontend/parsley.js',
+            'frontend/profile.js'
+        ], 'public/assets/js');
+
+    mix.version([
+        'public/assets/css/app.css',
+        'public/assets/js/all.js'
+    ]);
 });

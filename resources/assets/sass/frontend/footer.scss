@@ -1,0 +1,19 @@
+.footer {
+  background-image: url('/images/footer.jpg');
+  height: auto;
+  margin-top: 20px;
+
+  .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #fff;
+  }
+
+  ul {
+    list-style: none;
+
+    li a {
+      color: #fff;
+    }
+  }
+}

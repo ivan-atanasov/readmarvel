@@ -1,0 +1,35 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block carousel %}
+    {{ parent() }}
+    {% include 'frontend/partials/_carousel.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="heading-title">
+        <h2>{{ Lang.get('frontend/index.random_comics') }}</h2>
+    </div>
+
+    <div class="index">
+        {% set i = 0 %}
+        {% set shouldOpen = 1 %}
+
+        {% for comic in comics %}
+            {% set i = i+1 %}
+
+            {% if shouldOpen == 1 %}
+                {% set shouldOpen = 0 %}
+                <div class="row">
+            {% endif %}
+
+            {% include 'frontend/partials/_series_thumbnail' with {'comic' : comic} %}
+
+            {% if i is divisible by(4) or i == comics|length %}
+                </div>
+                {% set shouldOpen = 1 %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

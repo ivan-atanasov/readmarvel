@@ -1,0 +1,8 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div class="heading-title">
+        <h2>{{ page.title }}</h2>
+    </div>
+    {{ page.content|raw }}
+{% endblock %}

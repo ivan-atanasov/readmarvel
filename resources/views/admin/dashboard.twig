@@ -1,0 +1,38 @@
+{% extends 'admin/layouts/default.twig' %}
+
+{% block content %}
+    {{ Breadcrumbs.render('home')|raw }}
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <a href="{{ URL.route('admin.static.index') }}">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-clone"></i></span>
+                    </a>
+                    <div class="info-box-content">
+                        <span class="info-box-text">
+                            {{ Lang.get('admin/dashboard.static_pages') }}
+                        </span>
+                        <span class="info-box-number">
+                            {{ Lang.get('admin/dashboard.static_pages') }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+
+    <!-- Morris Charts CSS -->
+    <link href="{{ URL.to('assets/admin/sb-admin-2/morrisjs/morris.css') }}" rel="stylesheet"/>
+
+    <!-- MetisMenu CSS -->
+    <link href="{{ URL.to('assets/admin/sb-admin-2/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet"/>
+
+    <!-- Timeline CSS -->
+    <link href="{{ URL.to('assets/admin/sb-admin-2/bootstrap/dist/css/timeline.css') }}" rel="stylesheet"/>
+{% endblock %}

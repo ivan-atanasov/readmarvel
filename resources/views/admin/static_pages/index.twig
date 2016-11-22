@@ -1,0 +1,81 @@
+{% extends 'admin/layouts/default.twig' %}
+
+{% block content %}
+    {{ Breadcrumbs.render('static_pages')|raw }}
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-1 pull-right">
+                <a href="{{ URL.route('admin.static.create') }}" type="button" class="btn btn-block btn-primary">
+                    <i class="fa fa-plus-square">&nbsp;</i>
+                    {{ Lang.get('admin/static/index.add_new_btn') }}
+                </a>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table id="datatable-static-pages" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ Lang.get('admin/static/index.title') }}</th>
+                                <th>{{ Lang.get('admin/static/index.url_slug') }}</th>
+                                <th>{{ Lang.get('admin/static/index.added_by') }}</th>
+                                <th>{{ Lang.get('admin/static/index.actions') }}</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for page in pages %}
+                                <tr>
+                                    <td>{{ page.title }}</td>
+                                    <td>{{ page.url_slug }}</td>
+                                    <td>{{ page.user.email }}</td>
+                                    <td>
+                                        <a href="{{ URL.route('admin.static.edit', {'id' : page.id}) }}"
+                                           class="btn btn-info">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger btn-remove"
+                                           data-url="{{ URL.route('admin.static.destroy', {'id' : page.id}) }}"
+                                           data-toggle="modal"
+                                           data-target="#delete-modal">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                            <tfoot>
+                            <tr>
+                                <th>{{ Lang.get('admin/static/index.title') }}</th>
+                                <th>{{ Lang.get('admin/static/index.url_slug') }}</th>
+                                <th>{{ Lang.get('admin/static/index.added_by') }}</th>
+                                <th>{{ Lang.get('admin/static/index.actions') }}</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'admin/partials/_confirm_modal' %}
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/plugins/datatables/dataTables.bootstrap.css') }}"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/admin-lte/js/pages/static_pages.js') }}"></script>
+{% endblock %}

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'mailgun'),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,4 +109,5 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+    'contact_form_to_email' => env('MAIL_CONTACT_FORM_TO'),
 ];

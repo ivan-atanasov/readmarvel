@@ -1,0 +1,51 @@
+{% extends 'frontend/layouts/default' %}
+
+{% block content %}
+    <div class="module form-module">
+        {% include 'frontend/partials/_errors.twig' with { 'errors' : errors } %}
+
+        <div class="form" style="display: block;">
+            <h2>{{ Lang.get('frontend/auth.register.title') }}</h2>
+            <form action="{{ URL.route('register_post') }}"
+                  id="register-form"
+                  method="post"
+                  class="form-registration"
+                  data-parsley-validate
+            >
+                <input type="text" name="nickname" id="nickname" value="{{ old('nickname') }}"
+                       placeholder="{{ Lang.get('frontend/auth.register.nickname') }}"
+                       class="form-control" data-parsley-required data-parsley-type="alphanum"/>
+
+                <input type="text" name="name" id="name" value="{{ old('name') }}"
+                       placeholder="{{ Lang.get('frontend/auth.register.name') }}"
+                       class="form-control"/>
+
+                <input type="email" name="email" id="email" value="{{ old('email') }}"
+                       placeholder="{{ Lang.get('frontend/auth.register.email') }}"
+                       class="form-control" data-parsley-required/>
+
+                <input type="password" name="password" id="password" value=""
+                       placeholder="{{ Lang.get('frontend/auth.register.password') }}"
+                       class="form-control" data-parsley-required/>
+
+                <input type="password" name="password_confirmation" id="password-confirmation" value=""
+                       placeholder="{{ Lang.get('frontend/auth.register.password_confirmation') }}"
+                       class="form-control" data-parsley-required/>
+
+                {{ csrf_field() }}
+
+                {% if show_recaptcha %}
+                    <div class="g-recaptcha" data-sitekey="{{ Config.get('services.recaptcha.public') }}"></div>
+                {% endif %}
+
+                <input type="submit" value="{{ Lang.get('frontend/auth.register.register') }}" />
+            </form>
+        </div>
+
+        <div class="cta">
+            <a href="{{ URL.route('login') }}">
+                {{ Lang.get('frontend/auth.register.already_registered') }}
+            </a>
+        </div>
+    </div>
+{% endblock %}

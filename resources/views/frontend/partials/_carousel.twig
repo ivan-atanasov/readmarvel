@@ -1,0 +1,55 @@
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img data-src="{{ URL.to('/images/slide_1.jpg') }}"
+                 alt="my marvel list"
+                 src="{{ URL.to('/images/slide_1.jpg') }}"
+                 data-holder-rendered="true">
+
+            <div class="carousel-caption">
+                <h3>{{ Lang.get('frontend/index.slides.slide_1.title') }}</h3>
+                <p>{{ Lang.get('frontend/index.slides.slide_1.description') }}</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img data-src="{{ URL.to('/images/slide_2.jpg') }}"
+                 alt="my marvel list"
+                 src="{{ URL.to('/images/slide_2.jpg') }}"
+                 data-holder-rendered="true">
+
+            <div class="carousel-caption">
+                <h3>{{ Lang.get('frontend/index.slides.slide_2.title') }}</h3>
+                <p>{{ Lang.get('frontend/index.slides.slide_2.description') }}</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img data-src="{{ URL.to('/images/slide_3.jpg') }}"
+                 alt="my marvel list"
+                 src="{{ URL.to('/images/slide_3.jpg') }}"
+                 data-holder-rendered="true">
+
+            <div class="carousel-caption">
+                <h3>{{ Lang.get('frontend/index.slides.slide_3.title') }}</h3>
+                <p>{{ Lang.get('frontend/index.slides.slide_3.description')|raw }}</p>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+    </a>
+
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+    </a>
+</div>

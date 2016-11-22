@@ -1,0 +1,40 @@
+{% extends 'frontend/layouts/default.twig' %}
+
+{% block content %}
+    <div class="module form-module">
+        {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
+
+        <div class="form" style="display: block;">
+            <h2>{{ Lang.get('frontend/auth.reset_password.choose_new_password') }}</h2>
+            <form method="POST" action="{{ URL.route('frontend.email_reset') }}">
+                {{ csrf_field() }}
+
+                <input type="email"
+                       id="email"
+                       name="email"
+                       value="{{ old('email') }}"
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/auth.reset_password.email') }}" autofocus/>
+
+                <input type="password"
+                       id="password"
+                       name="password"
+                       value=""
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/auth.reset_password.password') }}"/>
+
+                <input type="password"
+                       id="password-confirmation"
+                       name="password_confirmation"
+                       value=""
+                       class="form-control"
+                       placeholder="{{ Lang.get('frontend/auth.reset_password.password_confirmation') }}"/>
+
+                <input type="hidden" name="token" value="{{ token }}">
+                <div>
+                    <button class="submit">{{ Lang.get('frontend/auth.reset_password.reset') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
