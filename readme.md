@@ -7,7 +7,7 @@ ReadMarvel.com is a fan made website. It is built entirely on Laravel 5. All dat
 ## Requirements
 - Nginx
 - MySQL
-- Redis server
+- Redis server 
 - Composer
 - Marvel Developer account
 - Mailgun account (or your favourite e-mail service)
