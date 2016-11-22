@@ -1,33 +1,34 @@
 # Read Marvel
-ReadMarvel is a fan made website. It can be used to keep track of you favourite Marvel Comic books.
+ReadMarvel.com is a fan made website. It is built entirely on Laravel 5. All data is provided by Marvel through their public Marvel API.
+ You can read more about it on their [official website](http://developer.marvel.com/)
 
 ## Requirements
-Below you can find all the required steps to run the project.
-
 - Nginx
 - MySQL
 - Redis server
-- PhantomJS (for running tests)
+- Composer
+- Marvel Developer account
+- Mailgun account (or your favourite e-mail service)
+- Google ReCaptcha account
+- (optional) Google Analytics account (if you are going to use GA)
+- (optional) PhantomJS (for running the Codeception tests)
 
 ## Project setup
-I've kept the setting up as short as possible.
-
 - Register in `http://developer.marvel.com` to get your API keys (you'll use it later)
 - Setup Vagrant with Homestead (https://laravel.com/docs/5.3/homestead)
-- Setup redis server on your environment
-- Create a new MySQL database (ex. "marvel")
-- Navigate to the project root and run `composer install`
-- Copy the `.env.example` to `.env`
-- Open your `.env` file and substitute the placeholder values with your custom values
+- Setup redis server on your Homestead environment
+- Create a new MySQL database in Homestead (ex. "marvel")
+- Navigate to the project root in Homestead and run `composer install`
+- Rename the `.env.example` file to `.env`
+- Open your `.env` file and replace the placeholder values with your custom values
 - Run `php artisan migrate --seed`
-- A message with your admin user should appear in the console
-- Setup a vhost (ex. `marvel.dev`)
+- Pay attention to the console messages. A message with your **admin user** should appear in the console
+- Setup a vhost (ex. `marvel.dev`. This step will vary depending on your OS)
 - Open your newly setup vhost in your browser
 
 ## Contributing
-
-Thank you for considering contributing to this project! 
+- Create a branch of develop;
+- Make a PR;
 
 ## License
-
-The "My Marvel List" web app is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+The "ReadMarvel.com" web app is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT);
