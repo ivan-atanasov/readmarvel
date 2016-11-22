@@ -21,12 +21,12 @@ class HomeController extends BaseController
 
     /**
      * HomeController constructor.
+     *
+     * @param SeriesRepository $seriesRepository
      */
-    public function __construct()
+    public function __construct(SeriesRepository $seriesRepository)
     {
-        parent::__construct();
-
-        $this->seriesRepository = new SeriesRepository($this->client);
+        $this->seriesRepository = $seriesRepository;
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Http\Requests\UserProfileRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\UserProfileRepository;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
@@ -26,8 +27,9 @@ class ProfileController extends BaseController
 
     /** @var MarvelListRepository */
     protected $marvelListRepository;
-
-    /** @var FavouriteCharacter */
+    /**
+     * @var FavouriteCharacter
+     */
     private $favouriteCharacter;
 
     /**
@@ -35,15 +37,16 @@ class ProfileController extends BaseController
      *
      * @param UserProfileRepository $userProfileRepository
      * @param MarvelListRepository  $marvelListRepository
+     * @param FavouriteCharacter    $favouriteCharacter
      */
     public function __construct(
         UserProfileRepository $userProfileRepository,
-        MarvelListRepository $marvelListRepository
+        MarvelListRepository $marvelListRepository,
+        FavouriteCharacter $favouriteCharacter
     ) {
-        parent::__construct();
-
         $this->userProfileRepository = $userProfileRepository;
         $this->marvelListRepository = $marvelListRepository;
+        $this->favouriteCharacter = $favouriteCharacter;
     }
 
     /**
@@ -61,8 +64,7 @@ class ProfileController extends BaseController
         $lists = $this->marvelListRepository->allForUser($user)->toArray();
         $this->getListsAvatars($lists);
 
-        $favourite = new FavouriteCharacter();
-        $favouriteCharacters = $favourite->setClient($this->client)->forUser($user->id);
+        $favouriteCharacters = $this->favouriteCharacter->setClient(new Client())->forUser($user->id);
 
         $viewData = [
             'profile'    => $user->profile,
@@ -116,7 +118,7 @@ class ProfileController extends BaseController
     }
 
     /**
-     * @param int $id
+     * @param string $nickname
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -130,10 +132,9 @@ class ProfileController extends BaseController
         }
 
         $lists = $this->marvelListRepository->allForUser($user)->toArray();
-        $this->getListsAvatars($lists);;
+        $this->getListsAvatars($lists);
 
-        $favourite = new FavouriteCharacter();
-        $favouriteCharacters = $favourite->setClient($this->client)->forUser($user->id);
+        $favouriteCharacters = $this->favouriteCharacter->setClient(new Client())->forUser($user->id);
 
         $viewData = [
             'profile'    => $user->profile,

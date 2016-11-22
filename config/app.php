@@ -166,6 +166,7 @@ return [
          * Custom Service Providers...
          */
         App\Providers\FooterServiceProvider::class,
+        App\Providers\ApiClientServiceProvider::class,
 
     ],
 
