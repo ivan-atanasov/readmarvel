@@ -1,3 +1,5 @@
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+
 # Read Marvel
 ReadMarvel.com is a fan made website. It is built entirely on Laravel 5. All data is provided by Marvel through their public Marvel API.
  You can read more about it on their [official website](http://developer.marvel.com/)
