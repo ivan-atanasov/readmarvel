@@ -23,8 +23,6 @@ class CommentsController extends BaseController
      */
     public function __construct(CommentRepository $commentRepository)
     {
-        parent::__construct();
-
         $this->commentRepository = $commentRepository;
     }
 

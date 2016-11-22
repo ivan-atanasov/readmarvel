@@ -27,12 +27,11 @@ class CharactersController extends BaseController
      * CharactersController constructor.
      *
      * @param FavouriteCharacter  $favouriteCharacter
+     * @param CharacterRepository $characterRepository
      */
-    public function __construct(FavouriteCharacter $favouriteCharacter)
+    public function __construct(FavouriteCharacter $favouriteCharacter, CharacterRepository $characterRepository)
     {
-        parent::__construct();
-
-        $this->characterRepository = new CharacterRepository($this->client);
+        $this->characterRepository = $characterRepository;
         $this->favouriteCharacter = $favouriteCharacter;
     }
 

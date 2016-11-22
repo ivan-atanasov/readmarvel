@@ -21,8 +21,6 @@ class StaticPagesController extends BaseController
      */
     public function __construct(StaticPageRepository $staticPageRepository)
     {
-        parent::__construct();
-
         $this->staticPageRepository = $staticPageRepository;
     }
 

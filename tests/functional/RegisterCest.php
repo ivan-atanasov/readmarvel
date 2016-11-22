@@ -31,7 +31,7 @@ class RegisterCest
         $I->amOnPage($registerPage::$URL);
         $I->seeElement($registerPage::$registerForm);
 //        $I->seeElement($registerPage::$registerButton);
-        $I->fillField($registerPage::$nicknameField, $name);
+        $I->fillField($registerPage::$nicknameField, str_slug($name));
         $I->fillField($registerPage::$nameField, $name);
         $I->fillField($registerPage::$emailField, $email);
         $I->fillField($registerPage::$passwordField, '123456');

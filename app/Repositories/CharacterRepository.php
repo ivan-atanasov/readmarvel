@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\User;
 use GuzzleHttp\Client;
 use Config;
 use Cache;

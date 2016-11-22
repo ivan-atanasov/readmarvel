@@ -23,8 +23,6 @@ class FavouriteCharactersController extends BaseController
      */
     public function __construct(FavouriteCharacter $favourite)
     {
-        parent::__construct();
-
         $this->favourite = $favourite;
     }
 
