@@ -1,0 +1,12 @@
+<div class="col-lg-3 col-sm-6">
+    <div class="thumbnail">
+        <a href="{{ URL.route('frontend.characters.show', {'id': character['id'], 'url_slug' : str_slug(character['name'])}) }}"
+           class="details-btn">
+            <div class="caption-img" style="background: url({{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }});"></div>
+        </a>
+
+        <div class="caption-details">
+            <h3>{{ character['name'] }}</h3>
+        </div>
+    </div>
+</div>

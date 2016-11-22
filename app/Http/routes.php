@@ -20,7 +20,30 @@ Route::group(['namespace' => 'Frontend'], function () {
      */
     Route::get('/series', ['as' => 'frontend.series', 'uses' => 'SeriesController@list']);
     Route::get('/series/search', ['as' => 'frontend.series.search', 'uses' => 'SeriesController@search']);
-    Route::get('/series/{id}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
+    Route::get('/series/{id}/{url_slug?}', ['as' => 'frontend.series.show', 'uses' => 'SeriesController@show']);
+
+    /**
+     * Favourite Characters
+     */
+    Route::get(
+        '/characters/favourite/{character_id}',
+        ['as' => 'frontend.characters.favourite', 'uses' => 'FavouriteCharactersController@favourite']
+    );
+    Route::get(
+        '/characters/unfavourite/{character_id}',
+        ['as' => 'frontend.characters.unfavourite', 'uses' => 'FavouriteCharactersController@unfavourite']
+    );
+
+    /**
+     * Characters
+     */
+    Route::get('/characters', ['as' => 'frontend.characters', 'uses' => 'CharactersController@list']);
+    Route::get('/characters/search', ['as' => 'frontend.characters.search', 'uses' => 'CharactersController@search']);
+
+    Route::get(
+        '/characters/{id}/{url_slug?}',
+        ['as' => 'frontend.characters.show', 'uses' => 'CharactersController@show']
+    );
 
     /**
      * Public Lists
@@ -48,7 +71,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     /**
      * Public profile
      */
-    Route::get('profile/public/{id}', ['as' => 'frontend.public_profile', 'uses' => 'ProfileController@publicProfile']);
+    Route::get('profile/{nickname}',
+        ['as' => 'frontend.public_profile', 'uses' => 'ProfileController@publicProfile']
+    );
 
     /**
      * Authenticated Routes

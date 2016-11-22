@@ -2,17 +2,17 @@
 
 {% block content %}
     <div class="heading-title">
-        <h2>{{ Lang.get('frontend/comics.find_your_series') }}</h2>
+        <h2>{{ Lang.get('frontend/comics.find_your_favourite_characters') }}</h2>
     </div>
 
-    <form action="{{ URL.route('frontend.series.search') }}" method="get" class="search-series-form">
+    <form action="{{ URL.route('frontend.characters.search') }}" method="get" class="search-series-form">
         <div class="row">
             <div class="col-md-12">
                 <div class="input-group">
                     <input type="text"
                            name="query"
                            class="form-control"
-                           placeholder="{{ Lang.get('frontend/comics.search_placeholder') }}"
+                           placeholder="{{ Lang.get('frontend/characters.search_placeholder') }}"
                            id="search-series"
                            value="{{ query }}"/>
                     <span class="input-group-btn">
@@ -26,7 +26,7 @@
     <div class="series-list top-buffer">
         {% set i = 0 %}
         {% set shouldOpen = 1 %}
-        {% for comic in series %}
+        {% for character in characters %}
             {% set i = i+1 %}
 
             {% if shouldOpen == 1 %}
@@ -34,18 +34,16 @@
                 <div class="row">
             {% endif %}
 
-            {% include 'frontend/partials/_series_thumbnail' with {'comic' : comic} %}
+            {% include 'frontend/partials/_character_thumbnail' with {'character' : character} %}
 
-            {% if i is divisible by(4) or i == series|length %}
+            {% if i is divisible by(4) or i == characters|length %}
                 </div>
                 {% set shouldOpen = 1 %}
             {% endif %}
         {% endfor %}
     </div>
 
-
-
-    {{ series.setPath('search').appends('query', query).render|raw }}
+    {{ characters.setPath('search').appends('query', query).render|raw }}
 {% endblock %}
 
 

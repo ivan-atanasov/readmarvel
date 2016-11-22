@@ -18,12 +18,12 @@ class PublicListsController extends BaseController
 
     /**
      * PublicListsController constructor.
+     *
+     * @param MarvelListRepository $marvelListRepository
      */
-    public function __construct()
+    public function __construct(MarvelListRepository $marvelListRepository)
     {
-        parent::__construct();
-
-        $this->marvelListRepository = new MarvelListRepository($this->client);
+        $this->marvelListRepository = $marvelListRepository;
     }
 
     /**

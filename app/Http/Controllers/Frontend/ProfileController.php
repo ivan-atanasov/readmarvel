@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Domain\FavouriteCharacter;
 use App\Entities\MarvelList;
 use App\Entities\UserProfile;
 use App\Helpers\ImageHelper;
 use App\Http\Requests\UserProfileRequest;
 use App\Repositories\MarvelListRepository;
 use App\Repositories\UserProfileRepository;
-use App\Repositories\UserRepository;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use View;
@@ -26,22 +27,26 @@ class ProfileController extends BaseController
 
     /** @var MarvelListRepository */
     protected $marvelListRepository;
+    /**
+     * @var FavouriteCharacter
+     */
+    private $favouriteCharacter;
 
     /**
      * ProfileController constructor.
      *
      * @param UserProfileRepository $userProfileRepository
      * @param MarvelListRepository  $marvelListRepository
+     * @param FavouriteCharacter    $favouriteCharacter
      */
     public function __construct(
         UserProfileRepository $userProfileRepository,
-        MarvelListRepository $marvelListRepository
-    )
-    {
-        parent::__construct();
-
+        MarvelListRepository $marvelListRepository,
+        FavouriteCharacter $favouriteCharacter
+    ) {
         $this->userProfileRepository = $userProfileRepository;
         $this->marvelListRepository = $marvelListRepository;
+        $this->favouriteCharacter = $favouriteCharacter;
     }
 
     /**
@@ -59,10 +64,13 @@ class ProfileController extends BaseController
         $lists = $this->marvelListRepository->allForUser($user)->toArray();
         $this->getListsAvatars($lists);
 
+        $favouriteCharacters = $this->favouriteCharacter->setClient(new Client())->forUser($user->id);
+
         $viewData = [
-            'profile' => $user->profile,
-            'avatar'  => $avatars,
-            'lists'   => $lists,
+            'profile'    => $user->profile,
+            'avatar'     => $avatars,
+            'lists'      => $lists,
+            'characters' => $favouriteCharacters,
         ];
 
         return View::make('frontend/profile.layout', $viewData);
@@ -110,14 +118,13 @@ class ProfileController extends BaseController
     }
 
     /**
-     * @param int $id
+     * @param string $nickname
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function publicProfile(int $id)
+    public function publicProfile(string $nickname)
     {
-        $profile = $this->userProfileRepository->find($id);
-        $user = $profile->user;
+        $user = $this->userProfileRepository->findByNickname($nickname);
 
         $avatars = [];
         if (isset($user->profile) && strlen($user->profile->avatar)) {
@@ -127,10 +134,13 @@ class ProfileController extends BaseController
         $lists = $this->marvelListRepository->allForUser($user)->toArray();
         $this->getListsAvatars($lists);
 
+        $favouriteCharacters = $this->favouriteCharacter->setClient(new Client())->forUser($user->id);
+
         $viewData = [
-            'profile' => $user->profile,
-            'avatar'  => $avatars,
-            'lists'   => $lists,
+            'profile'    => $user->profile,
+            'avatar'     => $avatars,
+            'lists'      => $lists,
+            'characters' => $favouriteCharacters,
         ];
 
         return View::make('frontend/profile.public', $viewData);

@@ -11,6 +11,15 @@
             <a class="navbar-brand" href="{{ URL.route('home') }}">
                 <img src="{{ URL.to('images/logo.png') }}" alt="read-marvel-com"/>
             </a>
+
+            <div class="social-block">
+                <a href="{{ Config.get('marvel.social_links.twitter') }}" target="_blank"
+                   class="ion-social-twitter social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.facebook') }}" target="_blank"
+                   class="ion-social-facebook social" data-pack="social" data-tags="follow, post, share"></a>
+                <a href="{{ Config.get('marvel.social_links.instagram') }}" target="_blank"
+                   class="ion-social-instagram social" data-pack="social" data-tags="follow, post, share"></a>
+            </div>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -23,6 +32,11 @@
                 <li>
                     <a href="{{ URL.route('frontend.series') }}">
                         {{ Lang.get('frontend/navbar.series') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL.route('frontend.characters') }}">
+                        {{ Lang.get('frontend/navbar.characters') }}
                     </a>
                 </li>
                 <li>

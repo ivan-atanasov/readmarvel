@@ -25,13 +25,14 @@ class SeriesController extends BaseController
 
     /**
      * SeriesController constructor.
+     *
+     * @param MarvelListRepository $marvelListRepository
+     * @param SeriesRepository     $seriesRepository
      */
-    public function __construct()
+    public function __construct(MarvelListRepository $marvelListRepository, SeriesRepository $seriesRepository)
     {
-        parent::__construct();
-
-        $this->seriesRepository = new SeriesRepository($this->client);
-        $this->marvelListRepository = new MarvelListRepository($this->client);
+        $this->seriesRepository = $seriesRepository;
+        $this->marvelListRepository = $marvelListRepository;
     }
 
     /**
@@ -75,7 +76,7 @@ class SeriesController extends BaseController
     {
         $query = '';
         if ($request->has('query')) {
-            $offset = $request->has('page') ? $request->input('page') : 0;
+            $offset = $request->has('page') ? $request->input('page') - 1 : 0;
             list($series, $query, $total) = $this->seriesRepository->search(
                 $request->input('query'),
                 Config::get('homepage.per_page_comics'),

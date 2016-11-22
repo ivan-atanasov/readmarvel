@@ -25,13 +25,14 @@ class ListController extends BaseController
 
     /**
      * ListController constructor.
+     *
+     * @param MarvelListRepository $marvelListRepository
+     * @param SeriesRepository     $seriesRepository
      */
-    public function __construct()
+    public function __construct(MarvelListRepository $marvelListRepository, SeriesRepository $seriesRepository)
     {
-        parent::__construct();
-
-        $this->marvelListRepository = new MarvelListRepository($this->client);
-        $this->seriesRepository = new SeriesRepository($this->client);
+        $this->marvelListRepository = $marvelListRepository;
+        $this->seriesRepository = $seriesRepository;
     }
 
     /**
