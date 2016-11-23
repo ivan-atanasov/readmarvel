@@ -1,7 +1,7 @@
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework) ![Codeship](https://codeship.com/projects/a6380730-9339-0134-c16c-6ab3c53113e2/status?branch=master)
 
 # Read Marvel
-ReadMarvel.com is a fan made website. It is built entirely on Laravel 5. All data is provided by Marvel through their public Marvel API.
+ReadMarvel.com is a fan made website. It is built entirely on Laravel 5. All data is provided by Marvel through their public Marvel API. You can see the website fully functioning here: http://readmarvel.com/
  You can read more about it on their [official website](http://developer.marvel.com/)
 
 ## Requirements
