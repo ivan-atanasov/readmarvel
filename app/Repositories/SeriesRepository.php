@@ -85,7 +85,7 @@ class SeriesRepository
      */
     public function search(string $query, int $limit = 20, int $offset = 0)
     {
-        $search = strtolower($query);
+        $search = strtolower(trim($query));
 
         if (Cache::tags(['search_series'])->has("{$offset}_{$search}")) {
             $comics = Cache::tags(['search_series'])->get("{$offset}_{$search}");
