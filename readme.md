@@ -29,8 +29,10 @@ ReadMarvel.com is a fan made website. It is built entirely on Laravel 5. All dat
 - Open your newly setup vhost in your browser
 
 ## Contributing
-- Create a branch of develop;
-- Make a PR;
+- Fork the project;
+- Branch off develop;
+- Commit and push;
+- Make a PR to the original project;
 
 ## License
 The "ReadMarvel.com" web app is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT);
