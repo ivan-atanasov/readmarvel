@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Entities\StaticPage;
 use App\User;
 use Cache;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class StaticPageRepository
@@ -13,7 +14,7 @@ use Cache;
 class StaticPageRepository
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return Collection
      */
     public function all()
     {
