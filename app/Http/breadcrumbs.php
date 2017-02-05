@@ -28,3 +28,10 @@ Breadcrumbs::register('static_pages_edit', function($breadcrumbs, $page)
     $breadcrumbs->push(Lang::get('admin/breadcrumbs.static_pages'), route('admin.static.index'));
     $breadcrumbs->push(Lang::get('admin/breadcrumbs.edit'), route('admin.static.edit', $page->id));
 });
+
+// Home > Users
+Breadcrumbs::register('users', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(Lang::get('admin/breadcrumbs.users'), route('admin.users.index'));
+});

@@ -6,4 +6,5 @@ return [
     'static_pages'    => 'Static pages',
     'logout'          => 'Logout',
     'profile'         => 'Profile',
+    'users'           => 'Users',
 ];
