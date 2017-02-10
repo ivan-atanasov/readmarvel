@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\UserHasRegistered;
 use Mail;
 use Artisan;
+use Lang;
 
 class UserHasRegisteredListener
 {
@@ -17,10 +18,18 @@ class UserHasRegisteredListener
      */
     public function handle(UserHasRegistered $event)
     {
-        // @TODO 1. Send welcome e-mail
+        $this->sendWelcomeEmail($event);
+        $this->createDefaultLists($event);
+    }
+
+    /**
+     * @param UserHasRegistered $event
+     */
+    private function sendWelcomeEmail(UserHasRegistered $event)
+    {
         $data = [
-            'nickname' => 'Captain America',
-            'subject'  => 'Thanks for registering',
+            'nickname' => $event->user->nickname,
+            'subject'  => Lang::get('frontend/email.subject_welcome'),
             'email'    => $event->user->email,
         ];
 
@@ -28,8 +37,13 @@ class UserHasRegisteredListener
             $m->from('readmarvel@readmarvel.com', 'Read Marvel.com');
             $m->to($data['email'], $data['nickname'])->subject($data['subject']);
         });
+    }
 
-        // 2. Add default lists for the current user
+    /**
+     * @param UserHasRegistered $event
+     */
+    private function createDefaultLists(UserHasRegistered $event)
+    {
         Artisan::call('lists:generate', ['user_id' => $event->user->id]);
     }
 }
