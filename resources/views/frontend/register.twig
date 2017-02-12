@@ -32,20 +32,24 @@
                        placeholder="{{ Lang.get('frontend/auth.register.password_confirmation') }}"
                        class="form-control" data-parsley-required/>
 
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="accept_terms" data-parsley-required />
+                        {{ Lang.get('frontend/auth.register.terms_and_conditions')|raw }}
+                    </label>
+                </div>
                 {{ csrf_field() }}
 
                 {% if show_recaptcha %}
                     <div class="g-recaptcha" data-sitekey="{{ Config.get('services.recaptcha.public') }}"></div>
                 {% endif %}
 
-                <input type="submit" value="{{ Lang.get('frontend/auth.register.register') }}" />
+                <input type="submit" value="{{ Lang.get('frontend/auth.register.register') }}"/>
             </form>
         </div>
 
-        <div class="cta">
-            <a href="{{ URL.route('login') }}">
-                {{ Lang.get('frontend/auth.register.already_registered') }}
-            </a>
-        </div>
+        <a href="{{ URL.route('login') }}" class="cta">
+            {{ Lang.get('frontend/auth.register.already_registered') }}
+        </a>
     </div>
 {% endblock %}
