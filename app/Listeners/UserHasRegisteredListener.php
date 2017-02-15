@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\UserHasRegistered;
+use Carbon\Carbon;
 use Mail;
 use Artisan;
 use Lang;
@@ -33,9 +34,9 @@ class UserHasRegisteredListener
             'email'    => $event->user->email,
         ];
 
-        Mail::send('emails.welcome', $data, function ($m) use ($data) {
-            $m->from('readmarvel@readmarvel.com', 'Read Marvel.com');
-            $m->to($data['email'], $data['nickname'])->subject($data['subject']);
+        Mail::send('emails.welcome', $data, function ($message) use ($data) {
+            $message->from('readmarvel@readmarvel.com', 'Read Marvel.com');
+            $message->to($data['email'], $data['nickname'])->subject($data['subject']);
         });
     }
 
