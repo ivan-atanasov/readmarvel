@@ -68,6 +68,7 @@ a:hover,a:focus,a:active,
 
 .btn {
   color: $white;
+  background-color: $redBackground;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -76,7 +77,6 @@ a:hover,a:focus,a:active,
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
-  background-image: none;
   white-space: nowrap;
   padding: 8px 12px;
   font-size: 15px;
@@ -88,12 +88,12 @@ a:hover,a:focus,a:active,
   user-select: none;
 }
 
-/*.btn:hover,
+.btn:hover,
 .btn:active {
   color: $white;
   background-color: $redBackgroundHover;
   border-color: $redBorderButtonHover;
-}*/
+}
 
 .btn-black {
   color: $white;

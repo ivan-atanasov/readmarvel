@@ -58,16 +58,14 @@
     right: 0;
     overflow: hidden;
     font-size: 12px;
-    line-height: 20px;
-    color: #737373;
     text-overflow: ellipsis;
 
     .card-title {
-      padding: 0 5px;
+      padding: 5px 30px;
       font-size: 28px;
       line-height: 1;
-      color: #262626;
-      background-color: rgba(255, 255, 255, 0.1);
+      color: $black;
+      background-color: rgba(255, 255, 255, 0.3);
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;
@@ -118,11 +116,11 @@
     height: 80px;
     border-bottom: 1px solid #F5F5F5;
     img {
-      -webkit-filter: blur(25px);
-      -moz-filter: blur(25px);
-      -o-filter: blur(25px);
-      -ms-filter: blur(25px);
-      filter: blur(25px);
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      -o-filter: blur(7px);
+      -ms-filter: blur(7px);
+      filter: blur(7px);
       margin-left: -100px;
       margin-top: -200px;
       min-width: 130%;
@@ -137,7 +135,7 @@
   .card-heading.simple {
     font-size: 20px;
     font-weight: 300;
-    color: #777;
+    color: $darkGray;
     border-bottom: 1px solid #e5e5e5;
   }
 
@@ -223,11 +221,11 @@
   height: 100px;
   border-bottom: 1px solid #F5F5F5;
   img {
-    -webkit-filter: blur(25px);
-    -moz-filter: blur(25px);
-    -o-filter: blur(25px);
-    -ms-filter: blur(25px);
-    filter: blur(25px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
     margin-left: -100px;
     margin-top: -200px;
     min-width: 100%;
