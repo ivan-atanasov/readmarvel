@@ -1,13 +1,7 @@
 <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="list-card hovercard">
-            <div class="card-background">
-                {% if avatar|length %}
-                    <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}"/>
-                {% endif %}
-            </div>
+            <div class="card-background"></div>
 
             <div class="avatar">
                 <a href="#" data-toggle="modal" data-target="#add-list-modal" id="add-list-link">
@@ -24,13 +18,7 @@
 
     <div class="col-lg-3 col-sm-6">
         <div class="list-card hovercard">
-            <div class="card-background">
-                {% if avatar|length %}
-                    <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}"/>
-                {% endif %}
-            </div>
+            <div class="card-background"></div>
 
             <div class="avatar">
                 <img alt="" src="{{ URL.to('images/eye-icon.png') }}">
