@@ -22,11 +22,11 @@
     height: 200px;
 
     img {
-      -webkit-filter: blur(10px);
-      -moz-filter: blur(10px);
-      -o-filter: blur(10px);
-      -ms-filter: blur(10px);
-      filter: blur(10px);
+      -webkit-filter: blur(8px);
+      -moz-filter: blur(8px);
+      -o-filter: blur(8px);
+      -ms-filter: blur(8px);
+      filter: blur(8px);
       margin-left: -160px;
       margin-top: -200px;
       min-width: 130%;
@@ -217,19 +217,37 @@
   }
 }
 
-.list-card.characters .card-background {
-  height: 100px;
-  border-bottom: 1px solid #F5F5F5;
-  img {
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
-    margin-left: -100px;
-    margin-top: -200px;
-    min-width: 100%;
+.list-card.characters {
+  height: 230px;
+
+  .info {
+    .title {
+      margin-top: 40px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
   }
+}
+
+.list-card.characters .card-background {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+  img {
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+    margin-left: -30px;
+    margin-top: -200px;
+    min-width: 130%;
+  }
+}
+
+.list-card.characters.hovercard .avatar {
+  top: 30px;
+  margin-bottom: 5px;
 }
 
 .list-card.hovercard {
@@ -245,25 +263,25 @@
     margin-bottom: -50px;
 
     img {
-      width: 100px;
-      height: 100px;
-      max-width: 100px;
-      max-height: 100px;
+      width: 120px;
+      height: 120px;
+      max-width: 120px;
+      max-height: 120px;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
-      border: 5px solid rgba(255,255,255,0.5);
+      border: 5px solid rgba(255, 255, 255, 0.5);
     }
   }
 
   .info {
+    position: relative;
     padding: 4px 8px 10px;
 
     .title {
       margin-bottom: 4px;
       font-size: 24px;
-      line-height: 1;
-      color: #262626;
+      color: $black;
       vertical-align: middle;
     }
 
@@ -271,16 +289,9 @@
       overflow: hidden;
       font-size: 12px;
       line-height: 20px;
-      color: #737373;
+      color: $darkGray;
       text-overflow: ellipsis;
       padding-bottom: 20px;
     }
-  }
-}
-
-.public-profile {
-  .favourite-characters {
-  }
-  .lists {
   }
 }
