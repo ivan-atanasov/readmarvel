@@ -2,12 +2,27 @@
 
 {% block content %}
     <div class="profile-card hovercard">
+
         <div class="card-background">
             {% if avatar|length %}
                 <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
             {% else %}
                 <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
             {% endif %}
+        </div>
+
+        <div class="change-avatar-form">
+            <form action="{{ URL.route('frontend.update_avatar') }}"
+                  method="post"
+                  id="upload-avatar-form"
+                  enctype="multipart/form-data">
+                <label class="btn btn-default btn-file">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <input type="file" name="avatar" style="display: none;" id="upload-avatar">
+
+                    {{ csrf_field() }}
+                </label>
+            </form>
         </div>
 
         <div class="useravatar">
@@ -20,20 +35,6 @@
 
         <div class="card-info">
             <span class="card-title">{{ Auth.user().nickname }}</span>
-        </div>
-
-        <div class="text-right">
-            <form action="{{ URL.route('frontend.update_avatar') }}"
-                  method="post"
-                  id="upload-avatar-form"
-                  enctype="multipart/form-data">
-                <label class="btn btn-default btn-file">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    <input type="file" name="avatar" style="display: none;" id="upload-avatar">
-
-                    {{ csrf_field() }}
-                </label>
-            </form>
         </div>
     </div>
 

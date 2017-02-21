@@ -19,7 +19,7 @@
   text-align: center;
 
   .card-background {
-    height: 200px;
+    height: 240px;
 
     img {
       -webkit-filter: blur(8px);
@@ -53,9 +53,9 @@
 
   .card-info {
     position: absolute;
-    bottom: 14px;
     left: 0;
     right: 0;
+    bottom: 20px;
     overflow: hidden;
     font-size: 12px;
     text-overflow: ellipsis;
@@ -65,7 +65,7 @@
       font-size: 28px;
       line-height: 1;
       color: $black;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.8);
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;
@@ -75,6 +75,14 @@
   .bottom {
     padding: 0 20px;
     margin-bottom: 17px;
+  }
+
+  .change-avatar-form {
+    float: right;
+    position: absolute;
+    right: 15px;
+    z-index: 1000;
+    bottom: 15px;
   }
 }
 
