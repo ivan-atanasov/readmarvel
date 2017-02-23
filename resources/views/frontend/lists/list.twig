@@ -52,7 +52,6 @@
                         <th class="progress">{{ Lang.get('frontend/lists.progress') }}</th>
                         <th class="started">{{ Lang.get('frontend/lists.started_at') }}</th>
                         <th class="finished">{{ Lang.get('frontend/lists.finished_at') }}</th>
-                        <th class="modify-btns"></th>
                     </tr>
                     </thead>
 
@@ -60,7 +59,7 @@
                     {% for item in items %}
                         <tr>
                             <td class="title">
-                                <a href="{{ URL.route('frontend.show_series', { 'id' : item.series_id }) }}">
+                                <a href="{{ URL.route('frontend.series.show', { 'id' : item.series_id }) }}">
                                     {{ item.title }}
                                 </a>
                             </td>
