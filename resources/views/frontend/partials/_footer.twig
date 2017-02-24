@@ -4,6 +4,11 @@
             <div class="col-md-3">
                 <h3>{{ Lang.get('frontend/index.footer_learn_more') }}</h3>
                 <ul>
+                    <li>
+                        <a href="{{ URL.route('frontend.contact') }}">
+                            {{ Lang.get('frontend/navbar.give_us_feedback') }}
+                        </a>
+                    </li>
                     {% for page in pages %}
                         <li>
                             <a href="{{ URL.route('frontend.static', { 'url_slug': page.url_slug }) }}">
