@@ -11,7 +11,7 @@
                 {% if list['avatar']|length %}
                     <img src="{{ list['avatar'] }}" alt="profile"/>
                 {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_list')) }}"/>
+                    <img src="{{ URL.to(Config.get('image.default_list')) }}"/>
                 {% endif %}
             </div>
 
