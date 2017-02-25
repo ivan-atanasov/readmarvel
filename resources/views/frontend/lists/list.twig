@@ -4,18 +4,14 @@
     <div class="list-page-container">
         <div class="profile-card hovercard">
             <div class="card-background">
-                {% if list['avatar']|length %}
-                    <img class="card-bkimg" src="{{ list['avatar'] }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
-                {% endif %}
+                <img src="{{ URL.to(Config.get('image.default_list_bg')) }}"/>
             </div>
 
             <div class="useravatar">
                 {% if list['avatar']|length %}
                     <img src="{{ list['avatar'] }}" alt="profile"/>
                 {% else %}
-                    <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
+                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_list')) }}"/>
                 {% endif %}
             </div>
 

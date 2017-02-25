@@ -2,13 +2,8 @@
 
 {% block content %}
     <div class="profile-card hovercard">
-
         <div class="card-background">
-            {% if avatar|length %}
-                <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-            {% else %}
-                <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
-            {% endif %}
+            <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_profile_bg')) }}" alt="profile"/>
         </div>
 
         <div class="change-avatar-form">
@@ -29,7 +24,7 @@
             {% if avatar|length %}
                 <img src="{{ avatar['medium'] }}" alt="profile"/>
             {% else %}
-                <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
+                <img src="{{ URL.to(Config.get('image.default_avatar')) }}" alt="profile"/>
             {% endif %}
         </div>
 
@@ -84,10 +79,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block scripts %}
-    {{ parent() }}
-
-    <script type="application/javascript" src="{{ URL.to('/js/frontend/profile.js') }}"></script>
 {% endblock %}
