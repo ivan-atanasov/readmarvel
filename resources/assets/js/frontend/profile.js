@@ -10,6 +10,5 @@ $(document).ready(function() {
         $('button[data-toggle="tab"]').removeClass('selected');
         var target = $(e.target);
         target.addClass('selected');
-        // alert(target);
     });
 });
