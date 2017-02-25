@@ -3,18 +3,14 @@
 {% block content %}
     <div class="profile-card hovercard">
         <div class="card-background">
-            {% if list['avatar']|length %}
-                <img class="card-bkimg" src="{{ list['avatar'] }}" alt="profile"/>
-            {% else %}
-                <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
-            {% endif %}
+            <img src="{{ URL.to(Config.get('image.default_profile_bg')) }}" alt="profile"/>
         </div>
 
         <div class="useravatar">
             {% if list['avatar']|length %}
                 <img src="{{ list['avatar'] }}" alt="profile"/>
             {% else %}
-                <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
+                <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_list')) }}"/>
             {% endif %}
         </div>
 
@@ -22,7 +18,7 @@
             <span class="card-title">{{ list['title'] }}</span>
         </div>
 
-        <div class="text-right">
+        <div class="change-avatar-form">
             <form action="{{ URL.route('frontend.update_list_avatar') }}"
                   method="post"
                   id="upload-list-avatar-form"
@@ -109,21 +105,6 @@
     'series' : series,
     'submitUrl' : URL.route('frontend.update_item_in_list')
     } %}
-
     {% include 'frontend/partials/_share_modal' with { 'share_hash' : list['hash'] } %}
-
     {% include 'frontend/partials/_confirm_modal.twig' with { submitUrl: URL.route('frontend.delete_from_list') } %}
-{% endblock %}
-
-{% block styles %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ URL.to('assets/css/datetimepicker.css') }}"/>
-{% endblock %}
-
-{% block scripts %}
-    {{ parent() }}
-
-    <script type="application/javascript" src="{{ URL.to('/js/datetimepicker.js') }}"></script>
-    <script type="application/javascript" src="{{ URL.to('/js/lists.js') }}"></script>
 {% endblock %}

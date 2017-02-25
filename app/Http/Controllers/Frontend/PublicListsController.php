@@ -37,7 +37,12 @@ class PublicListsController extends BaseController
         $this->getListsAvatars($list);
         $list = array_pop($list);
 
-        return View::make('frontend.lists.list')->with('list', $list)->with('public', true);
+        $items = $this->marvelListRepository->items($list->id);
+
+        return View::make('frontend.lists.list')
+            ->with('items', $items)
+            ->with('list', $list)
+            ->with('public', true);
     }
 
     /**
@@ -50,7 +55,6 @@ class PublicListsController extends BaseController
          * @var array $list
          */
         foreach ($lists as $key => $list) {
-            $lists[$key]['avatar'] = '';
             $avatar = ImageHelper::path(
                 MarvelList::IMAGE_RESOURCE,
                 $list['id'],

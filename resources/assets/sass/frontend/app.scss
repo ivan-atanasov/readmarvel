@@ -12,6 +12,9 @@ $redBorderButtonHover: #b1240c;
 // button text
 $buttonTextColour: #eee;
 
+// grayed out
+$darkGray: #9A9A9A;
+
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "index";
 @import "auth";
@@ -27,6 +30,12 @@ $buttonTextColour: #eee;
 body {
   background: $white;
   font-family: 'Montserrat', sans-serif;
+}
+
+a,
+a:hover,a:focus,a:active,
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+  outline: 0;
 }
 
 .heading-title {
@@ -59,6 +68,7 @@ body {
 
 .btn {
   color: $white;
+  background-color: $redBackground;
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -67,7 +77,6 @@ body {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
-  background-image: none;
   white-space: nowrap;
   padding: 8px 12px;
   font-size: 15px;
@@ -99,8 +108,15 @@ body {
 
 .btn-file {
   position: relative;
-  overflow: hidden;
   border: 1px solid $white;
+  background-color: $redBackground;
+}
+
+.btn-file:hover {
+  transition: background-color 150ms ease-in;
+  color: $white;
+  border: 1px solid $white;
+  background-color: $redBackgroundHover;
 }
 
 .btn-file input[type=file] {

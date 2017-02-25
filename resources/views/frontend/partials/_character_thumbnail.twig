@@ -2,7 +2,11 @@
     <div class="thumbnail">
         <a href="{{ URL.route('frontend.characters.show', {'id': character['id'], 'url_slug' : str_slug(character['name'])}) }}"
            class="details-btn">
-            <div class="caption-img" style="background: url({{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }});"></div>
+            {% if 'image_not_available' in character['thumbnail']['path'] %}
+                <div class="caption-img" style="background: url({{ Config.get('marvel.series.not_found') }});"></div>
+            {% else %}
+                <div class="caption-img" style="background: url({{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }});"></div>
+            {% endif %}
         </a>
 
         <div class="caption-details">

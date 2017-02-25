@@ -9,14 +9,12 @@
     {% endif %}
 
     <div class="col-lg-3 col-sm-6">
-        <div class="list-card characters hovercard list-block">
-            <div class="card-background">
-                <img class="card-bkimg" src="{{ URL.to(character['thumbnail']['path'] ~ '/' ~ Config.get('marvel.characters.profile_small_thumbnail')) }}" alt="profile"/>
-            </div>
+        <div class="list-card hovercard">
+            <div class="card-background"></div>
 
             <div class="avatar">
                 <a href="{{ URL.route('frontend.characters.show', {'id' : character['id'], 'url_slug' : str_slug(character['name'])}) }}">
-                    <img alt="avatar" src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
+                    <img class="character" src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
                 </a>
             </div>
 

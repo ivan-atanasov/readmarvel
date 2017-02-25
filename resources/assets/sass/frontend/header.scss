@@ -6,7 +6,7 @@ $navbarHeight: 80px;
 
 .navbar {
   height: $navbarHeight;
-  background: #000000;
+  background: $black;
   font-weight: bold;
 
   .container {
@@ -40,7 +40,7 @@ $navbarHeight: 80px;
   margin-top: $navbarHeight;
   border-top: 10px solid #222;
   border-bottom: 10px solid #222;
-  background-color: #000;
+  background-color: $black;
 
   .carousel-inner {
     border: 0 none;
@@ -53,7 +53,7 @@ $navbarHeight: 80px;
 
   .carousel-control {
     .right {
-      background: #fff;
+      background: $white;
     }
   }
 }
@@ -65,23 +65,17 @@ $navbarHeight: 80px;
 
 .navbar-inverse {
   .navbar-nav > li > a {
-    color: #fff;
+    color: $white;
   }
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #e92227;
+  color: $redBackground;
 }
 
 #register-link {
   text-transform: uppercase;
-}
-
-@media (min-width: 768px) {
-  .navbar-collapse.collapse {
-    float: right;
-  }
 }
 
 .navbar-toggle {
@@ -102,12 +96,12 @@ $navbarHeight: 80px;
 }
 
 .navbar-toggle:hover .icon-bar {
-  background-color: #e92227;
+  background-color: $redBackground;
 }
 
 .navbar-collapse {
-  background-color: #000;
-  border: 10px solid #000;
+  background-color: $black;
+  border: 10px solid $black;
   padding: 0;
 }
 
@@ -141,7 +135,7 @@ $navbarHeight: 80px;
   font-weight: normal;
   font-size: 32px;
   cursor: pointer;
-  color: #fff;
+  color: $white;
 }
 
 .social:hover {
@@ -150,5 +144,52 @@ $navbarHeight: 80px;
 }
 
 .social:active {
-  color: #fff;
+  color: $white;
+}
+@media (min-width: 991px) {
+  .navbar-collapse.collapse {
+    float: right;
+  }
+}
+
+@media (max-width: 991px) {
+
+  .navbar-header {
+    float: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+
+  .navbar-nav {
+    float: none !important;
+    margin: 7.5px -15px;
+  }
+
+  .navbar-nav > li {
+    float: none;
+  }
+
+  .navbar-nav > li > a {
+    padding: 10px 10px 10px 20px;
+  }
+
+  .navbar-text {
+    float: none;
+    margin: 15px 0;
+  }
+
+  /* since 3.1.0 */
+  .navbar-collapse.collapse.in {
+    display: block !important;
+  }
+
+  .collapsing {
+    overflow: hidden !important;
+  }
 }
