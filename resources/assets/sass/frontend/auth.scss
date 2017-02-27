@@ -3,13 +3,13 @@
   position: relative;
   background: $white;
   width: 385px;
-  border-top: 5px solid $marvelRedBtnHover;
+  border-top: 5px solid $redBackgroundHover;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 150px auto 150px auto;
 
   .form {
     display: block;
-    padding: 40px;
+    padding: 40px 40px 10px 40px;
   }
 
   .form:nth-child(2) {
@@ -27,7 +27,6 @@
   input {
     outline: none;
     display: block;
-    width: 100%;
     border: 1px solid #d9d9d9;
     margin: 0 0 20px;
     padding: 10px 15px;
@@ -37,14 +36,25 @@
     transition: 0.3s ease;
   }
 
+  input[type=submit] {
+    background: $redBackground;
+    color: $buttonTextColour;
+    width: 100%;
+  }
+
+  input[type=submit]:hover {
+    background: $redBackgroundHover;
+    color: $buttonTextColour;
+  }
+
   input:focus {
-    border: 1px solid $marvelRedBtnHover;
-    color: #333333;
+    border: 1px solid $redBackgroundHover;
+    color: $redBackgroundHover;
   }
 
   button.submit {
     cursor: pointer;
-    background: $marvelRedBtn;
+    background: $redBackground;
     width: 100%;
     border: 0;
     padding: 10px 15px;
@@ -54,26 +64,29 @@
   }
 
   button.submit:hover {
-    background: $marvelRedBtnHover;
-  }
-
-  .cta {
-    background: #f2f2f2;
-    width: 100%;
-    padding: 15px 40px;
-    box-sizing: border-box;
-    color: #666666;
-    font-size: 12px;
-    text-align: center;
-    border-bottom: 1px solid $marvelRedBorderBtn;
-
-    a {
-      color: #333333;
-      text-decoration: none;
-    }
+    background: $redBackgroundHover;
   }
 
   .g-recaptcha {
     margin-bottom: 20px;
   }
+}
+
+.cta {
+  display: block;
+  clear: both;
+  width: 100%;
+  text-align: center;
+  background: #d9d9d9;
+  padding: 10px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  color: $black;
+  font-size: 12px;
+}
+
+.cta:hover {
+  background: $redBackgroundHover;
+  color: #d9d9d9;
+  text-decoration: none;
 }

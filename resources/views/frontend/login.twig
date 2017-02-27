@@ -26,15 +26,16 @@
                 {% if show_recaptcha %}
                     <div class="g-recaptcha" data-sitekey="{{ Config.get('services.recaptcha.public') }}"></div>
                 {% endif %}
-                <input type="submit" value="{{ Lang.get('frontend/auth.login.sign_in') }}" />
-
+                <input type="submit" value="{{ Lang.get('frontend/auth.login.sign_in') }}"/>
             </form>
         </div>
-        <div class="cta">
-            <a href="{{ URL.route('register_index') }}">{{ Lang.get('frontend/auth.login.no_account') }}</a>
-        </div>
-        <div class="cta">
-            <a href="{{ URL.route('reset_password_index') }}">{{ Lang.get('frontend/auth.login.forgot_password') }}</a>
-        </div>
+
+        <a href="{{ URL.route('register_index') }}" class="cta">
+            {{ Lang.get('frontend/auth.login.no_account') }}
+        </a>
+
+        <a href="{{ URL.route('reset_password_index') }}" class="cta">
+            {{ Lang.get('frontend/auth.login.forgot_password') }}
+        </a>
     </div>
 {% endblock %}

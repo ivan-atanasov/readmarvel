@@ -13,10 +13,7 @@ return [
     'personal_info'              => 'Personal info',
     'manage_lists'               => 'Manage lists',
     'manage_characters'          => 'Manage characters',
-    'add_new_list'               => 'To add a new list',
-    'add_new_list_description'   => 'Click the gray plus above to add a new list to your collections',
-    'view_list'                  => 'To view a list',
-    'view_list_description'      => 'Click on it\'s image from the thumbnails below',
+    'add_new_list'               => 'Add a new list',
     'lists'                      => [
         'add'               => 'Create a list',
         'title'             => 'Title',

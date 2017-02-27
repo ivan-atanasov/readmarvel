@@ -23,7 +23,7 @@ return [
         ],
     ],
     'footer_copyright'     => 'Data provided by Marvel. &copy; 2014 Marvel',
-    'footer_learn_more'    => 'Learn more',
+    'about'                => 'About this project',
     'footer_characters'    => 'Featured characters',
     'footer_social'        => 'Social media',
 ];
