@@ -87,6 +87,7 @@ class AuthController extends Controller
 
         Event::fire(new UserHasRegistered($newUser));
 
+        \Session::flash('messages', ['success' => Lang::get('frontend/auth.register.register_success')]);
         return redirect($this->redirectPath());
     }
 
@@ -100,9 +101,10 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nickname' => 'required|max:255|unique:users|alpha_dash',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'nickname'     => 'required|max:255|unique:users|alpha_dash',
+            'email'        => 'required|email|max:255|unique:users',
+            'password'     => 'required|min:6|confirmed',
+            'accept_terms' => 'required',
         ]);
     }
 

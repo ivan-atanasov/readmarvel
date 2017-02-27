@@ -5,4 +5,5 @@ return [
     'static_pages' => 'Static pages',
     'create'       => 'Create',
     'edit'         => 'Edit',
+    'users'        => 'Users',
 ];

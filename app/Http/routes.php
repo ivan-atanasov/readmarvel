@@ -90,7 +90,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         );
         Route::post(
             '/update_avatar',
-            ['as'   => 'frontend.update_avatar', 'uses' => 'ProfileController@updateAvatar']
+            ['as' => 'frontend.update_avatar', 'uses' => 'ProfileController@updateAvatar']
         );
 
         /**
@@ -135,6 +135,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 
     Route::resource('static', 'StaticPagesController');
+    Route::resource('users', 'UsersController');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('change-password', ['as' => 'admin.change_password', 'uses' => 'ProfileController@changePassword']);
@@ -143,8 +144,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
             ['as' => 'admin.change_password_post', 'uses' => 'ProfileController@changePasswordPost']
         );
     });
-}
-);
+});
 
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);

@@ -1,0 +1,81 @@
+{% extends 'admin/layouts/default.twig' %}
+
+{% block content %}
+    {{ Breadcrumbs.render('users')|raw }}
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-1 pull-right">
+                <a href="{{ URL.route('admin.static.create') }}" type="button" class="btn btn-block btn-primary">
+                    <i class="fa fa-plus-square">&nbsp;</i>
+                    {{ Lang.get('admin/static/index.add_new_btn') }}
+                </a>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table id="datatable-static-pages" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ Lang.get('admin/users/index.name') }}</th>
+                                <th>{{ Lang.get('admin/users/index.nickname') }}</th>
+                                <th>{{ Lang.get('admin/users/index.email') }}</th>
+                                <th>{{ Lang.get('admin/users/index.actions') }}</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.nickname }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <a href="{{ URL.route('admin.users.edit', {'id' : user.id}) }}"
+                                           class="btn btn-info">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger btn-remove"
+                                           data-url="{{ URL.route('admin.users.destroy', {'id' : user.id}) }}"
+                                           data-toggle="modal"
+                                           data-target="#delete-modal">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                            <tfoot>
+                            <tr>
+                                <th>{{ Lang.get('admin/users/index.name') }}</th>
+                                <th>{{ Lang.get('admin/users/index.nickname') }}</th>
+                                <th>{{ Lang.get('admin/users/index.email') }}</th>
+                                <th>{{ Lang.get('admin/users/index.actions') }}</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'admin/partials/_confirm_modal' %}
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ URL.to('assets/admin/admin-lte/plugins/datatables/dataTables.bootstrap.css') }}"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/admin-lte/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ URL.to('assets/admin/admin-lte/js/pages/static_pages.js') }}"></script>
+{% endblock %}

@@ -12,6 +12,7 @@ return [
     ],
     'series'       => [
         'thumbnail' => 'portrait_uncanny.jpg',
+        'not_found' => 'images/image_not_found.jpg',
     ],
     'characters'   => [
         'thumbnail'               => 'portrait_uncanny.jpg',
