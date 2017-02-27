@@ -35,7 +35,7 @@ class UserHasRegisteredListener
         ];
 
         Mail::send('emails.welcome', $data, function ($message) use ($data) {
-            $message->from('readmarvel@readmarvel.com', 'Read Marvel.com');
+            $message->from(\Config::get('mail.contact_form_to_email'), 'ReadMarvel.com');
             $message->to($data['email'], $data['nickname'])->subject($data['subject']);
         });
     }
