@@ -2,13 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h3>{{ Lang.get('frontend/index.footer_learn_more') }}</h3>
+                <h3>{{ Lang.get('frontend/index.about') }}</h3>
                 <ul>
-                    <li>
-                        <a href="{{ URL.route('frontend.contact') }}">
-                            {{ Lang.get('frontend/navbar.give_us_feedback') }}
-                        </a>
-                    </li>
                     {% for page in pages %}
                         <li>
                             <a href="{{ URL.route('frontend.static', { 'url_slug': page.url_slug }) }}">
@@ -16,6 +11,17 @@
                             </a>
                         </li>
                     {% endfor %}
+                    
+                    <li>
+                        <a href="{{ URL.route('frontend.contact') }}">
+                            {{ Lang.get('frontend/navbar.contact') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL.route('frontend.contact') }}">
+                            {{ Lang.get('frontend/navbar.send_us_feedback') }}
+                        </a>
+                    </li>
                 </ul>
             </div>
 

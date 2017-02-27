@@ -10,6 +10,7 @@ return [
     'register'         => 'Register',
     'profile'          => 'Profile',
     'series'           => 'Series',
-    'contact'          => 'Contact us',
-    'give_us_feedback' => 'Give us feedback',
+    'contact'          => 'Contact',
+    'about'            => 'About',
+    'send_us_feedback' => 'Send feedback',
 ];
