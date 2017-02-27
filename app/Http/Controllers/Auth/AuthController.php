@@ -87,6 +87,7 @@ class AuthController extends Controller
 
         Event::fire(new UserHasRegistered($newUser));
 
+        \Session::flash('messages', ['success' => Lang::get('frontend/auth.register.register_success')]);
         return redirect($this->redirectPath());
     }
 
