@@ -40,8 +40,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ URL.route('frontend.contact') }}">
-                        {{ Lang.get('frontend/navbar.contact') }}
+                    <a href="{{ URL.route('frontend.static', { 'url_slug' : 'how-to-use' }) }}">
+                        {{ Lang.get('frontend/navbar.about') }}
                     </a>
                 </li>
                 {% if Auth.check %}
