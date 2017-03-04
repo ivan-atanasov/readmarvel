@@ -14,6 +14,10 @@ return [
     'manage_lists'               => 'Manage lists',
     'manage_characters'          => 'Manage characters',
     'add_new_list'               => 'Add a new list',
+    'favourite_characters_title' => '\'s favourite characters',
+    'lists_title'                => '\'s lists',
+    'about_me_title'             => 'A bit about ',
+    'share'                      => 'Share profile',
     'lists'                      => [
         'add'               => 'Create a list',
         'title'             => 'Title',
@@ -25,12 +29,9 @@ return [
         'share_list'        => 'Share this list',
         'copy_to_clipboard' => 'Copy to clipboard',
     ],
-    'favourite_characters_title' => '\'s favourite characters',
-    'lists_title'                => '\'s lists',
-    'about_me_title'             => 'A bit about ',
-    'characters' => [
+    'characters'                 => [
         'no_characters_yet_text' => 'You don\'t have any favourited heroes yet. You can look for your favourite ' .
-                                    '<a href=":characters_url" class="link-underlined"> ' .
-                                    'Marvel superheroes here!</a>',
-    ]
+            '<a href=":characters_url" class="link-underlined"> ' .
+            'Marvel superheroes here!</a>',
+    ],
 ];
