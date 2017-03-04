@@ -17,6 +17,14 @@
 
                     {{ csrf_field() }}
                 </label>
+
+                <a href="#"
+                   class="btn btn-default btn-file"
+                   data-toggle="modal"
+                   data-target="#share-profile-modal"
+                   title="{{ Lang.get('frontend/profile.lists.share_btn_text') }}">
+                    <i class="glyphicon glyphicon-share-alt"></i>
+                </a>
             </form>
         </div>
 
@@ -79,4 +87,6 @@
             </div>
         </div>
     </div>
+
+    {% include 'frontend/partials/_share_profile_modal' with { 'public_profile_url' : URL.route('frontend.public_profile', Auth.user().nickname) } %}
 {% endblock %}
