@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\UserHasRegistered;
+use App\Repositories\UserProfileRepository;
 use Carbon\Carbon;
 use Mail;
 use Artisan;
@@ -10,6 +11,14 @@ use Lang;
 
 class UserHasRegisteredListener
 {
+    /** @var UserProfileRepository */
+    private $userProfileRepository;
+
+    public function __construct(UserProfileRepository $userProfileRepository)
+    {
+        $this->userProfileRepository = $userProfileRepository;
+    }
+
     /**
      * Handle the event.
      *
@@ -20,6 +29,7 @@ class UserHasRegisteredListener
     public function handle(UserHasRegistered $event)
     {
         $this->sendWelcomeEmail($event);
+        $this->createProfileEntry($event);
         $this->createDefaultLists($event);
     }
 
@@ -46,5 +56,16 @@ class UserHasRegisteredListener
     private function createDefaultLists(UserHasRegistered $event)
     {
         Artisan::call('lists:generate', ['user_id' => $event->user->id]);
+    }
+
+    private function createProfileEntry(UserHasRegistered $event)
+    {
+        $data = [
+            'user_id'   => $event->user->id,
+            'real_name' => $event->user->name,
+            'about_me'  => '',
+        ];
+
+        $this->userProfileRepository->updateOrCreate($event->user->id, $data);
     }
 }
