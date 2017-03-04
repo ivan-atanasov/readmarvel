@@ -28,4 +28,9 @@ return [
     'favourite_characters_title' => '\'s favourite characters',
     'lists_title'                => '\'s lists',
     'about_me_title'             => 'A bit about ',
+    'characters' => [
+        'no_characters_yet_text' => 'You don\'t have any favourited heroes yet. You can look for your favourite ' .
+                                    '<a href=":characters_url" class="link-underlined"> ' .
+                                    'Marvel superheroes here!</a>',
+    ]
 ];
