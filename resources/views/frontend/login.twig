@@ -23,9 +23,6 @@
 
                 {{ csrf_field() }}
 
-                {% if show_recaptcha %}
-                    <div class="g-recaptcha" data-sitekey="{{ Config.get('services.recaptcha.public') }}"></div>
-                {% endif %}
                 <input type="submit" value="{{ Lang.get('frontend/auth.login.sign_in') }}"/>
             </form>
         </div>
