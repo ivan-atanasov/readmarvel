@@ -3,18 +3,14 @@
 {% block content %}
     <div class="profile-card hovercard">
         <div class="card-background">
-            {% if avatar|length %}
-                <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-            {% else %}
-                <img class="card-bkimg" src="{{ URL.to('/images/marvel_read.png') }}" alt="profile"/>
-            {% endif %}
+            <img src="{{ URL.to(Config.get('image.default_profile_bg')) }}" alt="profile"/>
         </div>
 
         <div class="useravatar">
             {% if avatar|length %}
                 <img src="{{ avatar['medium'] }}" alt="profile"/>
             {% else %}
-                <img src="{{ URL.to('/images/marvel_100_100.png') }}" alt="profile"/>
+                <img src="{{ URL.to(Config.get('image.default_avatar')) }}" alt="profile"/>
             {% endif %}
         </div>
 
@@ -48,16 +44,12 @@
                         {% endif %}
 
                         <div class="col-lg-3 col-sm-6">
-                            <div class="list-card characters hovercard list-block">
-                                <div class="card-background">
-                                    <img class="card-bkimg"
-                                         src="{{ URL.to(character['thumbnail']['path'] ~ '/' ~ Config.get('marvel.characters.profile_small_thumbnail')) }}"
-                                         alt="profile"/>
-                                </div>
+                            <div class="list-card characters hovercard">
+                                <div class="card-background"></div>
 
                                 <div class="avatar">
                                     <a href="{{ URL.route('frontend.characters.show', {'id' : character['id'], 'url_slug' : str_slug(character['name'])}) }}">
-                                        <img alt="avatar"
+                                        <img class="character"
                                              src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
                                     </a>
                                 </div>
@@ -90,21 +82,15 @@
                         {% endif %}
 
                         <div class="col-lg-3 col-sm-6">
-                            <div class="list-card hovercard list-block">
-                                <div class="card-background">
-                                    {% if list['avatar']|length %}
-                                        <img class="card-bkimg" src="{{ URL.to(list['avatar']) }}" alt="profile"/>
-                                    {% else %}
-                                        <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                                    {% endif %}
-                                </div>
+                            <div class="list-card hovercard">
+                                <div class="card-background"></div>
 
                                 <div class="avatar">
                                     <a href="{{ URL.route('frontend.lists.public', {'list_hash' : list['hash']}) }}">
                                         {% if list['avatar']|length %}
-                                            <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
+                                            <img class="list" src="{{ URL.to(list['avatar']) }}">
                                         {% else %}
-                                            <img alt="avatar" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
+                                            <img class="list" src="{{ URL.to(Config.get('image.default_list')) }}"/>
                                         {% endif %}
                                     </a>
                                 </div>

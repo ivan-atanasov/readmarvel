@@ -1,46 +1,8 @@
 <div class="row">
     <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard">
-            <div class="card-background">
-                {% if avatar|length %}
-                    <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}"/>
-                {% endif %}
-            </div>
-
-            <div class="avatar">
-                <a href="#" data-toggle="modal" data-target="#add-list-modal" id="add-list-link">
-                    <img alt="" src="{{ URL.to('images/gray_plus.png') }}">
-                </a>
-            </div>
-
-            <div class="info">
-                <div class="title">{{ Lang.get('frontend/profile.add_new_list') }}</div>
-                <div class="desc">{{ Lang.get('frontend/profile.add_new_list_description') }}</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard">
-            <div class="card-background">
-                {% if avatar|length %}
-                    <img class="card-bkimg" src="{{ avatar['large'] }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_logo')) }}"/>
-                {% endif %}
-            </div>
-
-            <div class="avatar">
-                <img alt="" src="{{ URL.to('images/eye-icon.png') }}">
-            </div>
-
-            <div class="info">
-                <div class="title">{{ Lang.get('frontend/profile.view_list') }}</div>
-                <div class="desc">{{ Lang.get('frontend/profile.view_list_description') }}</div>
-            </div>
-        </div>
+        <a href="#" data-toggle="modal" data-target="#add-list-modal" id="add-list-link" class="btn">
+            <i class="glyphicon glyphicon-plus"></i> {{ Lang.get('frontend/profile.add_new_list') }}
+        </a>
     </div>
 </div>
 
@@ -55,21 +17,15 @@
     {% endif %}
 
     <div class="col-lg-3 col-sm-6">
-        <div class="list-card hovercard list-block">
-            <div class="card-background">
-                {% if list['avatar']|length %}
-                    <img class="card-bkimg" src="{{ URL.to(list['avatar']) }}" alt="profile"/>
-                {% else %}
-                    <img class="card-bkimg" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
-                {% endif %}
-            </div>
+        <div class="list-card hovercard">
+            <div class="card-background"></div>
 
             <div class="avatar">
                 <a href="{{ URL.route('frontend.profile_view_list', {'id' : list['id']}) }}">
                     {% if list['avatar']|length %}
-                        <img alt="avatar" src="{{ URL.to(list['avatar']) }}">
+                        <img alt="avatar" class="list" src="{{ URL.to(list['avatar']) }}">
                     {% else %}
-                        <img alt="avatar" src="{{ URL.to(Config.get('image.default_avatar')) }}"/>
+                        <img alt="avatar" class="list" src="{{ URL.to(Config.get('image.default_list')) }}"/>
                     {% endif %}
                 </a>
             </div>
@@ -104,11 +60,11 @@
                 <div class="modal-body">
                     {% include 'frontend/partials/_errors' with { 'errors' : errors } %}
 
-                    <div class="row top-buffer">
+                    <div class="row">
                         <div class="col-md-12">
                             <label for="list-avatar">{{ Lang.get('frontend/profile.lists.avatar') }}</label>
 
-                            <input type="file" name="avatar" id="list-avatar" class="btn-file"/>
+                            <input type="file" name="avatar" id="list-avatar" />
                         </div>
                     </div>
 

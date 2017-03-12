@@ -13,10 +13,11 @@ return [
     'personal_info'              => 'Personal info',
     'manage_lists'               => 'Manage lists',
     'manage_characters'          => 'Manage characters',
-    'add_new_list'               => 'To add a new list',
-    'add_new_list_description'   => 'Click the gray plus above to add a new list to your collections',
-    'view_list'                  => 'To view a list',
-    'view_list_description'      => 'Click on it\'s image from the thumbnails below',
+    'add_new_list'               => 'Add a new list',
+    'favourite_characters_title' => '\'s favourite characters',
+    'lists_title'                => '\'s lists',
+    'about_me_title'             => 'A bit about ',
+    'share'                      => 'Share profile',
     'lists'                      => [
         'add'               => 'Create a list',
         'title'             => 'Title',
@@ -28,7 +29,9 @@ return [
         'share_list'        => 'Share this list',
         'copy_to_clipboard' => 'Copy to clipboard',
     ],
-    'favourite_characters_title' => '\'s favourite characters',
-    'lists_title'                => '\'s lists',
-    'about_me_title'             => 'A bit about ',
+    'characters'                 => [
+        'no_characters_yet_text' => 'You don\'t have any favourited heroes yet. You can look for your favourite ' .
+            '<a href=":characters_url" class="link-underlined"> ' .
+            'Marvel superheroes here!</a>',
+    ],
 ];

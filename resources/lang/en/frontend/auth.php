@@ -20,6 +20,7 @@ return [
         'register'              => 'Register',
         'already_registered'    => 'Already registered?',
         'register_success'      => 'You have registered successfully. You may login with your credentials',
+        'terms_and_conditions'  => 'I accept the <a href="page/terms-and-conditions">terms and conditions</a>',
     ],
     'reset_password' => [
         'title'                 => 'Reset password',

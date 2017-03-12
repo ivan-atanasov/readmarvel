@@ -27,9 +27,8 @@ class ProfileController extends BaseController
 
     /** @var MarvelListRepository */
     protected $marvelListRepository;
-    /**
-     * @var FavouriteCharacter
-     */
+
+    /** @var FavouriteCharacter */
     private $favouriteCharacter;
 
     /**

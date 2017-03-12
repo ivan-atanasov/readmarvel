@@ -11,8 +11,14 @@
 
     <div class="row series-page top-buffer">
         <div class="col-md-3">
-            <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
-                 alt="{{ character['name'] }} thumbnail" class="img-responsive"/>
+            {% if 'image_not_available' in character['thumbnail']['path'] %}
+                <img src="{{ URL.to(Config.get('marvel.series.not_found')) }}"
+                     alt="{{ character['title'] }} thumbnail"
+                     class="img-responsive"/>
+            {% else %}
+                <img src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.thumbnail') }}"
+                     alt="{{ character['name'] }} thumbnail" class="img-responsive"/>
+            {% endif %}
 
             <a href="{{ character['urls'][0]['url'] }}" class="btn btn-block btn-black btn-marvel" target="_blank">
                 {{ Lang.get('frontend/characters.see_at_marvel') }}

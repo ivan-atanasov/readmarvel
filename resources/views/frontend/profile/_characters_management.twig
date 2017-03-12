@@ -1,33 +1,38 @@
-{% set i = 0 %}
-{% set shouldOpen = 1 %}
-{% for character in characters %}
-    {% set i = i+1 %}
+{% if characters|length %}
+    {% set i = 0 %}
+    {% set shouldOpen = 1 %}
+    {% for character in characters %}
+        {% set i = i+1 %}
 
-    {% if shouldOpen == 1 %}
-        {% set shouldOpen = 0 %}
-        <div class="row">
-    {% endif %}
+        {% if shouldOpen == 1 %}
+            {% set shouldOpen = 0 %}
+            <div class="row">
+        {% endif %}
 
-    <div class="col-lg-3 col-sm-6">
-        <div class="list-card characters hovercard list-block">
-            <div class="card-background">
-                <img class="card-bkimg" src="{{ URL.to(character['thumbnail']['path'] ~ '/' ~ Config.get('marvel.characters.profile_small_thumbnail')) }}" alt="profile"/>
-            </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="list-card hovercard">
+                <div class="card-background"></div>
 
-            <div class="avatar">
-                <a href="{{ URL.route('frontend.characters.show', {'id' : character['id'], 'url_slug' : str_slug(character['name'])}) }}">
-                    <img alt="avatar" src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
-                </a>
-            </div>
+                <div class="avatar">
+                    <a href="{{ URL.route('frontend.characters.show', {'id' : character['id'], 'url_slug' : str_slug(character['name'])}) }}">
+                        <img class="character"
+                             src="{{ character['thumbnail']['path'] }}/{{ Config.get('marvel.characters.profile_small_thumbnail') }}"/>
+                    </a>
+                </div>
 
-            <div class="info">
-                <div class="title">{{ character['name'] }}</div>
+                <div class="info">
+                    <div class="title">{{ character['name'] }}</div>
+                </div>
             </div>
         </div>
+
+        {% if i is divisible by(4) or i == characters|length %}
+            </div>
+            {% set shouldOpen = 1 %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <div class="alert alert-info">
+        {{ Lang.get('frontend/profile.characters.no_characters_yet_text', {'characters_url': URL.route('frontend.characters')})|raw }}
     </div>
-
-    {% if i is divisible by(4) or i == characters|length %}
-        </div>
-        {% set shouldOpen = 1 %}
-    {% endif %}
-{% endfor %}
+{% endif %}

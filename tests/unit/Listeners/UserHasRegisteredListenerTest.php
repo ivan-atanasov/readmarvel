@@ -6,6 +6,7 @@ namespace Tests\Unit\Listeners;
 use App\Events\UserHasRegistered;
 use App\Listeners\UserHasRegisteredListener;
 use App\Repositories\MarvelListRepository;
+use App\Repositories\UserProfileRepository;
 use App\User;
 
 class UserHasRegisteredListenerTest extends \Codeception\TestCase\Test
@@ -34,7 +35,7 @@ class UserHasRegisteredListenerTest extends \Codeception\TestCase\Test
     {
         $user = User::find($this->user);
         $event = new UserHasRegistered($user);
-        $listener = new UserHasRegisteredListener();
+        $listener = new UserHasRegisteredListener(new UserProfileRepository());
         $listener->handle($event);
 
         foreach ($this->marvelListRepository->defaultLists() as $list) {

@@ -121,9 +121,9 @@
   a.details-btn {
     display: block;
     text-align: center;
-    background: $marvelRedBtn;
+    background: $redBackground;
     padding: 8px 10px;
-    color: #ffffff;
+    color: $white;
     border-radius: 3px;
     -o-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -134,7 +134,7 @@
 
   a.details-btn:hover {
     text-decoration: none;
-    background: $marvelRedBtnHover;
+    background: $redBackgroundHover;
   }
 }
 
