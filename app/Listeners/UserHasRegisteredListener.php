@@ -63,7 +63,7 @@ class UserHasRegisteredListener
         ];
 
         Mail::send('emails.welcome_followup', $data, function ($message) use ($data) {
-            $message->from('readmarvel@readmarvel.com', 'ReadMarvel.com');
+            $message->from(\Config::get('mail.contact_form_to_email'), 'ReadMarvel.com');
             $message->to($data['email'], $data['nickname'])->subject($data['subject']);
 
             // Mailgun schedule date format and timezone
