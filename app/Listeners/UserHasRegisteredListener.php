@@ -29,6 +29,7 @@ class UserHasRegisteredListener
     public function handle(UserHasRegistered $event)
     {
         $this->sendWelcomeEmail($event);
+        $this->scheduleFollowupEmail($event);
         $this->createProfileEntry($event);
         $this->createDefaultLists($event);
     }
@@ -47,6 +48,29 @@ class UserHasRegisteredListener
         Mail::send('emails.welcome', $data, function ($message) use ($data) {
             $message->from(\Config::get('mail.contact_form_to_email'), 'ReadMarvel.com');
             $message->to($data['email'], $data['nickname'])->subject($data['subject']);
+        });
+    }
+
+    /**
+     * @param UserHasRegistered $event
+     */
+    private function scheduleFollowupEmail(UserHasRegistered $event)
+    {
+        $data = [
+            'nickname' => $event->user->nickname,
+            'subject'  => Lang::get('frontend/email.subject_followup'),
+            'email'    => $event->user->email,
+        ];
+
+        Mail::send('emails.welcome_followup', $data, function ($message) use ($data) {
+            $message->from(\Config::get('mail.contact_form_to_email'), 'ReadMarvel.com');
+            $message->to($data['email'], $data['nickname'])->subject($data['subject']);
+
+            // Mailgun schedule date format and timezone
+            $scheduleDate = Carbon::now()->setTimezone('UTC')->addDays(2)->toRfc822String();
+
+            $headers = $message->getHeaders();
+            $headers->addTextHeader('X-Mailgun-Deliver-By', $scheduleDate);
         });
     }
 

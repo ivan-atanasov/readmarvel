@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'subject_welcome' => 'Welcome to Read Marvel',
+    'subject_welcome'  => 'Thank you for joining ReadMarvel.com',
+    'subject_followup' => 'Followup ReadMarvel.com',
 ];
