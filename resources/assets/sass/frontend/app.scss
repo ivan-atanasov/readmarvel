@@ -24,6 +24,7 @@ $darkGray: #9A9A9A;
 @import "lists";
 @import "footer";
 @import "header";
+@import "required";
 @import "../../css/parsley";
 @import "../../css/datetimepicker";
 
@@ -33,7 +34,7 @@ body {
 }
 
 a,
-a:hover,a:focus,a:active,
+a:hover, a:focus, a:active,
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
   outline: 0;
 }
@@ -176,4 +177,24 @@ a:hover,a:focus,a:active,
 .index .thumbnail .caption-img, .series-list .thumbnail .caption-img {
   border-radius: 0;
   border: 1px solid #eee;
+}
+
+.link-underlined {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 768px) {
+  .caption-details {
+    h3 {
+      font-size: 24px;
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .caption-details {
+    h3 {
+      font-size: 18px;
+    }
+  }
 }

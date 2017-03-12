@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Cache;
 use Config;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 
 /**
  * Class SeriesRepository
@@ -36,8 +37,9 @@ class SeriesRepository
             $series = Cache::tags(['random_series'])->get('homepage_series');
         } else {
             $query = $this->apiClient->getConfig('query');
-            $query['offset'] = random_int(0, 1000);
-            $query['limit'] = $count * 2;
+            $query['limit'] = $count * 3;
+            $query['modifiedSince'] = Carbon::createFromDate(1995, 01, 01)->toFormattedDateString();
+            $query['seriesType'] = 'limited';
 
             $response = $this->apiClient->get(
                 Config::get('marvel.base_uri') . Config::get('marvel.endpoints.series'),
