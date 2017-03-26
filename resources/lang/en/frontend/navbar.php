@@ -7,7 +7,7 @@ return [
     'characters'       => 'Characters',
     'login'            => 'Login',
     'logout'           => 'Logout',
-    'register'         => 'Register',
+    'register'         => 'Sign Up',
     'profile'          => 'Profile',
     'series'           => 'Series',
     'contact'          => 'Contact',
