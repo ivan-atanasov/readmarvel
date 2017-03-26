@@ -76,6 +76,11 @@ $navbarHeight: 80px;
 
 #register-link {
   text-transform: uppercase;
+  color: $redBackground;
+
+  &:hover {
+    color: $redBackgroundHover;
+  }
 }
 
 .navbar-toggle {
